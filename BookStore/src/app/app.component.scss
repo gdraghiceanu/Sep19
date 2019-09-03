@@ -1,0 +1,17 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  border-bottom: 1px solid gray;
+  padding: 0 10px;
+  background: d0d0d;
+}
+
+.container {
+  padding: 10px;
+  flex: 1;
+}
