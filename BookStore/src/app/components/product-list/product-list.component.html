@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="book" *ngFor="let b of books">
+        {{b.title}}
+    </div>
+
+    <div *ngIf="books.length > 10">We have a sale</div> 
+</div>
