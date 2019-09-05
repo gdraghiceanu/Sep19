@@ -1,0 +1,8 @@
+<div class="continer">
+    <div class="book" *ngFor="let b of books ">
+        {{ b.title}}
+    </div>
+
+    <div *ngIf ="books.length >3"> We have a sale </div>
+
+</div>
