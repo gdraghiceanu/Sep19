@@ -1,0 +1,19 @@
+<div class="continer">
+    <h2 class="bg-primary text-white p-3">Notebooks</h2>
+    <div class="row">
+        <div class="col-sm-6 col-md-3 col-lg-3 p-2 " *ngFor="let nbk of noteBooks; index as i">
+            <div class="card h-100">
+                <span *ngIf="i % 2==0" class="notify-badge">NEW</span>
+                <img class="card-img-top" src="{{ nbk.coverUrl }} " alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{ nbk.title }} </h5>
+                    <p class="card-text">{{ nbk.description }}</p>
+                    <p><a href="#" class="btn bg-light">size: {{ nbk.size }}</a></p>
+                    <a href="#" class="btn btn-primary">Price: {{ nbk.price }}</a>
+                    <a href="#" class="btn bg-secondary float-right">Pages: {{ nbk.pages }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="noteBooks.length >3"> View more  Notebooks >>  </div>
+</div>
