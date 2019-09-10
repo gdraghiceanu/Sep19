@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'BookStore';
+  filterToSend: string;
+
+  onSearchOut(value: string) {
+    this.filterToSend = value;
+  }
 }

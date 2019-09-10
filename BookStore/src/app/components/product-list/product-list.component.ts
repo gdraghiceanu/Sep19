@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
+import { Book } from 'src/app/interfaces/book';
+import { StarComponent } from '../shared/star.component';
 
 @Component({
   selector: 'app-product-list',
@@ -10,6 +12,10 @@ export class ProductListComponent implements OnInit {
   pageTitle = 'Book Store';
   imageSize = 50;
   showImage = true;
+  starLabel: string;
+  @Input() searchKey: string;
+
+  @ViewChild(StarComponent, {static: false }) childStar: StarComponent;
 
   _filterList: string;
   get filterList() {
@@ -23,11 +29,22 @@ export class ProductListComponent implements OnInit {
   filteredBooks: Book[];
   books = books;
 
-  constructor() { 
+  constructor() {
     this.filteredBooks = this.books;
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const changeSearch = changes['searchKey'];
+    const c = changeSearch.currentValue;
+
+    this.filteredBooks = c ? this.produceFilterList(c) : this.books;
+}
+
   ngOnInit() {
+  }
+
+  ngAfterViewInit() {
+    this.starLabel = this.childStar.rating.toString();
   }
 
   toggleImage() {
@@ -37,6 +54,10 @@ export class ProductListComponent implements OnInit {
   produceFilterList(keyValue: string ): Book[] {
     keyValue = keyValue.toLocaleLowerCase();
     return this.books.filter(book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1 );
+  }
+
+  onReviewClicked(val) {
+    this.starLabel = val;
   }
 
 }

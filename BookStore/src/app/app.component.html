@@ -1,6 +1,5 @@
-<div class="header">
-  <h1>My Book Store</h1>
-</div>
+<app-nav-bar (searchOut)='onSearchOut($event)'></app-nav-bar>
+<br>
 <div class="container">
-  <app-product-list></app-product-list>
+  <app-product-list [searchKey]='filterToSend'></app-product-list>
 </div>
