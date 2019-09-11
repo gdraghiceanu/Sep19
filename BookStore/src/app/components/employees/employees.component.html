@@ -1,0 +1,16 @@
+<div class="employee">
+    <table>
+        <tr>
+            <th>Nume</th> 
+            <th>Prenume</th>
+            <th>Data angajarii</th>
+            <th>Salariu</th>   
+        </tr>
+        <tr *ngFor="let employee of employees">
+            <td>{{employee.nume}} </td>   
+            <td>{{employee.prenume}} </td>
+            <td>{{employee.dataAngajarii | date:'yyyy-MM-dd'}}</td>
+            <td>{{employee.salariu}}</td>
+        </tr>    
+    </table>
+</div>

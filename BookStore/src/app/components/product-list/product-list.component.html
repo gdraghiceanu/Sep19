@@ -1,0 +1,16 @@
+<div class="container">
+    <div class="book mt_20" *ngFor="let book of books">
+        
+        <div class="poza">
+            <img src="{{book.coverUrl}}">
+        </div>
+        <div class="descriere pl_20">
+            <div class="display_flex flex_direction_column">
+                <p class="span_26">{{book.title}}</p>
+                <p class="span_26">{{book.publicationDate | date:'yyyy-MM-dd'}}</p>
+                <p class="span_26 font_bold align_self_end">{{book.price}} {{book.currency}}</p>
+            </div>
+        </div>
+    </div>
+    
+</div>
