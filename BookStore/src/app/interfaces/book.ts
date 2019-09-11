@@ -1,3 +1,6 @@
+import {LanguageEnum} from 'src/app/constants/language.enum';
+import {CurrencyEnum} from 'src/app/constants/currency.enum';
+
 export interface Book {
     title: string;
     author: string;
