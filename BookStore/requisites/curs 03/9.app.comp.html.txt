@@ -1,0 +1,5 @@
+<app-nav-bar (searchOut)='onSearchOut($event)'></app-nav-bar>
+<br>
+<div class="container">
+  <app-product-list [searchKey]='filterToSend'></app-product-list>
+</div>
