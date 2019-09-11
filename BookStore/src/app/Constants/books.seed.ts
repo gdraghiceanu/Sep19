@@ -1,4 +1,8 @@
-const books: Book[] = [
+import { Book } from "src/app/interfaces/book";
+import { CurrencyEnum } from "src/app/constants/currency.enum";
+import { LanguageEnum } from "src/app/constants/languages.enum";
+
+export const books: Book[] = [
   {
     title: 'The Fellowship of the Ring (The Lord of the Rings, Book 1)',
     author: 'J. R. R. Tolkien',
@@ -7,7 +11,8 @@ const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg',
+    id: "id_one"
   },
   {
     title: 'The Two Towers (The Lord of the Rings, Book 2)',
@@ -17,7 +22,9 @@ const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg',
+    id: "id_two"
+
   },
   {
     title: 'The Return of the King (The Lord of the Rings, Book 3)',
@@ -27,7 +34,8 @@ const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg',
+    id: "id_three"
   },
   {
     title: 'Star Wars: Episode I: The Phantom Menace',
@@ -37,7 +45,8 @@ const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg',
+    id: "id_four"
   },
   {
     title: 'Star Wars: Episode II - Attack Of The Clones',
@@ -47,7 +56,8 @@ const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg',
+    id : "id_five"
   },
   {
     title: 'Star Wars: Episode III: Revenge of the Sith',
@@ -57,7 +67,8 @@ const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg',
+    id: "id_six"
   },
   {
     title: 'Star Wars: Episode IV: A New Hope: Official 40th Anniversary Collector\'s Edition',
@@ -67,6 +78,7 @@ const books: Book[] = [
     publisher: 'Cornerstone',
     price: 20,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg'
+    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg',
+    id: 'id_seven'
   }
 ];

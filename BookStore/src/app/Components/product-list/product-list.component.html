@@ -1,0 +1,31 @@
+<div class="componentContainer">
+    <div *ngFor="let book of books" style="display:inline-block">
+        <div [ngClass]="{active : activeClassId === book.id, defaultBook : activeClassId === 'initial' , inactive : activeClassId !== book.id }"
+            class="book">
+            <div class="bookEntry front">
+                <img src="{{book.coverUrl}}" />
+            </div>
+            <div class="bookDetail back">
+                <button class="btn btn-primary"
+                    (click)="displayBookDetails(book.id,activeClassId !== book.id ? false : true)">{{activeClassId !== book.id ? "Details" : "Go Back"}}</button>
+                <div *ngFor="let detail of objectKeys(book)">
+                    <span *ngIf="!(detail === 'coverUrl' || detail === 'id')">
+                        {{detail.toUpperCase()}}: {{book[detail]}}
+                    </span>
+                </div>
+                <div [ngClass]="{detailedView: activeClassId === book.id}">
+                    <div *ngFor="let employeeDetails of employeeList">
+                        <div *ngIf="activeClassId === employeeDetails.id">
+                            <div>Delivered By:</div>
+                            <div *ngFor="let detail of objectKeys(employeeDetails)">
+                                <span *ngIf="detail !== 'id'">
+                                    {{detail.toUpperCase()}}: {{employeeDetails[detail]}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
