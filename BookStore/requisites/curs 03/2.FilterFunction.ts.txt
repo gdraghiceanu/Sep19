@@ -1,0 +1,13 @@
+  _filterList: string;
+  get filterList() {
+    return this._filterList;
+  }
+  set filterList(value: string) {
+    this._filterList = value;
+    this.filteredBooks = value ? this.produceFilterList(value) : this.books;
+  }
+
+produceFilterList(keyValue: string ): Book[] {
+    keyValue = keyValue.toLocaleLowerCase();
+    return this.books.filter(book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1 );
+  }

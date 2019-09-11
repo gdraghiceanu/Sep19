@@ -1,0 +1,6 @@
+  ngOnChanges(changes: SimpleChanges): void {
+    const changeSearch = changes['searchKey'];
+    const c = changeSearch.currentValue;
+
+    this.filteredBooks = c ? this.produceFilterList(c) : this.books;
+}
