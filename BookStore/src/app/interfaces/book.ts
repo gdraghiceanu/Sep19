@@ -9,5 +9,6 @@ export interface Book{
     publicationDate: Date;
     price: number;
     currency: CurrencyEnum;
-    coverUrl?: string; 
+    coverUrl?: string;
+    review?: number;
 }
