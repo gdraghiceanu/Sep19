@@ -8,6 +8,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class StarComponent implements OnInit {
 
   @Input() rating:number; 
+  @Input() dynamicdata: string;
   @Output() ratingOut: EventEmitter<string>;
   starWidth: number;
 

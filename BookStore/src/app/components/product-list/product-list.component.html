@@ -51,7 +51,9 @@
                         <td>{{book.price}}</td>
                         <td>{{book.currency}}</td>
                         <td>
-                            <app-star [rating] = 'book.review' (ratingOut) = "onStatEvent($e)"></app-star>
+                            <app-star [dynamicdata]="dynamicdata" [rating] = 'book.review' (ratingOut) = 'onStarEvent($e)' #childStar ></app-star>
+                            {{starLabel}}  {{book.review }}
+                            <button type="button" (click)="start()">Start</button>
                         </td>
                     </tr>
                 </tbody>

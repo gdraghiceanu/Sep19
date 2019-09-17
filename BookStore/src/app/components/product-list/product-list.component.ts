@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   filteredBooks: Book[];
   sizeWidth = 50;
   marginSize = 5;
-  showImage = false;
+  showImage = true;
 
   @ViewChild('childStar', {static: false}) childStar: StarComponent;
   starLabel: string;
@@ -57,6 +57,15 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   produceFilterList(keyValue: string): Book[] {
     keyValue = keyValue.toLocaleLowerCase();
     return this.books.filter(book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1);
+  }
+
+
+  dynamicdata: string = 'This is dynamic data!';
+  interval: any;
+  start() {
+    this.interval = setInterval(() => {
+      this.dynamicdata = new Date().toLocaleTimeString();
+    }, 1000);
   }
 
 }
