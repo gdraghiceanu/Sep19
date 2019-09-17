@@ -12,17 +12,16 @@ export class StarComponent implements OnInit {
   @Output() ratingOut: EventEmitter<string>;
   starWidth: number;
 
-
-  constructor() { 
+  constructor() {
     this.ratingOut = new EventEmitter();
-  }
+   }
 
   ngOnInit() {
     this.starWidth = this.rating * 75 / 5;
   }
- 
-  onClick(){
-    this.ratingOut.emit(`ratingul este $(this.rating)`);
+
+  onClick() {
+    this.ratingOut.emit(`Avem rating: ${this.rating}`);
   }
 
 }

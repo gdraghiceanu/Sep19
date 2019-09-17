@@ -52,6 +52,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   onStarEvent(val: string) {
     this.starMessage = val;
+    alert(val);
   }
 
   produceFilterList(keyValue: string): Book[] {
