@@ -14,6 +14,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   sizeWidth = 50;
   marginSize = 5;
   showImage = true;
+  pmesaj = 'mesaj de la parinte';
 
   @ViewChild('childStar', {static: false}) childStar: StarComponent;
   starLabel: string;
@@ -36,10 +37,14 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    
   }
 
   ngAfterViewInit() {
+   // alert(this.childStar.rating.toString());
     this.starLabel = `View Child data: ${this.childStar.rating.toString()}`;
+    console.log('Values on ngAfterViewInit():');
+    console.log("Star:", this.childStar.rating.toString());
   }
 
   toggleImage() {

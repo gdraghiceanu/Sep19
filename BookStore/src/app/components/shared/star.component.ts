@@ -8,9 +8,11 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 export class StarComponent implements OnInit {
 
   @Input() rating:number; 
+  @Input() mesajcopil:string;
   @Input() dynamicdata: string;
   @Output() ratingOut: EventEmitter<string>;
   starWidth: number;
+  hello ='Salut hello copil';
 
   constructor() {
     this.ratingOut = new EventEmitter();
@@ -21,7 +23,8 @@ export class StarComponent implements OnInit {
   }
 
   onClick() {
-    this.ratingOut.emit(`Avem rating: ${this.rating}`);
+    //alert(this.rating);
+    this.ratingOut.emit(`Avem rating:`+ this.rating);
   }
 
 }
