@@ -2,7 +2,6 @@
     <div class="card-header">
         {{ pageTitle }}  
     </div>
-{{starMessge}}
     <div class="card-body">
 
         <div class="row">
@@ -55,7 +54,9 @@
                         <td>{{book.price}}</td>
                         <td>{{book.currency}}</td>
                         <td>
-                            <app-star [mesajcopil]='pmesaj' [dynamicdata]="dynamicdata" [rating] = 'book.review' 
+  pmesaj = 'mesaj de la parinte';
+  pmesaj = 'mesaj de la parinte';
+                            <app-star [childProprietate]='book.review' [mesajcopil]='pmesaj' [dynamicdata]="dynamicdata" [rating] = 'book.review' 
                             (ratingOut) = "onStarEvent($event)" #childStar  #aaaa ></app-star>
                             <br>
                             {{starLabel}}

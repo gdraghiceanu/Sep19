@@ -6,7 +6,9 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./star.component.scss']
 })
 export class StarComponent implements OnInit {
-
+//cu @input voi importa date din parinte in copil 
+//acea valoare o sa fie setata si apoi afisata in template -ul copil
+@Input()  childProprietate: string;
   @Input() rating:number; 
   @Input() mesajcopil:string;
   @Input() dynamicdata: string;
@@ -20,6 +22,7 @@ export class StarComponent implements OnInit {
 
   ngOnInit() {
     this.starWidth = this.rating * 75 / 5;
+    console.log(this.rating);
   }
 
   onClick() {

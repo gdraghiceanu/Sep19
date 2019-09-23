@@ -9,6 +9,7 @@ import { StarComponent } from '../shared/star.component';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
+  pageTitle = 'Component Book Store Tilte';
   books = books;
   filteredBooks: Book[];
   sizeWidth = 50;
@@ -30,10 +31,11 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   starMessage: string;
 
-  pageTitle = 'Book Store';
+ 
 
   constructor() {
     this.filteredBooks = this.books;
+    this.starLabel  ='aaaaa';
   }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-   // alert(this.childStar.rating.toString());
+    //alert(this.childStar.rating.toString());
     this.starLabel = `View Child data: ${this.childStar.rating.toString()}`;
     console.log('Values on ngAfterViewInit():');
     console.log("Star:", this.childStar.rating.toString());
@@ -57,7 +59,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   onStarEvent(val: string) {
     this.starMessage = val;
-    alert(val);
+    //alert(val);
   }
 
   produceFilterList(keyValue: string): Book[] {
