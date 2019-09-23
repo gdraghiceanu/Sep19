@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
 import { StarComponent } from '../shared/star.component';
+import { Book } from '../../interfaces/book';
 
 @Component({
   selector: 'app-product-list',
@@ -8,19 +9,20 @@ import { StarComponent } from '../shared/star.component';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
+  @ViewChild('childStar', { static: false }) childStar: StarComponent;
+
   books = books;
   filteredBooks: Book[];
   sizeWidth = 50;
   marginSize = 5;
   showImage = false;
 
-  @ViewChild('childStar', {static: false}) childStar: StarComponent;
-  starLabel: string;
-
   private _filter: string;
+
   get filter(): string {
     return this._filter;
   }
+
   set filter(val: string) {
     this._filter = val;
     this.filteredBooks = val ? this.produceFilterList(val) : this.books;
@@ -34,11 +36,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this.filteredBooks = this.books;
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngAfterViewInit() {
-    this.starLabel = `View Child data: ${this.childStar.rating.toString()}`;
+    console.log(this.childStar.rating.toString());
   }
 
   toggleImage() {
@@ -55,7 +56,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   produceFilterList(keyValue: string): Book[] {
     keyValue = keyValue.toLocaleLowerCase();
-    return this.books.filter(book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1);
+    return this.books.filter(
+      book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1
+    );
   }
-
 }

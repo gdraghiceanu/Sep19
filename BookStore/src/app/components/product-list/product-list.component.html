@@ -1,71 +1,63 @@
 <div class="card">
-    <div class="card-header">
-        {{pageTitle}}
-    </div>
-
-    <div class="card-body">
-
-        <div class="row">
-            <div class="col-md-2">Filter:</div>
-            <div class="col-md-4">
-                <input type="text" [(ngModel)] = 'filter'>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                Filtered by: {{ filter }}
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                {{starMessage}}
-            </div>
-        </div>
-
-        <div class="table-responsive">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>
-                            <button 
-                            (click)="toggleImage()"
-                            class="btn btn-outline-primary btn-sm">
-                               {{ showImage ? 'Hide' : 'Show'  }} Image
-                            </button>
-                        </th>
-                        <th>Author</th>
-                        <th>Title</th>
-                        <th>Language</th>
-                        <th>Publisher</th>
-                        <th>Price</th>
-                        <th>Currency</th>
-                        <th>Review</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let book of filteredBooks">
-                        <td>
-                            <img 
-                            *ngIf = 'showImage'
-                            [src]="book.coverUrl" 
-                            [style.width.px]='sizeWidth'
-                            [style.margin.px] = 'marginSize'>
-                        </td>
-                        <td>{{book.author}}</td>
-                        <td>{{book.title}}</td>
-                        <td>{{book.language}}</td>
-                        <td>{{book.publisher}}</td>
-                        <td>{{book.price}}</td>
-                        <td>{{book.currency}}</td>
-                        <td>
-                            <app-star [rating] = 'book.review' (ratingOut) = "onStarEvent($event)" #childStar ></app-star>
-                            {{starLabel}}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+  <div class="card-header">
+    {{pageTitle}}
   </div>
 
+  <div class="card-body">
 
+    <div class="row">
+      <div class="col-md-2">Filter:</div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]='filter'>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        Filtered by: {{ filter }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        {{starMessage}}
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>
+              <button (click)="toggleImage()" class="btn btn-outline-primary btn-sm">
+                {{ showImage ? 'Hide' : 'Show'  }} Image
+              </button>
+            </th>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Language</th>
+            <th>Publisher</th>
+            <th>Price</th>
+            <th>Currency</th>
+            <th>Review</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of filteredBooks">
+            <td>
+              <img *ngIf='showImage' [src]="book.coverUrl" [style.width.px]='sizeWidth' [style.margin.px]='marginSize'>
+            </td>
+            <td>{{book.author}}</td>
+            <td>{{book.title}}</td>
+            <td>{{book.language}}</td>
+            <td>{{book.publisher}}</td>
+            <td>{{book.price}}</td>
+            <td>{{book.currency}}</td>
+            <td>
+              <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+              {{book.review}} stars
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
