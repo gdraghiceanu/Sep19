@@ -10,4 +10,5 @@ export interface Book{
     price: number;
     currency: CurrencyEnum;
     coverUrl?: string;
+    review?: number;
 }
