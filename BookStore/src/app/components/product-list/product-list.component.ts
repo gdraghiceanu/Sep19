@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     //alert(this.childStar.rating.toString());
-    this.starLabel = `View Child data: ${this.childStar.rating.toString()}`;
+    //this.starLabel = `View Child data: ${this.childStar.rating.toString()}`;
     console.log('Values on ngAfterViewInit():');
     console.log("Star:", this.childStar.rating.toString());
   }
