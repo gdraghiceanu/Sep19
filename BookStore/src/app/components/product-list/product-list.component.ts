@@ -1,25 +1,16 @@
+import { Component, OnInit, ViewChild, AfterViewInit,ChangeDetectorRef  } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
 import { StarComponent } from '../shared/star.component';
-
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit, AfterViewInit {
-  pageTitle = 'Component Book Store Tilte';
-  books = books;
+  public books = books;
+  //definim un array ce se va popula cu rezultatul filtrarii
   filteredBooks: Book[];
-  sizeWidth = 50;
-  marginSize = 5;
-  showImage = true;
-  pmesaj = 'mesaj de la parinte';
-
-  @ViewChild('childStar', {static: false}) childStar: StarComponent;
-  starLabel: string;
-
   private _filter: string;
   get filter(): string {
     return this._filter;
@@ -28,15 +19,19 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     this._filter = val;
     this.filteredBooks = val ? this.produceFilterList(val) : this.books;
   }
+  //end
+  //pentru rating metoada 2
+  @ViewChild('childStar', {static: false}) childStar: StarComponent;
 
+  message: string;
+  starLabel: string;
+  showImage=true;
   starMessage: string;
 
- 
-
-  constructor() {
+  constructor(private cd: ChangeDetectorRef) {
     this.filteredBooks = this.books;
-    this.starLabel  ='aaaaa';
-  }
+
+   }
 
   ngOnInit() {
     
@@ -75,5 +70,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
       this.dynamicdata = new Date().toLocaleTimeString();
     }, 1000);
   }
+
 
 }

@@ -6,28 +6,23 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./star.component.scss']
 })
 export class StarComponent implements OnInit {
-//cu @input voi importa date din parinte in copil 
-//acea valoare o sa fie setata si apoi afisata in template -ul copil
-@Input()  childProprietate: string;
-  @Input() rating:number; 
-  @Input() mesajcopil:string;
-  @Input() dynamicdata: string;
+  @Input() rating: number;
   @Output() ratingOut: EventEmitter<string>;
+
   starWidth: number;
-  hello ='Salut hello copil';
+  messageStar = 'Hola Mundo!';
 
-  constructor() {
+  constructor() { 
     this.ratingOut = new EventEmitter();
-   }
-
-  ngOnInit() {
-    this.starWidth = this.rating * 75 / 5;
-    console.log(this.rating);
   }
 
-  onClick() {
+  ngOnInit() {
     //alert(this.rating);
-    this.ratingOut.emit(`Avem rating:`+ this.rating);
+    this.starWidth = this.rating * 75 /5;
+  
+  }
+  onClick() {
+    this.ratingOut.emit(`Avem rating: ${this.rating}`);
   }
 
 }

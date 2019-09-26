@@ -13,7 +13,7 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg',
-    review:3
+    review:2.3
   },
   {
     title: 'The Two Towers (The Lord of the Rings, Book 2)',
@@ -24,7 +24,7 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg',
-    review:5
+    review:4.5
   },
   {
     title: 'The Return of the King (The Lord of the Rings, Book 3)',
@@ -35,7 +35,7 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg',
-    review:1
+    review:5
   },
   {
     title: 'Star Wars: Episode I: The Phantom Menace',
@@ -46,7 +46,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg',
-    review:3
+    review:1
   },
   {
     title: 'Star Wars: Episode II - Attack Of The Clones',
@@ -57,7 +57,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg',
-    review:4
+    review:2.6
   },
   {
     title: 'Star Wars: Episode III: Revenge of the Sith',
@@ -68,7 +68,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg',
-    review:5
+    review:3
   },
   {
     title: 'Star Wars: Episode IV: A New Hope: Official 40th Anniversary Collector\'s Edition',
@@ -79,6 +79,6 @@ export const books: Book[] = [
     price: 20,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg',
-    review:2.3
+    review:4
   }
 ];
