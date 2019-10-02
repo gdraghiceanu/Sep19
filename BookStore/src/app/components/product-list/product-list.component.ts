@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
+import { notebooks } from 'src/app/constants/notebooks.seed';
 import { StarComponent } from '../shared/star.component';
 import { Book } from '../../interfaces/book';
 
@@ -16,6 +17,8 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   sizeWidth = 50;
   marginSize = 5;
   showImage = false;
+
+  notebooks = notebooks;
 
   private _filter: string;
 
