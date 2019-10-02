@@ -10,7 +10,8 @@ export const noteBooks: NoteBook[] = [
     size:'A4, A5',
     price: 12,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://sc01.alicdn.com/kf/HTB1AyR1GFGWBuNjy0Fbq6z4sXXaJ/229583718/HTB1AyR1GFGWBuNjy0Fbq6z4sXXaJ.jpg_.webp'
+    coverUrl: 'https://sc01.alicdn.com/kf/HTB1AyR1GFGWBuNjy0Fbq6z4sXXaJ/229583718/HTB1AyR1GFGWBuNjy0Fbq6z4sXXaJ.jpg_.webp',
+    review:3.5
   },
   
   {
@@ -20,7 +21,8 @@ export const noteBooks: NoteBook[] = [
     size:'A6, A5, B6',
     price: 1.50,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://sc01.alicdn.com/kf/HTB1IqLXRpXXXXa9XXXXq6xXFXXXJ/229583718/HTB1IqLXRpXXXXa9XXXXq6xXFXXXJ.jpg_.webp'
+    coverUrl: 'https://sc01.alicdn.com/kf/HTB1IqLXRpXXXXa9XXXXq6xXFXXXJ/229583718/HTB1IqLXRpXXXXa9XXXXq6xXFXXXJ.jpg_.webp',
+    review:2.6
   },
   {
     title: '2019 promotional wholesale customizable brown lined school kraft paper notebook ',
@@ -29,7 +31,8 @@ export const noteBooks: NoteBook[] = [
     size:'A4, A5, A6',
     price: 1.90,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://sc01.alicdn.com/kf/HTB1SmOjaZvrK1Rjy0Feq6ATmVXa7/229583718/HTB1SmOjaZvrK1Rjy0Feq6ATmVXa7.jpg_.webp'
+    coverUrl: 'https://sc01.alicdn.com/kf/HTB1SmOjaZvrK1Rjy0Feq6ATmVXa7/229583718/HTB1SmOjaZvrK1Rjy0Feq6ATmVXa7.jpg_.webp',
+    review:5
   },
   {
     title: 'Wholesale cheap school exercise notebook for writing student kraft paper ',
@@ -38,7 +41,8 @@ export const noteBooks: NoteBook[] = [
     size:'A5',
     price: 2.99,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://sc01.alicdn.com/kf/HTB1QuhteoGF3KVjSZFvq6z_nXXaT/231753611/HTB1QuhteoGF3KVjSZFvq6z_nXXaT.jpg_.webp'
+    coverUrl: 'https://sc01.alicdn.com/kf/HTB1QuhteoGF3KVjSZFvq6z_nXXaT/231753611/HTB1QuhteoGF3KVjSZFvq6z_nXXaT.jpg_.webp',
+    review:4
   },
   {
     title: 'a5 school notebook cover blank paper notebook cheap bulk 3d lenticular notebook',
@@ -47,6 +51,7 @@ export const noteBooks: NoteBook[] = [
     size:'A5',
     price: 2,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://sc02.alicdn.com/kf/H9b9828de121545e88d32ad3af17e8bece/a5-school-notebook-cover-blank-paper-notebook.png'
+    coverUrl: 'https://sc02.alicdn.com/kf/H9b9828de121545e88d32ad3af17e8bece/a5-school-notebook-cover-blank-paper-notebook.png',
+    review:1.5
   }
 ];

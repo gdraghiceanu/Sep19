@@ -8,4 +8,5 @@ export interface NoteBook{
     price: number;
     currency: CurrencyEnum;
     coverUrl?: string; 
+    review?: number;
 }
