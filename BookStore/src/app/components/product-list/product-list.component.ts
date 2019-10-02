@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit, OnChanges, AfterContentInit, DoCheck, AfterContentChecked, AfterViewChecked, SimpleChanges } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
 import { StarComponent } from '../shared/star.component';
 import { Book } from '../../interfaces/book';
@@ -8,7 +8,36 @@ import { Book } from '../../interfaces/book';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
+export class ProductListComponent implements OnInit, OnChanges, DoCheck, AfterContentChecked, AfterViewChecked, AfterContentInit, AfterViewInit {
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('productList OnChanges');
+  }
+
+  ngOnInit() {
+    console.log('productList onInit')
+  }
+
+  ngAfterContentInit(): void {
+    console.log('productList AfterContentInit');
+  }
+
+  ngAfterViewInit() {
+    console.log('productList AfterViewInit')
+    console.log(this.childStar.rating.toString());
+  }
+
+  ngDoCheck(): void {
+    console.log('productList DoCheck');
+  }
+
+  ngAfterContentChecked(): void {
+    console.log('productList AfterContentChecked');
+  }
+
+  ngAfterViewChecked(): void {
+    console.log('productList AfterViewChecked');
+  }
+
   @ViewChild('childStar', { static: false }) childStar: StarComponent;
 
   books = books;
@@ -34,12 +63,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
 
   constructor() {
     this.filteredBooks = this.books;
-  }
-
-  ngOnInit() {}
-
-  ngAfterViewInit() {
-    console.log(this.childStar.rating.toString());
   }
 
   toggleImage() {

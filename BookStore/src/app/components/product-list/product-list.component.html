@@ -41,7 +41,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let book of filteredBooks">
+          <tr *ngFor="let book of filteredBooks; let i=index">
             <td>
               <img *ngIf='showImage' [src]="book.coverUrl" [style.width.px]='sizeWidth' [style.margin.px]='marginSize'>
             </td>
@@ -52,7 +52,7 @@
             <td>{{book.price}}</td>
             <td>{{book.currency}}</td>
             <td>
-              <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+              <app-star [index]="i" [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
               {{book.review}} stars
             </td>
           </tr>
