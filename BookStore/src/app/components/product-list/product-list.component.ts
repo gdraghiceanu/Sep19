@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
-import { StarComponent } from '../shared/star.component';
 import { Book } from '../../interfaces/book';
 
 @Component({
@@ -8,8 +7,7 @@ import { Book } from '../../interfaces/book';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.scss']
 })
-export class ProductListComponent implements OnInit, AfterViewInit {
-  @ViewChild('childStar', { static: false }) childStar: StarComponent;
+export class ProductListComponent implements OnInit {
 
   books = books;
   filteredBooks: Book[];
@@ -24,10 +22,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
     console.log('productList onInit')
   }
 
-  ngAfterViewInit() {
-    console.log(this.childStar.rating.toString());
-  }
-
   toggleImage() {
     this.showImage = !this.showImage;
   }
@@ -35,7 +29,6 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   onChangeFilter(val: string) {
     this.filteredBooks = this.produceFilterList(val);
   }
-
 
   private produceFilterList(keyValue: string): Book[] {
     keyValue = keyValue.toLocaleLowerCase();

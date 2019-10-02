@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
+import { StarComponent } from '../star.component';
 
 @Component({
   selector: 'app-book',
@@ -7,6 +8,8 @@ import { Book } from 'src/app/interfaces/book';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit, OnChanges {
+  @ViewChild('childStar', { static: false }) childStar: StarComponent;
+
   @Input() book: Book;
   @Input() showImage: boolean;
 
@@ -21,6 +24,10 @@ export class BookComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
+  }
+
+  ngAfterViewInit() {
+    console.log(this.childStar.rating.toString());
   }
 
   onStarEvent(val: string) {
