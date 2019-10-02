@@ -5,22 +5,7 @@
 
   <div class="card-body">
 
-    <div class="row">
-      <div class="col-md-2">Filter:</div>
-      <div class="col-md-4">
-        <input type="text" [(ngModel)]='filter'>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        Filtered by: {{ filter }}
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6">
-        {{starMessage}}
-      </div>
-    </div>
+    <app-product-filter (onFilterUpdate)='onChangeFilter($event)'></app-product-filter>
 
     <div class="table-responsive">
       <table class="table mb-0">
@@ -42,19 +27,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let book of filteredBooks; let i=index">
-            <td>
-              <img *ngIf='showImage' [src]="book.coverUrl" [style.width.px]='sizeWidth' [style.margin.px]='marginSize'>
-            </td>
-            <td>{{book.author}}</td>
-            <td>{{book.title}}</td>
-            <td>{{book.language}}</td>
-            <td>{{book.publisher}}</td>
-            <td>{{book.price}}</td>
-            <td>{{book.currency}}</td>
-            <td>
-              <app-star [index]="i" [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
-              {{book.review}} stars
-            </td>
+            <app-book [book]="book" [showImage]='showImage'></app-book>
           </tr>
         </tbody>
       </table>
