@@ -1,4 +1,5 @@
 import { Component, OnInit,Input } from '@angular/core';
+import { NoteBook } from 'src/app/interfaces/notebook';
 
 @Component({
   selector: 'app-itemnotebook',
@@ -6,7 +7,7 @@ import { Component, OnInit,Input } from '@angular/core';
   styleUrls: ['./itemnotebook.component.scss']
 })
 export class ItemnotebookComponent implements OnInit {
-  @Input() nbkitem:[];
+  @Input() nbkitem:NoteBook;
   
   constructor() { }
 
@@ -14,11 +15,11 @@ export class ItemnotebookComponent implements OnInit {
   }
 
   onPriceClicked(){
-    this.nbkitem['price'] = 25;
+    this.nbkitem.price = 25;
   }
   onPagesClicked(evt: MouseEvent) {
     console.log(evt);
-    this.nbkitem['pages'] = 134;
+    this.nbkitem.pages = 134;
 }
 
 }
