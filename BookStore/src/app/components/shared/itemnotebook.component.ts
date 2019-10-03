@@ -8,6 +8,7 @@ import { NoteBook } from 'src/app/interfaces/notebook';
 })
 export class ItemnotebookComponent implements OnInit {
   @Input() nbkitem:NoteBook;
+  @Input() nbkindex:number;
   
   constructor() { }
 

@@ -1,9 +1,9 @@
     
     <div class="card h-100">
-        <span *ngIf="i % 2==0" class="notify-badge">NEW</span>
+        <span *ngIf="nbkindex % 2==0" class="notify-badge">NEW</span>
         <img class="card-img-top" [src]='nbkitem.coverUrl' alt="Card image cap">
         <div class="card-body">
-            <h5 class="card-title">{{ nbkitem.title }} </h5>
+            <h5 class="card-title">{{ nbkitem.title }}  </h5>
             <p class="card-text">{{ nbkitem.description }}</p>
             <p><a href="#" class="btn bg-light">size: {{ nbkitem.size }}</a></p>
             <a href="#" class="btn btn-primary" (click)='onPriceClicked()'>Price: {{ nbkitem.price }}</a>
