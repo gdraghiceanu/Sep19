@@ -1,0 +1,16 @@
+<div class="card">
+  <img class="card-img-top h-100" src="{{ book.coverUrl }} " alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"> {{ book.title}}</h5>
+    <p class="card-text">
+      Author: {{ book.author }} <br>
+      Publisher: {{ book.publisher }} <br>
+      Date: {{ book.publicationDate | date: 'dd-MM-yyyy'}} <br>
+      Language: {{ book.language }}
+    </p>
+  </div>
+  <div class="card-footer">
+    <small class="text-muted"> Price: {{ book.price}} {{ book.currency}} {{book.review}}</small>
+    <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+  </div>
+</div>
