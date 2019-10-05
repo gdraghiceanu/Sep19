@@ -11,7 +11,8 @@ export const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg',
     review: 4.5
   },
   {
@@ -22,7 +23,8 @@ export const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg',
     review: 4.5
   },
   {
@@ -33,7 +35,8 @@ export const books: Book[] = [
     publisher: 'HarperCollins Publishers',
     price: 11,
     currency: CurrencyEnum.usd,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg',
     review: 3
   },
   {
@@ -44,7 +47,8 @@ export const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg',
     review: 4.5
   },
   {
@@ -55,7 +59,8 @@ export const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg',
     review: 5
   },
   {
@@ -66,18 +71,21 @@ export const books: Book[] = [
     publisher: 'Cornerstone',
     price: 12,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg',
     review: 1.5
   },
   {
-    title: 'Star Wars: Episode IV: A New Hope: Official 40th Anniversary Collector\'s Edition',
+    title:
+      "Star Wars: Episode IV: A New Hope: Official 40th Anniversary Collector's Edition",
     author: 'George Lucas',
     language: LanguageEnum.English,
     publicationDate: new Date('2017-05-04'),
     publisher: 'Cornerstone',
     price: 20,
     currency: CurrencyEnum.euro,
-    coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg',
+    coverUrl:
+      'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg',
     review: 2
   }
 ];

@@ -1,14 +1,13 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
 import { Book } from '../../interfaces/book';
 
 @Component({
-  selector: 'app-product-list',
-  templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.scss']
+  selector: 'app-book-list',
+  templateUrl: './book-list.component.html',
+  styleUrls: ['./book-list.component.scss']
 })
-export class ProductListComponent implements OnInit {
-
+export class BookListComponent implements OnInit {
   books = books;
   filteredBooks: Book[];
   showImage = false;
@@ -19,7 +18,7 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('productList onInit')
+    console.log('productList onInit');
   }
 
   toggleImage() {
