@@ -1,6 +1,13 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnChanges,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
-import { StarComponent } from '../star.component';
+import { StarComponent } from '../star/star.component';
 
 @Component({
   selector: 'app-book',
@@ -17,10 +24,9 @@ export class BookComponent implements OnInit, OnChanges {
   marginSize = 5;
   starMessage: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
@@ -33,5 +39,4 @@ export class BookComponent implements OnInit, OnChanges {
   onStarEvent(val: string) {
     this.starMessage = val;
   }
-
 }
