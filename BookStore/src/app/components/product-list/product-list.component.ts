@@ -12,7 +12,7 @@ export class ProductListComponent implements OnInit {
   books = books;
   filteredBooks: Book[];
   showImage = false;
-  pageTitle = 'Book Store';
+  pageTitle = 'Book Store CPB';
 
   constructor() {
     this.filteredBooks = this.books;
