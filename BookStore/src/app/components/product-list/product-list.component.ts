@@ -39,7 +39,7 @@ export class ProductListComponent implements OnInit, AfterViewInit {
   ngOnInit() {}
 
   ngAfterViewInit() {
-    console.log(this.childStar.rating.toString());
+    //console.log(this.childStar.rating.toString());
   }
 
   toggleImage() {
