@@ -12,9 +12,15 @@ export class ProductListComponent implements OnInit {
   employeeList = employeeList;
   activeClassId = "initial";
   objectKeys = Object.keys;
-  displayBookDetails(bookEmployeeId, goBack) {
+  toggleDetailsScreen = false;
+  displayBookDetails(bookEmployeeId, goBack,rating) {
     if (goBack) {
       this.activeClassId = "initial";
+      books.forEach(book => {
+        if (book.id === bookEmployeeId) {
+          book.rating = rating;
+        }
+      });
     } else {
       employeeList.forEach(employee => {
         if (employee.id === bookEmployeeId) {
@@ -23,9 +29,15 @@ export class ProductListComponent implements OnInit {
       });
     }
   }
-  constructor() { }
-
+  toggleDetails(toggleDetailsScreen) {
+    this.toggleDetailsScreen = !toggleDetailsScreen;
+  }
+  
+  constructor() {
+     }
+  
   ngOnInit() {
   }
 
 }
+
