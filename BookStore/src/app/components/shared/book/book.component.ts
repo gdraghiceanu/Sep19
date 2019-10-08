@@ -4,7 +4,8 @@ import {
   Input,
   OnChanges,
   SimpleChanges,
-  ViewChild
+  ViewChild,
+  AfterViewInit
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { StarComponent } from '../star/star.component';
@@ -14,7 +15,7 @@ import { StarComponent } from '../star/star.component';
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit, OnChanges {
+export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('childStar', { static: false }) childStar: StarComponent;
 
   @Input() book: Book;

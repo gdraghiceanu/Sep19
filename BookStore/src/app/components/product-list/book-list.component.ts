@@ -10,8 +10,6 @@ import { Book } from '../../interfaces/book';
 export class BookListComponent implements OnInit {
   books = books;
   filteredBooks: Book[];
-  showImage = false;
-  pageTitle = 'Book Store';
 
   constructor() {
     this.filteredBooks = this.books;
@@ -21,18 +19,14 @@ export class BookListComponent implements OnInit {
     console.log('productList onInit');
   }
 
-  toggleImage() {
-    this.showImage = !this.showImage;
-  }
-
   onChangeFilter(val: string) {
     this.filteredBooks = this.produceFilterList(val);
   }
 
-  private produceFilterList(keyValue: string): Book[] {
-    keyValue = keyValue.toLocaleLowerCase();
+  private produceFilterList(filterValue: string): Book[] {
+    filterValue = filterValue.toLocaleLowerCase();
     return this.books.filter(
-      book => book.title.toLocaleLowerCase().indexOf(keyValue) !== -1
+      book => book.title.toLocaleLowerCase().indexOf(filterValue) !== -1
     );
   }
 }

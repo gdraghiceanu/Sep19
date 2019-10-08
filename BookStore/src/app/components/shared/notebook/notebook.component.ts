@@ -7,18 +7,16 @@ import { NoteBook } from 'src/app/interfaces/notebook';
   styleUrls: ['./notebook.component.scss']
 })
 export class NotebookComponent implements OnInit {
-  @Input() nbkitem: NoteBook;
-  @Input() nbkindex: number;
+  @Input() notebook: NoteBook;
+  @Input() index: number;
+
+  starMessage: string;
 
   constructor() {}
 
   ngOnInit() {}
 
-  onPriceClicked() {
-    this.nbkitem.price = 25;
-  }
-  onPagesClicked(evt: MouseEvent) {
-    console.log(evt);
-    this.nbkitem.pages = 134;
+  onStarEvent(val: string) {
+    this.starMessage = val;
   }
 }

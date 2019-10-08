@@ -12,5 +12,6 @@
   <div class="card-footer">
     <small class="text-muted"> Price: {{ book.price}} {{ book.currency}} {{book.review}}</small>
     <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+    <div *ngIf="starMessage">{{starMessage}}</div>
   </div>
 </div>
