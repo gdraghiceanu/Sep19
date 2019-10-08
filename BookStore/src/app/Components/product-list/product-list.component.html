@@ -3,26 +3,28 @@
         <div [ngClass]="{active : activeClassId === book.id, defaultBook : activeClassId === 'initial' , inactive : activeClassId !== book.id }"
             class="book">
             <div class="bookEntry front">
+                <app-star-rating class="starRating" [style.width.px] = 'book.rating'></app-star-rating>
                 <img src="{{book.coverUrl}}" />
             </div>
             <div class="bookDetail back">
                 <button class="btn btn-primary"
-                    (click)="displayBookDetails(book.id,activeClassId !== book.id ? false : true)">{{activeClassId !== book.id ? "Details" : "Go Back"}}</button>
+                    (click)="displayBookDetails(book.id,activeClassId !== book.id ? false : true,book.rating)">{{activeClassId !== book.id ? "Details" : "Go Back"}}
+                </button>
                 <div *ngFor="let detail of objectKeys(book)">
                     <span *ngIf="!(detail === 'coverUrl' || detail === 'id')">
                         {{detail.toUpperCase()}}: {{book[detail]}}
                     </span>
                 </div>
                 <div [ngClass]="{detailedView: activeClassId === book.id}">
-                    <div *ngFor="let employeeDetails of employeeList">
-                        <div *ngIf="activeClassId === employeeDetails.id">
-                            <div>Delivered By:</div>
-                            <div *ngFor="let detail of objectKeys(employeeDetails)">
-                                <span *ngIf="detail !== 'id'">
-                                    {{detail.toUpperCase()}}: {{employeeDetails[detail]}}
-                                </span>
-                            </div>
-                        </div>
+                    <span *ngFor="let employeeDetails of employeeList">
+                        <span *ngIf="activeClassId === employeeDetails.id">
+                            Delivered By: {{employeeDetails.firstName}} {{employeeDetails.lastName}}
+                        </span>
+                    </span>
+                    <div class="bookRating" [ngClass]="{activeDetailsScreen : toggleDetailsScreen}">
+                        <button class="btn btn-primary" (click)="toggleDetails(toggleDetailsScreen)"
+                        >Toggle Details</button>
+                        <app-additional-book-details></app-additional-book-details>
                     </div>
                 </div>
             </div>

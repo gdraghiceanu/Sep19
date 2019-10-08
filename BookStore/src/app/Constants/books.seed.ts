@@ -12,6 +12,7 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103573.jpg',
+    rating: 0,
     id: "id_one"
   },
   {
@@ -23,8 +24,8 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103580.jpg',
+    rating: 0,
     id: "id_two"
-
   },
   {
     title: 'The Return of the King (The Lord of the Rings, Book 3)',
@@ -35,6 +36,7 @@ export const books: Book[] = [
     price: 11,
     currency: CurrencyEnum.usd,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/2/6/9780261103597.jpg',
+    rating: 0,
     id: "id_three"
   },
   {
@@ -46,6 +48,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099409960.jpg',
+    rating: 0,
     id: "id_four"
   },
   {
@@ -57,6 +60,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410577.jpg',
+    rating: 0,
     id : "id_five"
   },
   {
@@ -68,6 +72,7 @@ export const books: Book[] = [
     price: 12,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/0/0/9/9780099410584.jpg',
+    rating: 0,
     id: "id_six"
   },
   {
@@ -79,6 +84,7 @@ export const books: Book[] = [
     price: 20,
     currency: CurrencyEnum.euro,
     coverUrl: 'https://images.foyles.co.uk/xlarge/books/img/1/7/8/9781780898131.jpg',
+    rating: 0,
     id: 'id_seven'
   }
 ];
