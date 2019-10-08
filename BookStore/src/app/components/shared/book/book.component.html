@@ -1,17 +1,24 @@
-<div class="card">
-  <img class="card-img-top h-100" src="{{ book.coverUrl }} " alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title"> {{ book.title}}</h5>
-    <p class="card-text">
-      Author: {{ book.author }} <br>
-      Publisher: {{ book.publisher }} <br>
-      Date: {{ book.publicationDate | date: 'dd-MM-yyyy'}} <br>
-      Language: {{ book.language }}
-    </p>
+<div class="product-container">
+  <div class="product-title">
+    {{ book.title}}
   </div>
-  <div class="card-footer">
-    <small class="text-muted"> Price: {{ book.price}} {{ book.currency}} {{book.review}}</small>
-    <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
-    <div *ngIf="starMessage">{{starMessage}}</div>
+  <div class="product-body">
+    <div class="product-image">
+      <img src="{{ book.coverUrl }} " alt="Card image cap">
+    </div>
+    <div class="product-details">
+      <div class="product-author">Author: {{ book.author }}</div>
+      <div class="product-language">Language: {{ book.language }}</div>
+      <div class="product-buy"></div>
+      <div class="product-rating-price">
+        <div class="rating">
+          <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+          <div *ngIf="starMessage">{{starMessage}}</div>
+        </div>
+        <div class="price">
+          {{ book.price}} {{ book.currency}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

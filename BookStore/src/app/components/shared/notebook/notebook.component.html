@@ -1,15 +1,24 @@
-<div class="card h-100">
-  <span *ngIf="index % 2==0" class="notify-badge">NEW</span>
-  <img class="card-img-top" [src]='notebook.coverUrl' alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ notebook.title }} </h5>
-    <p class="card-text">{{ notebook.description }}</p>
-    <p>Size: {{ notebook.size }}</p>
-    <p>Price: {{ notebook.price }}</p>
-    <p>Pages: {{ notebook.pages }}</p>
+<div class="product-container">
+  <div class="product-title">
+    {{ notebook.title}}
   </div>
-  <div class="card-footer">
-    <app-star [rating]='notebook.review' (ratingOut)="onStarEvent($event)"></app-star>
-    <div *ngIf="starMessage">{{starMessage}}</div>
+  <div class="product-body">
+    <div class="product-image">
+      <img src="{{ notebook.coverUrl }} " alt="Card image cap">
+    </div>
+    <div class="product-details">
+      <div class="product-author">Size: {{ notebook.size }}</div>
+      <div class="product-language">Pages: {{ notebook.pages }}</div>
+      <div class="product-buy"></div>
+      <div class="product-rating-price">
+        <div class="rating">
+          <app-star [rating]='notebook.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+          <div *ngIf="starMessage">{{starMessage}}</div>
+        </div>
+        <div class="price">
+          {{ notebook.price}} {{ notebook.currency}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>
