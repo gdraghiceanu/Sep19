@@ -9,7 +9,9 @@
     <div class="product-details">
       <div class="product-author">Author: {{ book.author }}</div>
       <div class="product-language">Language: {{ book.language }}</div>
-      <div class="product-buy"></div>
+      <div class="product-buy">
+        <button (click)="addToCart()">Add to cart</button>
+      </div>
       <div class="product-rating-price">
         <div class="rating">
           <app-star [rating]='book.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { books } from 'src/app/constants/books.seed';
 import { Book } from '../../interfaces/book';
+import { ProductsService } from 'src/app/services/products.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-book-list',
@@ -8,10 +9,15 @@ import { Book } from '../../interfaces/book';
   styleUrls: ['./book-list.component.scss']
 })
 export class BookListComponent implements OnInit {
-  books = books;
   filteredBooks: Book[];
 
-  constructor() {
+  private books: Book[];
+
+  constructor(
+    private productService: ProductsService,
+    private shoppingCartService: ShoppingCartService
+  ) {
+    this.books = this.productService.getBooks();
     this.filteredBooks = this.books;
   }
 
@@ -21,6 +27,10 @@ export class BookListComponent implements OnInit {
 
   onChangeFilter(val: string) {
     this.filteredBooks = this.produceFilterList(val);
+  }
+
+  addBookToCart(book: Book): void{
+    this.shoppingCartService.addProduct(book);
   }
 
   private produceFilterList(filterValue: string): Book[] {
