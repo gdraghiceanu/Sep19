@@ -12,17 +12,16 @@ import { BookListComponent } from './components/product-list/book-list.component
 @NgModule({
   declarations: [
     AppComponent,
-    StarComponent
-   ],
-  imports: [
-    BrowserModule,
-    FormsModule, 
+    BookListComponent,
     StarComponent,
-    BookListComponent,    
     BookComponent,
     ProductFilterComponent,
     NotebookListComponent,
-    NotebookComponent 
+    NotebookComponent
+   ],
+  imports: [
+    BrowserModule,
+    FormsModule 
   ],
   
   providers: [],
