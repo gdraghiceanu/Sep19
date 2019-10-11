@@ -29,9 +29,9 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   marginSize = 5;
   starMessage: string;
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngOnChanges(changes: SimpleChanges): void {
     console.log(changes);
@@ -40,7 +40,7 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     console.log(this.childStar.rating.toString());
   }
-  addToCart(){
+  addToCart() {
     this.addBookToCart.emit(this.book);
   }
   onStarEvent(val: string) {

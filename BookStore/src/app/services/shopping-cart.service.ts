@@ -13,8 +13,8 @@ export class ShoppingCartService {
 
   addProduct(product: Product): void {
     this.products.push(product);
-    this.getCardNumber ++;
-    this.sumCard = this.sumCard +product.price;
+    this.getCardNumber++;
+    this.sumCard = this.sumCard + product.price;
     console.log(this.getCardNumber);
   }
 

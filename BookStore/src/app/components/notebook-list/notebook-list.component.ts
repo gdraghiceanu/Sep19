@@ -22,7 +22,7 @@ export class NotebookListComponent implements OnInit {
   ) {
     this.noteBooks = this.productService.getNotebooks();
   }
-  
+
 
   ngOnInit() {
   }

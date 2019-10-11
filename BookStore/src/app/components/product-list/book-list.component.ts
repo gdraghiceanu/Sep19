@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../../interfaces/book';
-import { ProductsService} from 'src/app/services/products.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
@@ -27,7 +27,7 @@ export class BookListComponent implements OnInit {
   onChangeFilter(val: string) {
     this.filteredBooks = this.produceFilterList(val);
   }
-  addBookToCart(book: Book): void{
+  addBookToCart(book: Book): void {
     this.shoppingCartService.addProduct(book);
   }
 

@@ -11,10 +11,10 @@ export class CartComponent implements OnInit {
   listCard: Product[];
   totalProducts = 0;
   totalSuma = 0;
-  
+
   constructor(
     private productsCard: ShoppingCartService
-  ) { 
+  ) {
     this.listCard = productsCard.getCardProducts();
     this.totalProducts = productsCard.getCardNumber;
     this.totalSuma = productsCard.sumCard;
