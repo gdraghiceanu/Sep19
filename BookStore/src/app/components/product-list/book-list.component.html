@@ -4,7 +4,7 @@
 
   <div class="books">
     <div *ngFor="let book of filteredBooks ; let i = index">
-      <app-book [book]="book"></app-book>
+      <app-book [book]="book" (addBookToCart)="addBookToCart($event)"></app-book>
     </div>
   </div>
 </div>

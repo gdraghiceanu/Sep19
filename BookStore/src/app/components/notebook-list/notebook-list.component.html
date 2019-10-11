@@ -3,7 +3,7 @@
 
   <div class="notebooks">
     <div *ngFor="let notebook of noteBooks ; let i = index">
-      <app-notebook [notebook]="notebook" [index]='i'></app-notebook>
+      <app-notebook [notebook]="notebook" [index]='i' (addNotebookToCart)="addNotebookToCart($event)"></app-notebook>
     </div>
   </div>
 </div>

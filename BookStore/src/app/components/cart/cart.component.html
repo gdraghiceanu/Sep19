@@ -1,0 +1,65 @@
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1 class="jumbotron-heading">E-COMMERCE CART</h1>
+     </div>
+</section>
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Available</th>
+                            <th style="width: 25%;" scope="col" class="text-center">Quantity</th>
+                            <th scope="col" class="text-right">Price</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let productCard of listCard ; let i = index"> 
+                            <td><img src="{{ productCard.coverUrl }} " /> </td>
+                            <td style="width: 30%">{{ productCard.title }}</td>
+                            <td>In stock</td>
+                            <td style="width: 20%"><input style="width: 55px" class="form-control" type="text" value="1" /></td>
+                            <td class="text-right">{{ productCard.price }} {{ productCard.currency }}</td>
+                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
+                        </tr>
+                       
+                       
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="width: 20%"></td>
+                            <td>Shipping</td>
+                            <td class="text-right"> 0 €</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td style="width: 20%"></td>
+                            <td><strong>Total {{totalProducts}} products</strong></td>
+                            <td class="text-right"><strong> Total {{ totalSuma }}</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col mb-2">
+            <div class="row">
+                <div class="col-sm-12  col-md-6">
+                    
+                    <a class="btn btn-block btn-light" [routerLink]="['/books']" >Continue Shopping</a>
+                </div>
+                <div class="col-sm-12 col-md-6 text-right">
+                    <button class="btn btn-lg btn-block btn-success text-uppercase">Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

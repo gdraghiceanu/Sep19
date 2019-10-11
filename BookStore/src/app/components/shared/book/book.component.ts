@@ -5,7 +5,9 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-  AfterViewInit
+  AfterViewInit,
+  EventEmitter,
+  Output
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { StarComponent } from '../star/star.component';
@@ -20,6 +22,8 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
 
   @Input() book: Book;
   @Input() showImage: boolean;
+
+  @Output() addBookToCart: EventEmitter<Book> = new EventEmitter();
 
   sizeWidth = 50;
   marginSize = 5;
@@ -36,7 +40,9 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   ngAfterViewInit() {
     console.log(this.childStar.rating.toString());
   }
-
+  addToCart(){
+    this.addBookToCart.emit(this.book);
+  }
   onStarEvent(val: string) {
     this.starMessage = val;
   }

@@ -9,7 +9,9 @@
     <div class="product-details">
       <div class="product-author">Size: {{ notebook.size }}</div>
       <div class="product-language">Pages: {{ notebook.pages }}</div>
-      <div class="product-buy"></div>
+      <div class="product-buy">
+        <button class="btn btn-info" (click)="addToCart()">Add to cart</button>
+      </div>
       <div class="product-rating-price">
         <div class="rating">
           <app-star [rating]='notebook.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
