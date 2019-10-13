@@ -1,12 +1,8 @@
-import { CurrencyEnum } from 'src/app/constants/currency.enum';
+import { Product } from './product';
 
-export interface NoteBook{
-    title: string;
+export interface NoteBook extends Product{
     description: string;
     pages:number;
     size:string;
-    price: number;
-    currency: CurrencyEnum;
-    coverUrl?: string; 
     review?: number;
 }

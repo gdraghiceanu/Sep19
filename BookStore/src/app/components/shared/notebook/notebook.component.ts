@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { NoteBook } from 'src/app/interfaces/notebook';
 
 @Component({
@@ -7,18 +7,22 @@ import { NoteBook } from 'src/app/interfaces/notebook';
   styleUrls: ['./notebook.component.scss']
 })
 export class NotebookComponent implements OnInit {
-  @Input() nbkitem: NoteBook;
-  @Input() nbkindex: number;
+  @Input() notebook: NoteBook;
+  @Input() index: number;
+
+  @Output() addNotebookToCart: EventEmitter<NoteBook> = new EventEmitter();
+
+  starMessage: string;
 
   constructor() {}
 
   ngOnInit() {}
 
-  onPriceClicked() {
-    this.nbkitem.price = 25;
+  addToCart(){
+    this.addNotebookToCart.emit(this.notebook);
   }
-  onPagesClicked(evt: MouseEvent) {
-    console.log(evt);
-    this.nbkitem.pages = 134;
+
+  onStarEvent(val: string) {
+    this.starMessage = val;
   }
 }

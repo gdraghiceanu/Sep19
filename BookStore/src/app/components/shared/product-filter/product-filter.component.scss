@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-input {
+  display: flex;
+
+  input {
+    margin-left: 20px;
+  }
+}

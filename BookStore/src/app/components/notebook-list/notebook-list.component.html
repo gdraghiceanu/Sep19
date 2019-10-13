@@ -1,9 +1,9 @@
-<div class="continer">
-  <h2 class="bg-primary text-white p-3">Notebooks</h2>
-  <div class="row">
-    <div class="col-sm-6 col-md-3 col-lg-3 p-2 " *ngFor="let nbk of noteBooks; index as i">
-      <app-notebook [nbkitem]="nbk" [nbkindex]='i'></app-notebook>
+<div class="notebooks-container">
+  <h2 class="bg-info text-white p-3">Notebooks</h2>
+
+  <div class="notebooks">
+    <div *ngFor="let notebook of noteBooks ; let i = index">
+      <app-notebook [notebook]="notebook" [index]='i' (addNotebookToCart)="addNotebookToCart($event)"></app-notebook>
     </div>
   </div>
-  <div *ngIf="noteBooks.length >3"> View more Notebooks >> </div>
 </div>

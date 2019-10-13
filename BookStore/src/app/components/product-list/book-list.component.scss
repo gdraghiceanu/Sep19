@@ -1,0 +1,14 @@
+app-product-filter {
+  display: block;
+  padding: 10px;
+}
+
+.books {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  div {
+    margin: 30px;
+  }
+}

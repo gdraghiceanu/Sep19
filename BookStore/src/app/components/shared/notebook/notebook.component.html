@@ -1,13 +1,26 @@
-<div class="card h-100">
-  <span *ngIf="nbkindex % 2==0" class="notify-badge">NEW</span>
-  <img class="card-img-top" [src]='nbkitem.coverUrl' alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">{{ nbkitem.title }} </h5>
-    <p class="card-text">{{ nbkitem.description }}</p>
-    <p><a href="#" class="btn bg-light">size: {{ nbkitem.size }}</a></p>
-    <a href="#" class="btn btn-primary" (click)='onPriceClicked()'>Price: {{ nbkitem.price }}</a>
-    <a href="#" class="btn bg-secondary float-right" (click)='onPagesClicked($event)'>Pages: {{ nbkitem.pages }}</a>
-    <app-star [rating]='nbkitem.review'></app-star>
-    {{nbkitem.review}} stars
+<div class="product-container">
+  <div class="product-title">
+    {{ notebook.title}}
+  </div>
+  <div class="product-body">
+    <div class="product-image">
+      <img src="{{ notebook.coverUrl }} " alt="Card image cap">
+    </div>
+    <div class="product-details">
+      <div class="product-author">Size: {{ notebook.size }}</div>
+      <div class="product-language">Pages: {{ notebook.pages }}</div>
+      <div class="product-buy">
+        <button (click)="addToCart()">Add to cart</button>
+      </div>
+      <div class="product-rating-price">
+        <div class="rating">
+          <app-star [rating]='notebook.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+          <div *ngIf="starMessage">{{starMessage}}</div>
+        </div>
+        <div class="price">
+          {{ notebook.price}} {{ notebook.currency}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

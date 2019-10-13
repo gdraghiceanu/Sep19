@@ -20,6 +20,6 @@ export class StarComponent implements OnInit {
   }
 
   onClick() {
-    this.ratingOut.emit(`Avem rating: ${this.rating}`);
+    this.ratingOut.emit(`${this.rating} stars`);
   }
 }

@@ -1,14 +1,10 @@
 import { LanguageEnum } from 'src/app/constants/language.enum';
-import { CurrencyEnum } from 'src/app/constants/currency.enum';
+import { Product } from './product';
 
-export interface Book {
-  title: string;
+export interface Book extends Product {
   author: string;
   language: LanguageEnum;
   publisher: string;
   publicationDate: Date;
-  price: number;
-  currency: CurrencyEnum;
-  coverUrl?: string;
   review?: number;
 }

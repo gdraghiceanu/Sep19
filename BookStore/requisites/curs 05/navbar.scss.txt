@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  border-bottom: 1px solid gray;
+  padding: 0 10px;
+  background: #d0d0d0;
+}
+
+nav {
+  margin-left: auto;
+}
