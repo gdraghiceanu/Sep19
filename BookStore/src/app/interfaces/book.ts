@@ -6,5 +6,4 @@ export interface Book extends Product {
   language: LanguageEnum;
   publisher: string;
   publicationDate: Date;
-  review?: number;
 }
