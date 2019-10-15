@@ -12,3 +12,17 @@
   color: white;
   border: 1px solid rgba(190, 130, 102, 0.616);
 }
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.padded-box {
+  margin: 7px 0px;
+}
+
+.edit-box {
+  padding: 2px;
+  border: 1px solid;
+}

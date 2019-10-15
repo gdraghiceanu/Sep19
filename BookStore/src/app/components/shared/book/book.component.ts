@@ -7,7 +7,8 @@ import {
   ViewChild,
   AfterViewInit,
   Output,
-  EventEmitter
+  EventEmitter,
+  ElementRef
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { StarComponent } from '../star/star.component';
@@ -20,6 +21,9 @@ import { StarComponent } from '../star/star.component';
 export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   @ViewChild('childStar', { static: false }) childStar: StarComponent;
 
+  @ViewChild('rating', { static: false }) ratingInput: ElementRef<HTMLInputElement>;
+  @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
+
   @Input() book: Book;
   @Input() showImage: boolean;
 
@@ -27,6 +31,7 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
 
   sizeWidth = 50;
   marginSize = 5;
+  showEdit = false;
   starMessage: string;
 
   constructor() {}
@@ -48,5 +53,11 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
 
   onStarEvent(val: string) {
     this.starMessage = val;
+  }
+
+  updateBook(){
+    this.book.price = +this.priceInput.nativeElement.value;
+    this.book.review = +this.ratingInput.nativeElement.value;
+    this.showEdit = false;
   }
 }

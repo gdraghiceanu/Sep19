@@ -1,0 +1,20 @@
+<table class="products">
+    <tr>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Price/unit</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let product of cartProducts ; let i = index"> 
+        <td><img src="{{ product.coverUrl }} " alt="Card image cap" height="80px"> {{ product.title }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.price * product.quantity }}</td>
+    </tr>
+    <tr>   
+        <td><b>Total</b></td>
+        <td></td>
+        <td></td>
+        <td><b>{{ totalPrice }}</b></td>
+    </tr>
+</table>

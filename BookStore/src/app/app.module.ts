@@ -14,6 +14,7 @@ import { BookListComponent } from './components/product-list/book-list.component
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductsService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     ProductFilterComponent,
     NotebookListComponent,
     NotebookComponent,
-    NavbarComponent
+    NavbarComponent,
+    ShoppingCartComponent
   ],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes)],
   providers: [ProductsService, ShoppingCartService],
