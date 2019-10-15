@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { books } from 'src/app/constants/books.seed';
+import { Book } from '../../interfaces/book';
 import { StarComponent } from '../shared/star.component';
 
 @Component({
