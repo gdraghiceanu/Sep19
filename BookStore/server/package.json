@@ -4,8 +4,8 @@
   "description": "backend application for bookstore",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-dev": "nodemon --ignore './database.json' app.js --exec babel-node --",
+    "start": "node_modules/.bin/babel-node app.js"
   },
   "author": "Cristian Badea",
   "license": "ISC",
