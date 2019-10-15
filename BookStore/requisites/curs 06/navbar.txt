@@ -1,0 +1,35 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Title } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
+
+@Component({
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
+})
+export class NavbarComponent implements OnInit {
+  constructor(
+    private route: ActivatedRoute,
+    private titleService: Title,
+    private router: Router
+  ) {
+    this.router.events
+      .pipe(filter(ev => ev instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        if (event.url.indexOf('notebooks') > -1) {
+          this.titleService.setTitle('Notebooks');
+        } else if (event.url.indexOf('books')) {
+          this.titleService.setTitle('Books');
+        } else {
+          this.titleService.setTitle('Book Store');
+        }
+      });
+
+    this.route.data.subscribe(d => {
+      console.log(d);
+    });
+  }
+
+  ngOnInit() {}
+}
