@@ -1,7 +1,7 @@
 import { NoteBook } from 'src/app/interfaces/notebook';
 import { CurrencyEnum } from 'src/app/constants/currency.enum';
 
-export const noteBooks: NoteBook[] = [
+export const noteBooks: any[] = [
   {
     title:
       'Sturdy kraft cover customizable spiral notebook journal book with logo',
