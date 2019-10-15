@@ -15,7 +15,7 @@ export class ShoppingCartService {
     this.products.push(product);
     this.getCardNumber++;
     this.sumCard = this.sumCard + product.price;
-    console.log(this.getCardNumber);
+    console.log(this.products);
   }
 
   getCardProducts(): Product[] {
@@ -24,5 +24,15 @@ export class ShoppingCartService {
     } else {
       return this.emptyCard;
     }
+  }
+  deleteCardProduct(product: Product): void {
+    const index: number = this.products.indexOf(product);
+
+    this.getCardNumber--;
+    this.sumCard = this.sumCard - product.price;
+    if (index !== -1) {
+      this.products.splice(index, 1);
+    }
+    // console.log(this.getCardNumber);
   }
 }

@@ -9,6 +9,7 @@ import { Product } from 'src/app/interfaces/product';
 })
 export class CartComponent implements OnInit {
   listCard: Product[];
+  product: Product;
   totalProducts = 0;
   totalSuma = 0;
 
@@ -22,6 +23,12 @@ export class CartComponent implements OnInit {
 
   ngOnInit() {
   }
-
-
+  deleteToCart(productCard){
+    // this.product = productCard;
+    // console.log(this.product);
+    this.productsCard.deleteCardProduct(productCard);
+    this.listCard = this.productsCard.getCardProducts();
+    this.totalProducts = this.productsCard.getCardNumber;
+    this.totalSuma = this.productsCard.sumCard;
+  }
 }
