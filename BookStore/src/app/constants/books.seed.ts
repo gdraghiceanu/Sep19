@@ -2,7 +2,7 @@ import { Book } from 'src/app/interfaces/book';
 import { LanguageEnum } from 'src/app/constants/language.enum';
 import { CurrencyEnum } from 'src/app/constants/currency.enum';
 
-export const books: Book[] = [
+export const books: any[] = [
   {
     title: 'The Fellowship of the Ring (The Lord of the Rings, Book 1)',
     author: 'J. R. R. Tolkien',
