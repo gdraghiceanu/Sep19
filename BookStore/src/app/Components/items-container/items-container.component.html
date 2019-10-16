@@ -1,0 +1,23 @@
+<div id="itemContainer">
+    <ul>
+        <li *ngFor="let category of displayItems">
+            <h1 class="categoryTitle">
+                {{category.type}}
+                <input type="text" (keyup)="filterProducts($event.target.value.toLocaleLowerCase(),category.type)" class="filterBox" placeholder="Filter {{category.type}}"/>
+            </h1>
+            <div *ngFor="let item of category.data" class="itemContainer">
+                <div class="detailsContainer" (isHidden)="false">
+                    <div *ngFor="let detail of ObjectKeys(item)">
+                        <img *ngIf="detail === 'coverUrl'" [src]="item.coverUrl" />
+                        <div *ngIf="detail !== 'coverUrl' && detail !== 'id'" class="details">
+                            {{detail.substring(0,1).toUpperCase() + detail.substring(1,detail.length)}} : {{item[detail]}}
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-light cartOperation" (click)="addItemsToCart('-',item.id)">-</button>
+                    <button type="button" class="btn btn-light cartOperation" (click)="addItemsToCart('+',item.id)">+</button>
+                </div>
+                <button type="button" class="btn btn-light" (click)="toggleClass($event)">Details</button>
+            </div>
+        </li>
+    </ul>
+</div>

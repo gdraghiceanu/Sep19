@@ -1,8 +1,7 @@
-import { Book } from "src/app/interfaces/book";
 import { CurrencyEnum } from "src/app/constants/currency.enum";
 import { LanguageEnum } from "src/app/constants/languages.enum";
 
-export interface Book{
+export interface Notebook{
     title: string;
     author: string;
     language: LanguageEnum;
@@ -13,5 +12,4 @@ export interface Book{
     coverUrl?: string;
     rating:number;
     id:string;
-    Qty?:any
 }

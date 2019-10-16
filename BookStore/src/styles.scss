@@ -3,7 +3,82 @@ body {
   width: 100%;
   height: 100%;
   margin: 0;
-  background-image:url('assets/background.jpg');
+  background-image:url('assets/background2.jpg');
   background-size:100%;
   overflow:hidden
+}
+
+#accountDetailsContainer {
+  position: absolute;
+  display: inline-flexbox;
+  bottom: 50vh;
+  -webkit-animation: 0.5s slideIn;
+  animation: 0.5s slideIn;
+  left:0;
+
+  @keyframes slideIn {
+    from {
+      left:-15vw
+    }
+    to {
+      left:1
+    }
+  }
+
+  input[type=text],
+  input[type=password] {
+    left: 6vw;
+    position: absolute;
+    width: 11vw
+  }
+  span {
+      width:7vw
+  }
+
+  button {
+      width:17vw;
+      margin-bottom: 1vh
+  }
+  
+  li {
+    width: 16.5vw;
+    transition: 0.25s;
+    cursor: pointer;
+    height:5vh
+  }
+
+  li:nth-child(2) {
+    padding:0;
+    overflow: hidden
+  }
+
+  .inactive {
+    position: relative;
+    height: 15vh!important;
+    overflow: hidden;
+  }
+
+  .menus:hover {
+    background:lightblue
+  }
+  label {
+    position: relative;
+    border-radius: 0;
+    border: none;
+    width: 100%;
+    height: 5vh
+  }
+  .subMenus {
+    position: relative;
+    border-radius: 0;
+    border: none;
+    padding: 0;
+    line-height: 5vh;
+    padding-left: 2vh;
+    height: 5vh;
+  }
+}
+
+.input-group-text {
+  font-size:.85vw
 }

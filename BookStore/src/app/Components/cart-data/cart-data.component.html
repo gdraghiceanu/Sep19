@@ -1,0 +1,17 @@
+<div id="cartContainer">
+    <ul>
+        <li *ngFor="let book of cartItems">
+            <div *ngFor="let detail of ObjectKeys(book)" class="itemContainer">
+                <div class="detailsContainer" (isHidden)="false">
+                    <div *ngFor="let detail of ObjectKeys(item)">
+                        <img *ngIf="detail === 'coverUrl'" [src]="item.coverUrl" />
+                        <div *ngIf="detail !== 'coverUrl' && detail !== 'id'" class="details">
+                            {{detail.substring(0,1).toUpperCase() + detail.substring(1,detail.length)}} :
+                            {{item[detail]}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>

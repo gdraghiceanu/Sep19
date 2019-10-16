@@ -1,0 +1,12 @@
+<div id="accountDetailsContainer">
+    <div class="input-group mb-3">
+        <span class="input-group-text">User</span>
+        <input type="text" class="form-control" [(ngModel)]="username">
+    </div>
+    <div class="input-group mb-3">
+        <span class="input-group-text">Pass</span>
+        <input type="text" class="form-control" [(ngModel)]="password">
+    </div>
+    <button type="button" class="btn btn-primary" (click)="getUser()">Login</button>
+    <button type="button" class="btn btn-secondary" [routerLink]="[{ outlets: { menuOutlet: ['forgot-pass'] } }]">Change / Reset Pass</button>
+</div>

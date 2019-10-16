@@ -4,14 +4,13 @@
   height: 100%;
 }
 
-.header {
-  display: flex;
-  border-bottom: 1px solid gray;
-  padding: 0 10px;
-  background: #d0d0d0;
-}
-
 .container {
-  padding: 10px;
-  flex: 1;
+  display: flex;
+  background: transparent;
+  width: 20vw;
+  height: 100vh;
+  position: absolute;
+  left: 10vw;
+  top: 4vw;
+  height: 90vh;
 }

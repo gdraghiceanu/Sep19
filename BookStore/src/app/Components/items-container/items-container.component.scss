@@ -1,0 +1,85 @@
+#itemContainer {
+  position: absolute;
+  top: 2vh;
+  left: 20vw;
+  width: 65vw;
+  height: 88vh;
+
+  li {
+    position: relative;
+    width: 62vw;
+    height: 40vh;
+    list-style: none;
+    padding: 0;
+    margin-top: 3vh;
+  }
+
+  h1 {
+    position: relative;
+    background: steelblue;
+    padding-left: 1vw;
+    height: 7vh;
+    line-height: 7vh;
+  }
+  .itemContainer {
+    position: relative;
+    top: 1vh;
+    left: 1vh;
+    width: 8vw;
+    font-size: 0.65vw;
+    height: 30.25vh;
+    display: inline-block;
+    margin-right: 1.5vh;
+    overflow: hidden;
+
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 8vw;
+      height: 25vh;
+      transition: 0.25s;
+      z-index: 2;
+    }
+
+    button {
+      position: absolute;
+      bottom: 0.75vh;
+      left: 1vw;
+      width: 6vw;
+      font-size: 0.8vw;
+      border: 1px solid grey;
+    }
+
+    .hidden {
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    .details {
+      width: 100%;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      padding-left: 1vh;
+      padding-bottom: 0.5vh;
+    }
+
+    .cartOperation {
+      position: relative;
+      bottom: -2vh;
+      left: 2vh;
+      width: 2vw;
+      margin-right: 2vw;
+    }
+  }
+
+  .filterBox {
+    position: absolute;
+    top: 2vh;
+    right: 1vw;
+    height: 3vh;
+    width: 15vw;
+    font-size: 1vw
+  }
+}

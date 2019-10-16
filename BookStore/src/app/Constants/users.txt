@@ -1,0 +1,28 @@
+[{
+	"username": "user_one",
+	"password": "password_one",
+	"isLoggedIn": true,
+	"cartItems": [],
+	"preferences": {
+		"Books": true,
+		"Notebooks": true
+	}
+}, {
+	"username": "user_two",
+	"password": "password_two",
+	"isLoggedIn": true,
+	"cartItems": [],
+	"preferences": {
+		"Books": true,
+		"Notebooks": true
+	}
+}, {
+	"username": "user_three",
+	"password": "password_three",
+	"isLoggedIn": true,
+	"cartItems": [],
+	"preferences": {
+		"Books": true,
+		"Notebooks": true
+	}
+}]
