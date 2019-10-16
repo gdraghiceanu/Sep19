@@ -12,7 +12,7 @@ export class UserLoggedInComponent implements OnInit {
 
   private userData = {
     menuTemplate: [["Profile"], ["Shop", "Books", "Notebooks"], ["Cart"], ["Sign Out"]],
-    data: ""
+    data: null
   }
   private cartData:any;
   activeDropdown: Boolean = true;
@@ -31,19 +31,26 @@ export class UserLoggedInComponent implements OnInit {
   }
 
   toggleDropdown(): void {
+    if (this.activeDropdown === false && this.route.location._platformLocation.location.pathname !== "/(menuOutlet:profile//contentOutlet:items-container)") {
+      this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
+    }
     this.activeDropdown = !this.activeDropdown;
   }
 
-  filterProducts(preference): void {
-    console.log(preference)
+  filterProducts(showPreference,show): void {
+    this.userData.data.preferences[showPreference] = show;
+    this.routeCommunication.setRoutesData(this.userData.data)
   }
 
   triggerMenuEvent(menuAction) {
+    console.log(menuAction)
     switch (menuAction) {
       case "Cart":
+          this.activeDropdown = false;
           this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['cart-data'] } }])
-          console.log(this.cartData)
         break;
+      case "Profile":
+      break;
       default:
         console.log(menuAction, " not implemented.")
     }

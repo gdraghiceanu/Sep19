@@ -28,6 +28,8 @@ export class ItemsContainerComponent implements OnInit {
         }); 
       }
     });
+    console.log(this.userData)
+
   }
   
   ObjectKeys(item:any) {

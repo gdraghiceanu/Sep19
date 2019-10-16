@@ -1,14 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
-import { SubjectSubscriber } from 'rxjs/internal/Subject';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouterCommunicationService {
-  private data = new Subject();
+  private data = new BehaviorSubject([]);
   private _cartDataDummy = {};
-  private cartData = new Subject();
+  private cartData = new BehaviorSubject({});
   constructor() { }
 
   getRoutesData() : any {
@@ -17,6 +16,7 @@ export class RouterCommunicationService {
 
   setRoutesData(data:any) {
     this.data.next(data);
+    console.log(this.data.value)
   }
 
   updateCart(operand:string, itemId:string) {

@@ -4,5 +4,31 @@
     left: 20vw;
     width: 65vw;
     height: 88vh;
-    background:red
+
+    li {
+        position: relative;
+        height: 30vh;
+        overflow:hidden;
+        display: block
+    }
+
+    ul {
+        overflow-y: auto;
+        max-height: 85vh;
+        display: block
+    }
+
+    .imgContainer {
+        position: absolute;
+        top: 1vh;
+        right: 1vh;
+        width: 20vh;
+        height: 28vh;
+        display: block;
+    }
+
+    img {
+        width: 100%;
+        height: 100%
+    }
 }  

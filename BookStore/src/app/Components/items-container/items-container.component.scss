@@ -49,6 +49,7 @@
       width: 6vw;
       font-size: 0.8vw;
       border: 1px solid grey;
+      height:4vh
     }
 
     .hidden {
@@ -67,10 +68,11 @@
 
     .cartOperation {
       position: relative;
-      bottom: -2vh;
+      bottom: 0;
       left: 2vh;
       width: 2vw;
       margin-right: 2vw;
+      height:2vw
     }
   }
 

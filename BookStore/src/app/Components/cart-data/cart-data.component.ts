@@ -21,10 +21,7 @@ export class CartDataComponent implements OnInit {
       console.log("dsasd")
       for (let item in cartData) {
         books.forEach(book => {
-          console.log(book.id)
-          console.log(item)
           if (book.id === item) {
-            console.log(item)
             const bookToPush = book;
             bookToPush.Qty = cartData[item];
             this.cartItems.push(bookToPush);
@@ -39,5 +36,4 @@ export class CartDataComponent implements OnInit {
   ObjectKeys(item:any) {
     return Object.keys(item);
   }
-
 }

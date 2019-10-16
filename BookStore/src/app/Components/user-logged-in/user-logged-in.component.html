@@ -7,7 +7,7 @@
                 {{subMenu}}
               </label>
           <label *ngIf="subMenu !== 'Shop'">
-            <input type="checkbox" (click)="filterProducts(subMenu)" checked="userData.data.preferences[subMenu]"/>
+            <input type="checkbox" (click)="filterProducts(subMenu,$event.target.checked)" checked="userData.data.preferences[subMenu]"/>
             {{subMenu}}
           </label>
         </div>
