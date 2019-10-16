@@ -9,11 +9,10 @@ export class ShoppingCartService {
     constructor() { }
 
     addProduct(product: Product): void {
-        let existingProduct = this.products.find(element => element.title === product.title) as CartProduct;
+        let existingProduct = this.products.find(element => element.title === product.title);
 
         if (!existingProduct) {
-            const newProduct = <CartProduct>{ ...product };
-            newProduct.quantity = 1;
+            const newProduct: CartProduct = { ...product, quantity: 1 };
             this.products.push(newProduct);
         } else {
             existingProduct.quantity++;
