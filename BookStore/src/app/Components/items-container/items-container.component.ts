@@ -56,4 +56,9 @@ export class ItemsContainerComponent implements OnInit {
       console.log("add",itemId)
     }
   }
+
+  onImageLoad(event) {
+    event.target.classList.remove("hidden")
+    event.target.parentElement.parentElement.classList.remove("isLoading");
+  }
 }

@@ -84,4 +84,13 @@
     width: 15vw;
     font-size: 1vw
   }
+
+  .isLoading {
+    background-image:url("../../../assets/loading.gif");
+    background-size: cover;
+    width: 8vw;
+    height: 15vh;
+    color:transparent;
+    transition:.25s
+  }
 }
