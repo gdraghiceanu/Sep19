@@ -1,0 +1,18 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "backend application for bookstore",
+    "main": "app.js",
+    "scripts": {
+      "start-dev": "nodemon --ignore './database.json' app.js --exec babel-node --",
+      "start": "node_modules/.bin/babel-node app.js"
+    },
+    "author": "Cristian Badea",
+    "license": "ISC",
+    "dependencies": {
+      "babel-cli": "^6.26.0",
+      "babel-preset-es2015": "^6.24.1",
+      "express": "^4.17.1",
+      "nodemon": "^1.19.3"
+    }
+  }
