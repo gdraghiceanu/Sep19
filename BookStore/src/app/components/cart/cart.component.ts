@@ -8,27 +8,27 @@ import { Product } from 'src/app/interfaces/product';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  listCard: Product[];
+  listCart: Product[];
   product: Product;
   totalProducts = 0;
   totalSuma = 0;
 
   constructor(
-    private productsCard: ShoppingCartService
+    private productsCart: ShoppingCartService
   ) {
-    this.listCard = productsCard.getCardProducts();
-    this.totalProducts = productsCard.getCardNumber;
-    this.totalSuma = productsCard.sumCard;
+    this.listCart = productsCart.getCartProducts();
+    this.totalProducts = productsCart.getCartNumber;
+    this.totalSuma = productsCart.sumCart;
   }
 
   ngOnInit() {
   }
-  deleteToCart(productCard) {
-    // this.product = productCard;
+  deleteToCart(productCart) {
+    // this.product = productCart;
     // console.log(this.product);
-    this.productsCard.deleteCardProduct(productCard);
-    this.listCard = this.productsCard.getCardProducts();
-    this.totalProducts = this.productsCard.getCardNumber;
-    this.totalSuma = this.productsCard.sumCard;
+    this.productsCart.deleteCartProduct(productCart);
+    this.listCart = this.productsCart.getCartProducts();
+    this.totalProducts = this.productsCart.getCartNumber;
+    this.totalSuma = this.productsCart.sumCart;
   }
 }

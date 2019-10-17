@@ -7,9 +7,9 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  countCard = 0;
-  constructor( private productsCard: ShoppingCartService) {
-    this.countCard = productsCard.getCardNumber;
+  countCart = 0;
+  constructor( private productsCart: ShoppingCartService) {
+    this.countCart = productsCart.getCartNumber;
    }
 
   ngOnInit() {

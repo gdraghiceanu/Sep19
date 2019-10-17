@@ -5,34 +5,34 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class ShoppingCartService {
   private products: Product[] = [];
-  private emptyCard: Product[] = [];
-  public getCardNumber = 0;
-  public sumCard = 0;
+  private emptyCart: Product[] = [];
+  public getCartNumber = 0;
+  public sumCart = 0;
 
   constructor() { }
 
   addProduct(product: Product): void {
     this.products.push(product);
-    this.getCardNumber++;
-    this.sumCard = this.sumCard + product.price;
+    this.getCartNumber++;
+    this.sumCart = this.sumCart + product.price;
     console.log(this.products);
   }
 
-  getCardProducts(): Product[] {
+  getCartProducts(): Product[] {
     if (this.products && this.products.length) {
       return this.products;
     } else {
-      return this.emptyCard;
+      return this.emptyCart;
     }
   }
-  deleteCardProduct(product: Product): void {
+  deleteCartProduct(product: Product): void {
     const index: number = this.products.indexOf(product);
 
-    this.getCardNumber--;
-    this.sumCard = this.sumCard - product.price;
+    this.getCartNumber--;
+    this.sumCart = this.sumCart - product.price;
     if (index !== -1) {
       this.products.splice(index, 1);
     }
-    // console.log(this.getCardNumber);
+    // console.log(this.getCartNumber);
   }
 }
