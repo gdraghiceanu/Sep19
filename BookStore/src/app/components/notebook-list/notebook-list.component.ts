@@ -20,7 +20,10 @@ export class NotebookListComponent implements OnInit {
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService
   ) {
-    this.noteBooks = this.productService.getNotebooks();
+    // this.noteBooks = this.productService.getNotebooks();
+    this.productService.getNotebooks().subscribe(notebooks => {
+      this.noteBooks = notebooks;
+    });
   }
 
 
