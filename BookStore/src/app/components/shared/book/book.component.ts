@@ -23,6 +23,8 @@ export class BookComponent implements OnInit, OnChanges {
   sizeWidth = 50;
   marginSize = 5;
   starMessage: string;
+  edit:boolean = false;
+  showEditForm: boolean = false;
 
   constructor() {}
 
@@ -38,5 +40,10 @@ export class BookComponent implements OnInit, OnChanges {
 
   onStarEvent(val: string) {
     this.starMessage = val;
+  }
+
+  editt(){
+    this.edit = !this.edit;
+    this.showEditForm = !this.showEditForm;
   }
 }
