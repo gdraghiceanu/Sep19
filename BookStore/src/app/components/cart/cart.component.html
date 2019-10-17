@@ -16,6 +16,7 @@
                             <th scope="col">Available</th>
                             <th style="width: 25%;" scope="col" class="text-center">Quantity</th>
                             <th scope="col" class="text-right">Price</th>
+                            <th scope="col" class="text-right">Subtotal</th>
                             <th> </th>
                         </tr>
                     </thead>
@@ -24,8 +25,10 @@
                             <td><img src="{{ productCart.coverUrl }} " /> </td>
                             <td style="width: 30%">{{ productCart.title }}</td>
                             <td>In stock</td>
-                            <td style="width: 20%"><input style="width: 55px" class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">{{ productCart.price }} {{ productCart.currency }}</td>
+                            <td style="width: 20%"><input style="width: 55px" class="form-control" type="text" value="{{productCart.quantity}}" /></td>
+                            <td class="text-right">{{ productCart.price}}</td>
+                            
+                            <td class="text-right">{{ productCart.price * productCart.quantity }} {{ productCart.currency }}</td>
                             <td class="text-right"><button class="btn btn-sm btn-danger" (click)="deleteToCart(productCart)"><i class="fa fa-trash"></i> </button> </td>
                         </tr>
                        
@@ -34,11 +37,13 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <td></td>
                             <td style="width: 20%"></td>
                             <td>Shipping</td>
                             <td class="text-right"> 0 €</td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>

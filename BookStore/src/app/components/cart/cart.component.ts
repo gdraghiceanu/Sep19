@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import { Product } from 'src/app/interfaces/product';
+import { CartProduct } from 'src/app/interfaces/cart-product';
 
 @Component({
   selector: 'app-cart',
@@ -8,8 +8,8 @@ import { Product } from 'src/app/interfaces/product';
   styleUrls: ['./cart.component.scss']
 })
 export class CartComponent implements OnInit {
-  listCart: Product[];
-  product: Product;
+  listCart: CartProduct[];
+  product: CartProduct;
   totalProducts = 0;
   totalSuma = 0;
 
