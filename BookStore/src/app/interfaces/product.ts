@@ -5,4 +5,5 @@ export interface Product {
     coverUrl?: string;
     price: number;
     currency: CurrencyEnum;
+    review?: number;
 }

@@ -5,27 +5,23 @@ import {
   OnChanges,
   SimpleChanges,
   ViewChild,
-  AfterViewInit,
   EventEmitter,
-  Output,
-  ElementRef
+  Output
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
-import { StarComponent } from '../star/star.component';
+import { ProductEditComponent } from '../product-edit/product-edit.component';
+import { ProductsService } from 'src/app/services/products.service';
+
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('childStar', { static: false }) childStar: StarComponent;
+export class BookComponent implements OnInit, OnChanges {
 
   @Input() book: Book;
-  @Input() showImage: boolean;
-
-  @ViewChild('rating', { static: false }) ratingInput: ElementRef<HTMLInputElement>;
-  @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
+  @ViewChild('productEdit', { static: false }) productEdit: ProductEditComponent;
 
   @Output() addBookToCart: EventEmitter<Book> = new EventEmitter();
 
@@ -34,7 +30,11 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
   starMessage: string;
   showEdit = false;
 
-  constructor() { }
+  constructor(
+    private productService: ProductsService
+    ) {
+
+   }
 
   ngOnInit() { }
 
@@ -42,9 +42,6 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
     console.log(changes);
   }
 
-  ngAfterViewInit() {
-    console.log(this.childStar.rating.toString());
-  }
   addToCart() {
     this.addBookToCart.emit(this.book);
   }
@@ -52,8 +49,21 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
     this.starMessage = val;
   }
   updateBook() {
-    this.book.price = +this.priceInput.nativeElement.value;
-    this.book.review = +this.ratingInput.nativeElement.value;
+    // this.book.price = +this.priceInput.nativeElement.value;
+    // this.book.review = +this.ratingInput.nativeElement.value;
     this.showEdit = false;
+    this.productEdit.setnewRatingInput();
+    this.book.price = this.productEdit.newPriceInput;
+    this.book.review = this.productEdit.newRatingInput;
+
+    this.productService.updateBook(this.book)
+      .subscribe(
+        data => {
+          alert('Succesfully Added Product details' );
+        },
+        Error => {
+          alert('failed while adding product details');
+        }
+      );
   }
 }

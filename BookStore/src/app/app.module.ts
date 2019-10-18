@@ -16,6 +16,7 @@ import { ProductsService } from './services/products.service';
 import { ShoppingCartService} from './services/shopping-cart.service';
 import { CartComponent } from './components/cart/cart.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ProductEditComponent } from './components/shared/product-edit/product-edit.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     NotebookListComponent,
     NotebookComponent,
     NavbarComponent,
-    CartComponent
+    CartComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,

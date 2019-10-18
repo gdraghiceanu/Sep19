@@ -4,5 +4,4 @@ export interface NoteBook extends Product {
     description: string;
     pages: number;
     size: string;
-    review?: number;
 }

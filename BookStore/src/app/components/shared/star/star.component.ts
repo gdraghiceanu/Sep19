@@ -18,8 +18,4 @@ export class StarComponent implements OnInit {
   ngOnInit() {
     this.starWidth = (this.rating * 75) / 5;
   }
-
-  onClick() {
-    this.ratingOut.emit(`${this.rating} stars`);
-  }
 }
