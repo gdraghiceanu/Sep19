@@ -1,4 +1,10 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  ViewChild } from '@angular/core';
 import { NoteBook } from 'src/app/interfaces/notebook';
 import { ProductEditComponent } from './../product-edit/product-edit.component';
 import { ProductsService } from 'src/app/services/products.service';
@@ -19,6 +25,7 @@ export class NotebookComponent implements OnInit {
   public noteBooks: NoteBook[];
   starMessage: string;
   showEdit: boolean;
+
   constructor(
     private productService: ProductsService
     ) {
@@ -37,9 +44,10 @@ export class NotebookComponent implements OnInit {
   updateNotebook() {
     // this.notebook.price = +this.priceInput.nativeElement.value;  // cast la int
     // this.notebook.review = +this.ratingInput.nativeElement.value;
+
     this.showEdit = false;
 
-    this.productEdit.setnewRatingInput();
+    this.productEdit.setNewInput();
 
     this.notebook.price = this.productEdit.newPriceInput;
     this.notebook.review = this.productEdit.newRatingInput;
@@ -48,10 +56,10 @@ export class NotebookComponent implements OnInit {
     this.productService.updateNotebook(this.notebook)
       .subscribe(
         data => {
-          alert('Succesfully Added Product details' );
+          alert('Succesfully Added notebook' );
         },
-        Error => {
-          alert('failed while adding product details');
+        error => {
+          alert('failed while adding notebook');
         }
       );
   }

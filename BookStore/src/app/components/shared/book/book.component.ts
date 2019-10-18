@@ -51,18 +51,24 @@ export class BookComponent implements OnInit, OnChanges {
   updateBook() {
     // this.book.price = +this.priceInput.nativeElement.value;
     // this.book.review = +this.ratingInput.nativeElement.value;
+
     this.showEdit = false;
-    this.productEdit.setnewRatingInput();
+
+    this.productEdit.setNewInput();
+
     this.book.price = this.productEdit.newPriceInput;
     this.book.review = this.productEdit.newRatingInput;
 
     this.productService.updateBook(this.book)
       .subscribe(
         data => {
-          alert('Succesfully Added Product details' );
+          alert('Succesfully Added book' + JSON.stringify(data));
         },
-        Error => {
-          alert('failed while adding product details');
+        error => {
+          alert('failed while adding book');
+        },
+        () => {
+          console.log('Observer got a complete notification');
         }
       );
   }

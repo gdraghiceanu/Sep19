@@ -20,7 +20,7 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {}
 
-  setnewRatingInput() {
+  setNewInput() {
     // lert(this.newPriceInput);
     this.newPriceInput = +this.priceInput.nativeElement.value;
     this.newRatingInput = +this.ratingInput.nativeElement.value;
