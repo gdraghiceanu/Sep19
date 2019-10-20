@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject } from 'rxjs';
+import {  BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +8,8 @@ export class RouterCommunicationService {
   private data = new BehaviorSubject([]);
   private _cartDataDummy = {};
   private cartData = new BehaviorSubject({});
-  constructor() { }
+  constructor(
+  ) { }
 
   getRoutesData() : any {
     return this.data;
@@ -16,18 +17,13 @@ export class RouterCommunicationService {
 
   setRoutesData(data:any) {
     this.data.next(data);
-    console.log(this.data.value)
   }
 
-  updateCart(operand:string, itemId:string) {
+  updateCart(qty:number, itemId:string) {
     if (this._cartDataDummy[itemId]) {
-      if (operand === "+") {
-        this._cartDataDummy[itemId] = this._cartDataDummy[itemId] + 1;
-      } else {
-        this._cartDataDummy[itemId] = this._cartDataDummy[itemId] - 1;
-      }
+        this._cartDataDummy[itemId] = this._cartDataDummy[itemId] + qty;
       this.cartData.next(this._cartDataDummy);
-    } else if (operand === "+") {
+    } else if (qty === 1) {
       this._cartDataDummy[itemId] = 1;
       this.cartData.next(this._cartDataDummy);
     } else {
@@ -36,7 +32,6 @@ export class RouterCommunicationService {
   }
 
   viewCartData() : any {
-    console.log(this.cartData)
     return this.cartData;
   }
 }

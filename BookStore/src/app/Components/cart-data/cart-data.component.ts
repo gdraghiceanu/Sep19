@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {RouterCommunicationService} from 'src/app/Services/router-communication.service';
 import { books } from 'src/app/Constants/books.seed';
 import { notebooks } from 'src/app/Constants/notebooks.seed';
+import { HttpServiceService} from 'src/app/Services/http-service.service';
 
 @Component({
   selector: 'app-cart-data',
@@ -10,30 +11,44 @@ import { notebooks } from 'src/app/Constants/notebooks.seed';
 })
 export class CartDataComponent implements OnInit {
 
-  cartItems = [];
+  private userDataToSend = {};
 
   constructor(
-    private routeCommunication : RouterCommunicationService
+    private routeCommunication : RouterCommunicationService,
+    private http: HttpServiceService
   ) { }
 
   ngOnInit() {
+    this.routeCommunication.getRoutesData().subscribe(userData =>{
+      this.userDataToSend = userData;
+    });
+    console.log(this.userDataToSend)
     this.routeCommunication.viewCartData().subscribe(cartData =>{
-      console.log("dsasd")
       for (let item in cartData) {
         books.forEach(book => {
           if (book.id === item) {
             const bookToPush = book;
             bookToPush.Qty = cartData[item];
-            this.cartItems.push(bookToPush);
+            this.userDataToSend.orderDetails.cartData.push(bookToPush);
           }
         })
       }
-
     });
-    console.log(this.cartItems)
   }
 
   ObjectKeys(item:any) {
     return Object.keys(item);
+  }
+  
+  updateCartBackEnd() {
+    console.log(this.userDataToSend)
+    this.http.doRequest(
+      "POST","http://localhost:8080/updateCart",{
+        "userData" : this.userDataToSend,
+      }
+    )
+    .then(result =>{
+      console.log("was ok",result)
+    });
   }
 }

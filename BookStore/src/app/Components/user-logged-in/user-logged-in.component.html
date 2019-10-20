@@ -1,6 +1,9 @@
 <ul class="list-group" id="accountDetailsContainer">
-    <li *ngFor="let menu of userData.menuTemplate" class="list-group-item" [ngClass]="{'menus': menu[0] !== 'Shop','inactive' : (activeDropdown && menu[0] ==='Shop')}">
-      <span *ngIf="menu[0] !=='Shop'" (click)="triggerMenuEvent(menu[0])">{{menu[0]}}</span>
+    <li *ngFor="let menu of userData.menuTemplate" class="{{menu[0].toLowerCase().replace(' ','')}} list-group-item" [ngClass]="{'menus': menu[0] !== 'Shop','inactive' : (activeDropdown && menu[0] ==='Shop')}">
+      <span *ngIf="menu[0] !=='Shop'" (click)="triggerMenuEvent(menu[0])">
+        {{menu[0]}}
+        <span *ngIf="menu[0] === 'Cart'" class="itemsNo" [innerHTML]='cartData.itemsNo'></span>
+      </span>
       <ng-container *ngFor="let subMenu of menu">
         <div *ngIf="menu[0] === 'Shop'" class="list-group-item subMenus" [ngClass]="{'menus': subMenu === 'Shop'}">
           <label *ngIf="subMenu === 'Shop'" (click)="toggleDropdown()" class="dropdown-toggle">

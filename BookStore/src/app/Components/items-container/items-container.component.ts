@@ -28,8 +28,6 @@ export class ItemsContainerComponent implements OnInit {
         }); 
       }
     });
-    console.log(this.userData)
-
   }
   
   ObjectKeys(item:any) {
@@ -48,12 +46,13 @@ export class ItemsContainerComponent implements OnInit {
     }
   }
 
-  addItemsToCart(operand,itemId) {
-    this.routeCommunication.updateCart(operand,itemId);
-    if (operand === "-") {
-      console.log("substract",itemId)
+  addItemsToCart(qty:number,itemId,event) {
+    this.routeCommunication.updateCart(qty,itemId);
+    if (qty === -1) {
+      event.target.nextElementSibling.innerHTML = Number(event.target.nextElementSibling.innerHTML) + qty;
     } else {
-      console.log("add",itemId)
+      event.target.previousElementSibling.innerHTML = Number(event.target.previousElementSibling.innerHTML) + qty;
+
     }
   }
 

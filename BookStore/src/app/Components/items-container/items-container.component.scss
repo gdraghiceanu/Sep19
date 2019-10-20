@@ -71,8 +71,10 @@
       bottom: 0;
       left: 2vh;
       width: 2vw;
-      margin-right: 2vw;
-      height:2vw
+      height: 2vw;
+      display: inline-block;
+      box-sizing: border-box;
+      text-align: center;
     }
   }
 
@@ -87,10 +89,15 @@
 
   .isLoading {
     background-image:url("../../../assets/loading.gif");
-    background-size: cover;
+    background-size: 90%;
     width: 8vw;
-    height: 15vh;
-    color:transparent;
-    transition:.25s
+    height: auto;
+    color: transparent;
+    transition: 0.25s;
+    background-repeat: no-repeat;
+  }
+
+  .isLoading .cartOperation {
+    opacity: 0
   }
 }

@@ -1,5 +1,6 @@
 <div id="itemContainer">
     <ul>
+        <button class=""
         <li *ngFor="let category of displayItems">
             <div *ngIf="userData.preferences[category.type]">
                 <h1 class="categoryTitle">
@@ -17,9 +18,10 @@
                             </div>
                         </div>
                         <button type="button" class="btn btn-light cartOperation"
-                            (click)="addItemsToCart('-',item.id)">-</button>
+                            (click)="addItemsToCart(-1,item.id,$event)">-</button>
+                        <span class="cartOperation">0</span>
                         <button type="button" class="btn btn-light cartOperation"
-                            (click)="addItemsToCart('+',item.id)">+</button>
+                            (click)="addItemsToCart(1,item.id,$event)">+</button>
                     </div>
                     <button type="button" class="btn btn-light" (click)="toggleClass($event)">Details</button>
                 </div>

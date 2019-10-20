@@ -34,3 +34,7 @@ app.get("/", (req, res) => {
         }
     }
 });
+
+app.post("/updateCart",(req,res)=>{
+    res.end("updated")
+})

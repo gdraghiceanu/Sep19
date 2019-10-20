@@ -14,24 +14,37 @@ export class UserLoggedInComponent implements OnInit {
     menuTemplate: [["Profile"], ["Shop", "Books", "Notebooks"], ["Cart"], ["Sign Out"]],
     data: null
   }
-  private cartData:any;
+  private cartData = {
+    items : null,
+    itemsNo : 0
+  };
+
   activeDropdown: Boolean = true;
   constructor(
     private routeCommunication: RouterCommunicationService,
     private route: Router
-  ) { }
+  ) {   }
 
   ngOnInit() {
     this.routeCommunication.getRoutesData().subscribe(data => {
       this.userData.data = data;
     });
     this.routeCommunication.viewCartData().subscribe(cartData =>{
-      this.cartData = cartData;
+      this.cartData.items = cartData;
+      this.cartData.itemsNo = (()=>{
+        let localQty = 0;
+        for (let item in cartData) {
+          console.log(cartData[item])
+          localQty = localQty + cartData[item];
+        }
+        return localQty;
+      })();
+
     });
   }
 
   toggleDropdown(): void {
-    if (this.activeDropdown === false && this.route.location._platformLocation.location.pathname !== "/(menuOutlet:profile//contentOutlet:items-container)") {
+    if (this.activeDropdown === false && location.pathname !== "/(menuOutlet:profile//contentOutlet:items-container)") {
       this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
     }
     this.activeDropdown = !this.activeDropdown;

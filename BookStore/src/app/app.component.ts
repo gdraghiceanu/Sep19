@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
       let r = JSON.parse(result);
       if (r !== false) {
         this.routeCommunication.setRoutesData(r);
+        this.routeCommunication.updateCart(r,"");
         this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
       } else {
         console.log("dasdas")
