@@ -10,11 +10,12 @@ body {
 
 #accountDetailsContainer {
   position: absolute;
-  display: inline-flexbox;
+  display: block;
   bottom: 50vh;
   -webkit-animation: 0.5s slideIn;
   animation: 0.5s slideIn;
-  left:0;
+  width: 18vw;
+  left: 10vw;
 
   @keyframes slideIn {
     from {

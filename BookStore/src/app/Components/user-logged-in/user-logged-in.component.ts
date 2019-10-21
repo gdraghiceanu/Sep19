@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterCommunicationService } from 'src/app/Services/router-communication.service';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
+import { HttpServiceService } from 'src/app/Services/http-service.service';
 
 @Component({
   selector: 'app-user-logged-in',
@@ -22,7 +23,9 @@ export class UserLoggedInComponent implements OnInit {
   activeDropdown: Boolean = true;
   constructor(
     private routeCommunication: RouterCommunicationService,
-    private route: Router
+    private route: Router,
+    private activatedRoute : ActivatedRoute,
+    private http: HttpServiceService
   ) {   }
 
   ngOnInit() {
@@ -39,15 +42,7 @@ export class UserLoggedInComponent implements OnInit {
         }
         return localQty;
       })();
-
     });
-  }
-
-  toggleDropdown(): void {
-    if (this.activeDropdown === false && location.pathname !== "/(menuOutlet:profile//contentOutlet:items-container)") {
-      this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
-    }
-    this.activeDropdown = !this.activeDropdown;
   }
 
   filterProducts(showPreference,show): void {
@@ -56,16 +51,17 @@ export class UserLoggedInComponent implements OnInit {
   }
 
   triggerMenuEvent(menuAction) {
-    console.log(menuAction)
-    switch (menuAction) {
-      case "Cart":
-          this.activeDropdown = false;
-          this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['cart-data'] } }])
-        break;
-      case "Profile":
-      break;
-      default:
-        console.log(menuAction, " not implemented.")
+    if (menuAction === "Sign Out") {
+      console.log("signing out")
+    } else if (menuAction === "Shop") {
+      console.log(menuAction)
+      if (this.activatedRoute.snapshot["_routerState"] !== "/loggedin/shop") {
+        this.route.navigate(["loggedin/shop"]);
+      }
+        this.activeDropdown = true;
+    } else {
+      this.route.navigate(["/loggedin",menuAction.toLowerCase()]);
+      this.activeDropdown = !this.activeDropdown;
     }
   }
 }

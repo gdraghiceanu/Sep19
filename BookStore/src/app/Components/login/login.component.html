@@ -8,5 +8,5 @@
         <input type="text" class="form-control" [(ngModel)]="password">
     </div>
     <button type="button" class="btn btn-primary" (click)="getUser()">Login</button>
-    <button type="button" class="btn btn-secondary" [routerLink]="[{ outlets: { menuOutlet: ['forgot-pass'] } }]">Change / Reset Pass</button>
+    <button type="button" class="btn btn-secondary" routerLink="forgot-pass">Change / Reset Pass</button>
 </div>

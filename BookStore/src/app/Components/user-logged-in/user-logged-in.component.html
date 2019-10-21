@@ -5,8 +5,8 @@
         <span *ngIf="menu[0] === 'Cart'" class="itemsNo" [innerHTML]='cartData.itemsNo'></span>
       </span>
       <ng-container *ngFor="let subMenu of menu">
-        <div *ngIf="menu[0] === 'Shop'" class="list-group-item subMenus" [ngClass]="{'menus': subMenu === 'Shop'}">
-          <label *ngIf="subMenu === 'Shop'" (click)="toggleDropdown()" class="dropdown-toggle">
+        <div *ngIf="menu[0] === 'Shop'" class="list-group-item subMenus" [ngClass]="{'menus': subMenu === 'Shop'}" (click)="triggerMenuEvent(menu[0])">
+          <label *ngIf="subMenu === 'Shop'" class="dropdown-toggle">
                 {{subMenu}}
               </label>
           <label *ngIf="subMenu !== 'Shop'">
@@ -17,3 +17,4 @@
       </ng-container>
     </li>
   </ul>
+  <router-outlet></router-outlet>

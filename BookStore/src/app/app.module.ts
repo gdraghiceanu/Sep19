@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { UserLoggedInComponent } from './Components/user-logged-in/user-logged-in.component';
 import { ItemsContainerComponent } from './Components/items-container/items-container.component';
 import { CartDataComponent } from './Components/cart-data/cart-data.component';
+import { ProfileComponent } from './Components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CartDataComponent } from './Components/cart-data/cart-data.component';
     ForgotPassComponent,
     UserLoggedInComponent,
     ItemsContainerComponent,
-    CartDataComponent
+    CartDataComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -28,35 +30,36 @@ import { CartDataComponent } from './Components/cart-data/cart-data.component';
     RouterModule.forRoot([
       {
         path: "",
-        component: LoginComponent,
-        outlet: "menuOutlet",
-        pathMatch: 'full'
+        redirectTo : "login",
+        pathMatch : "full"
+      },
+      {
+        path : "login",
+        component : LoginComponent
       },
       {
         path: "forgot-pass",
-        component: ForgotPassComponent,
-        outlet: "menuOutlet",
-        pathMatch: 'full'
+        component: ForgotPassComponent
       },
       {
-        path: "profile",
+        path: "loggedin",
         component: UserLoggedInComponent,
-        outlet: "menuOutlet",
-        pathMatch: 'full'
-      },
-      {
-        path: "items-container",
-        component: ItemsContainerComponent,
-        outlet: "contentOutlet",
-        pathMatch: 'full'
-      },
-      {
-        path: "cart-data",
-        component: CartDataComponent,
-        outlet: "contentOutlet",
-        pathMatch: 'full'
-      },
-    ])
+        children : [
+          {
+            path : "profile",
+            component : ProfileComponent
+          },
+          {
+            path: "shop",
+            component: ItemsContainerComponent
+          },
+          {
+            path: "cart",
+            component: CartDataComponent
+          }
+        ]
+      }
+    ],{useHash : true})
   ],
   providers: [],
   bootstrap: [AppComponent]

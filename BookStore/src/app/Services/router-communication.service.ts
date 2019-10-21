@@ -12,6 +12,9 @@ export class RouterCommunicationService {
   ) { }
 
   getRoutesData() : any {
+    if (this.data.value === []) {
+      
+    }
     return this.data;
   }
 

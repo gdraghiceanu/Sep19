@@ -22,14 +22,14 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
     this.http.doRequest(
-      "GET","http://localhost:8080/",{}
+      "GET","",{}
     )
     .then(result =>{
       let r = JSON.parse(result);
       if (r !== false) {
         this.routeCommunication.setRoutesData(r);
         this.routeCommunication.updateCart(r,"");
-        this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
+        this.route.navigate(["/loggedin","profile"]);
       } else {
         console.log("dasdas")
       }

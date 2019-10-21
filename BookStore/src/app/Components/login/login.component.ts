@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpServiceService } from 'src/app/Services/http-service.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -17,13 +17,14 @@ export class LoginComponent implements OnInit {
   constructor(
     private http: HttpServiceService,
     private route: Router,
+    private activeRoute : ActivatedRoute
     ) { }
 
   ngOnInit() { }
 
   getUser() {
     this.http.doRequest(
-      "GET","http://localhost:8080/login",{
+      "GET","login",{
         "username" : this.username,
         "password" : this.password
       }
@@ -31,7 +32,7 @@ export class LoginComponent implements OnInit {
     .then(result =>{
       this.loggedInUser = JSON.parse(result);
       if (this.loggedInUser !== false) {
-        this.route.navigate([{ outlets: { menuOutlet : ['profile'], contentOutlet: ['items-container'] } }])
+        this.route.navigate(["loggedin/profile"]);
       } else {
         console.log("Username or password are incorrect.");
       }

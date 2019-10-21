@@ -2,9 +2,9 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 
-app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); }).listen(8080);
+// app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); }).listen(8080);
 
-app.get("/login", (req, res) => {
+app.get("/api/login", (req, res) => {
     let users = JSON.parse(fs.readFileSync("src/app/Constants/users.txt"));
     for (user in users) {
         if (users[user].username === req.query.username) {
@@ -23,8 +23,7 @@ app.get("/login", (req, res) => {
     res.end(JSON.stringify({ data: "false" }));
 });
 
-app.get("/", (req, res) => {
-    res.header("Access-Control-Allow-Origin", "*");
+app.get("/api", (req, res) => {
     const usersList = JSON.parse(fs.readFileSync("src/app/Constants/users.txt").toString());
     for (user in usersList) {
         if (usersList[user].isLoggedIn) {
@@ -33,7 +32,7 @@ app.get("/", (req, res) => {
             res.end(JSON.stringify({ data: "false" }));
         }
     }
-});
+}).listen(8080);
 
 app.post("/updateCart",(req,res)=>{
     res.end("updated")
