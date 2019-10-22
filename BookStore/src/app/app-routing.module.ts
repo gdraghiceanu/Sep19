@@ -1,4 +1,4 @@
-import { BookListComponent } from './components/product-list/book-list.component';
+import { BookListComponent } from './components/book-list/book-list.component';
 import { NotebookListComponent } from './components/notebook-list/notebook-list.component';
 import { Routes } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';

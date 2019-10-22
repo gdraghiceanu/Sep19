@@ -11,11 +11,12 @@ import { BookComponent } from './components/shared/book/book.component';
 import { ProductFilterComponent } from './components/shared/product-filter/product-filter.component';
 import { NotebookListComponent } from './components/notebook-list/notebook-list.component';
 import { NotebookComponent } from './components/shared/notebook/notebook.component';
-import { BookListComponent } from './components/product-list/book-list.component';
+import { BookListComponent } from './components/book-list/book-list.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { ProductsService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { ProductEditComponent } from './components/shared/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     NotebookListComponent,
     NotebookComponent,
     NavbarComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
@@ -38,4 +40,4 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
   providers: [ProductsService, ShoppingCartService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

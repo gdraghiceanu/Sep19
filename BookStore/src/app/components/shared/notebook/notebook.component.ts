@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { NoteBook } from 'src/app/interfaces/notebook';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-notebook',
@@ -14,15 +15,16 @@ export class NotebookComponent implements OnInit {
   @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
 
   @Output() addNotebookToCart: EventEmitter<NoteBook> = new EventEmitter();
+  @Output() notebookUpdated: EventEmitter<void> = new EventEmitter();
 
   starMessage: string;
   showEdit = false;
 
-  constructor() {}
+  constructor(private productService: ProductsService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  addToCart(){
+  addToCart() {
     this.addNotebookToCart.emit(this.notebook);
   }
 
@@ -30,9 +32,12 @@ export class NotebookComponent implements OnInit {
     this.starMessage = val;
   }
 
-  updateNotebook(){
-    this.notebook.price = +this.priceInput.nativeElement.value;
-    this.notebook.review = +this.ratingInput.nativeElement.value;
-    this.showEdit = false;
+  saveNotebook(notebook: NoteBook) {
+    this.productService.updateNotebook(notebook).subscribe(
+      () => {
+        this.showEdit = false;
+        this.notebookUpdated.emit();
+      }
+    );
   }
 }

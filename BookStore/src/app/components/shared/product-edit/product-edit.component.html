@@ -1,0 +1,11 @@
+<div class="product-save">
+  <button (click)="saveProduct()">Save</button>
+</div>
+<div class="product-form edit-box">
+  <div class="rating">
+    Rating <input type="number" min="1" max="5" step="0.5" [value]="product.review" #rating>
+  </div>
+  <div class="price">
+    Price <input type="number" min="0" [value]="product.price" #price>
+  </div>
+</div>

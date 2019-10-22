@@ -2,52 +2,35 @@ import {
   Component,
   OnInit,
   Input,
-  OnChanges,
-  SimpleChanges,
-  ViewChild,
-  AfterViewInit,
   Output,
   EventEmitter,
-  ElementRef
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
-import { StarComponent } from '../star/star.component';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
   styleUrls: ['./book.component.scss']
 })
-export class BookComponent implements OnInit, OnChanges, AfterViewInit {
-  @ViewChild('childStar', { static: false }) childStar: StarComponent;
-
-  @ViewChild('rating', { static: false }) ratingInput: ElementRef<HTMLInputElement>;
-  @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
-
+export class BookComponent implements OnInit {
   @Input() book: Book;
   @Input() showImage: boolean;
 
   @Output() addBookToCart: EventEmitter<Book> = new EventEmitter();
+  @Output() bookUpdated: EventEmitter<void> = new EventEmitter();
 
   sizeWidth = 50;
   marginSize = 5;
   showEdit = false;
   starMessage: string;
 
-  constructor() {}
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
-  }
-
-  ngAfterViewInit() {
-    console.log(this.childStar.rating.toString());
-  }
-
-  addToCart(){
+  addToCart() {
     this.addBookToCart.emit(this.book);
   }
 
@@ -55,9 +38,12 @@ export class BookComponent implements OnInit, OnChanges, AfterViewInit {
     this.starMessage = val;
   }
 
-  updateBook(){
-    this.book.price = +this.priceInput.nativeElement.value;
-    this.book.review = +this.ratingInput.nativeElement.value;
-    this.showEdit = false;
+  saveBook(book: Book) {
+    this.productService.updateBook(book).subscribe(
+      () => {
+        this.showEdit = false;
+        this.bookUpdated.emit();
+      }
+    );
   }
 }

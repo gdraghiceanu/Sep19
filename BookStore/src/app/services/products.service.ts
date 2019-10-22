@@ -15,4 +15,12 @@ export class ProductsService {
     getNotebooks(): Observable<NoteBook[]> {
         return this.http.get<NoteBook[]>('/api/notebooks');
     }
+
+    updateBook(book: Book): Observable<Book> {
+        return this.http.post<Book>('/api/book', book);
+    }
+
+    updateNotebook(notebook: NoteBook): Observable<NoteBook> {
+        return this.http.post<NoteBook>('/api/notebook', notebook);
+    }
 }

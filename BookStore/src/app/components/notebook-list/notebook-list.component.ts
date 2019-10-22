@@ -14,9 +14,7 @@ export class NotebookListComponent implements OnInit {
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService
   ) {
-    this.productService.getNotebooks().subscribe(notebooks => {
-      this.noteBooks = notebooks;
-    });
+    this.getNotebooks();
   }
 
   ngOnInit() {
@@ -24,5 +22,11 @@ export class NotebookListComponent implements OnInit {
 
   addNotebookToCart(notebook: NoteBook) {
     this.shoppingCartService.addProduct(notebook);
+  }
+
+  getNotebooks() {
+    this.productService.getNotebooks().subscribe(notebooks => {
+      this.noteBooks = notebooks;
+    });
   }
 }

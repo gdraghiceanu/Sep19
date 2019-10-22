@@ -17,11 +17,7 @@ export class BookListComponent implements OnInit {
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService
   ) {
-    this.productService.getBooks()
-    .subscribe(books => {
-      this.books = books;
-      this.filteredBooks = this.books;
-    });
+    this.getBooks();
   }
 
   ngOnInit() {
@@ -32,7 +28,7 @@ export class BookListComponent implements OnInit {
     this.filteredBooks = this.produceFilterList(val);
   }
 
-  addBookToCart(book: Book): void{
+  addBookToCart(book: Book): void {
     this.shoppingCartService.addProduct(book);
   }
 
@@ -41,5 +37,13 @@ export class BookListComponent implements OnInit {
     return this.books.filter(
       book => book.title.toLocaleLowerCase().indexOf(filterValue) !== -1
     );
+  }
+
+  getBooks() {
+    this.productService.getBooks()
+      .subscribe(books => {
+        this.books = books;
+        this.filteredBooks = this.books;
+      });
   }
 }
