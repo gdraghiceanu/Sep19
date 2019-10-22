@@ -1,14 +1,26 @@
 import { Injectable } from '@angular/core';
 import { Product } from '../interfaces/product';
+import { CartProduct } from '../interfaces/cart-product';
 
 @Injectable()
 export class ShoppingCartService {
-    private products: Product[] = [];
+    private products: CartProduct[] = [];
 
     constructor() { }
 
     addProduct(product: Product): void {
-        this.products.push(product);
+        let existingProduct = this.products.find(element => element.title === product.title);
+
+        if (!existingProduct) {
+            const newProduct: CartProduct = { ...product, quantity: 1 };
+            this.products.push(newProduct);
+        } else {
+            existingProduct.quantity++;
+        }
         console.log(this.products);
+    }
+
+    getProducts(): CartProduct[] {
+        return this.products;
     }
 }

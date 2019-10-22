@@ -17,8 +17,11 @@ export class BookListComponent implements OnInit {
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService
   ) {
-    this.books = this.productService.getBooks();
-    this.filteredBooks = this.books;
+    this.productService.getBooks()
+    .subscribe(books => {
+      this.books = books;
+      this.filteredBooks = this.books;
+    });
   }
 
   ngOnInit() {

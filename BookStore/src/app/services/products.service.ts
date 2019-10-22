@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../interfaces/book';
-import { books } from '../constants/books.seed';
 import { NoteBook } from '../interfaces/notebook';
-import { noteBooks } from '../constants/notebooks.seed';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class ProductsService {
-    constructor() { }
+    constructor(private http: HttpClient) { }
 
-    getBooks(): Book[] {
-        return books;
+    getBooks(): Observable<Book[]> {
+        return this.http.get<Book[]>('/api/books');
     }
 
-    getNotebooks(): NoteBook[] {
-        return noteBooks;
+    getNotebooks(): Observable<NoteBook[]> {
+        return this.http.get<NoteBook[]>('/api/notebooks');
     }
 }
