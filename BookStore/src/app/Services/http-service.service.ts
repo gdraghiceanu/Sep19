@@ -11,7 +11,7 @@ export class HttpServiceService {
     return new Promise((res, rej) => {
       if (method === "GET") {
         this.http
-          .get<any>("api/" + url,
+          .get<any>(`api/${url}`,
             {
               params: reqBody
             })
@@ -23,8 +23,9 @@ export class HttpServiceService {
             rej(e);
           })
       } else if (method === "POST") {
+        console.log(reqBody)
         this.http
-          .post<any>(url,
+          .get<any>(`api/${url}`,
             {
               params: reqBody
             })

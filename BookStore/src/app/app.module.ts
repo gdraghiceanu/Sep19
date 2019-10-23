@@ -59,7 +59,7 @@ import { ProfileComponent } from './Components/profile/profile.component';
           }
         ]
       }
-    ],{useHash : true})
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

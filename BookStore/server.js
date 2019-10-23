@@ -5,18 +5,17 @@ const fs = require("fs");
 // app.use((req, res, next) => { res.header("Access-Control-Allow-Origin", "*"); next(); }).listen(8080);
 
 app.get("/api/login", (req, res) => {
-    let users = JSON.parse(fs.readFileSync("src/app/Constants/users.txt"));
+    const usersList = JSON.parse(fs.readFileSync("src/app/Constants/users.txt"));
     for (user in users) {
-        if (users[user].username === req.query.username) {
-            if (users[user].password === req.query.password) {
-                users[user].isLoggedIn = true;
-                return fs.writeFile("src/app/Constants/users.txt", JSON.stringify(users), err => {
+        if (usersList[user].username === req.query.username) {
+            if (usersList[user].password === req.query.password) {
+                usersList[user].isLoggedIn = true;
+                return fs.writeFile("src/app/Constants/users.txt", JSON.stringify(usersList), err => {
                     if (err) {
                         return res.end(JSON.stringify({ data: "An error has occured. Please try again!" }));
                     }
                     return res.end(JSON.stringify({ data: JSON.stringify(users[user]) }));
                 });
-
             }
         }
     }
@@ -25,7 +24,7 @@ app.get("/api/login", (req, res) => {
 
 app.get("/api", (req, res) => {
     const usersList = JSON.parse(fs.readFileSync("src/app/Constants/users.txt").toString());
-    for (user in usersList) {
+    for (let user in usersList) {
         if (usersList[user].isLoggedIn) {
             return res.end(JSON.stringify({ data: JSON.stringify(usersList[user]) }));
         } else {
@@ -34,6 +33,19 @@ app.get("/api", (req, res) => {
     }
 }).listen(8080);
 
-app.post("/updateCart",(req,res)=>{
-    res.end("updated")
-})
+app.get("/api/updateCart",(req,res)=>{
+    const usersList = JSON.parse(fs.readFileSync("src/app/Constants/users.txt").toString());
+    const userData = JSON.parse(req.query.userData);
+    for (let user in usersList) {
+        if (usersList[user].username === userData.username) {
+            console.log(user[user]);
+            usersList[user].orderDetails.cartData = userData.orderDetails.cartData;
+            return fs.writeFile("src/app/Constants/users.txt", JSON.stringify(usersList), err => {
+                if (err) {
+                    return res.end(JSON.stringify({ data: "An error has occured. Please try again!" }));
+                }
+                return res.end(JSON.stringify({ data: "Success"}));
+            });
+        }
+    }
+});

@@ -16,24 +16,42 @@ export class CartDataComponent implements OnInit {
   constructor(
     private routeCommunication : RouterCommunicationService,
     private http: HttpServiceService
-  ) { }
+  ) { 
+    
+  }
 
   ngOnInit() {
     this.routeCommunication.getRoutesData().subscribe(userData =>{
       this.userDataToSend = userData;
     });
-    console.log(this.userDataToSend)
-    this.routeCommunication.viewCartData().subscribe(cartData =>{
-      for (let item in cartData) {
-        books.forEach(book => {
-          if (book.id === item) {
-            const bookToPush = book;
-            bookToPush.Qty = cartData[item];
-            this.userDataToSend["orderDetails"].cartData.push(bookToPush);
-          }
-        })
-      }
-    });
+    if (this.userDataToSend === []) {
+      this.http.doRequest(
+        "GET","",{}
+      )
+      .then(result =>{
+        let r = JSON.parse(result);
+        if (r !== false) {
+          this.routeCommunication.setRoutesData(r);
+          this.routeCommunication.updateCart(r,"");
+        } else {
+          console.log("dasdas")
+        }
+      });
+    } else {
+      this.routeCommunication.viewCartData().subscribe(cartData =>{
+        for (let item in cartData) {
+          console.log(cartData)
+          books.forEach(book => {
+            if (book.id === item) {
+              const bookToPush = book;
+              bookToPush.Qty = cartData[item];
+              if (this.userDataToSend["orderDetails"].cartData.indexOf(bookToPush) === -1) this.userDataToSend["orderDetails"].cartData.push(bookToPush);
+            }
+          });
+        }
+        console.log(this.userDataToSend)
+      });
+    }
   }
 
   ObjectKeys(item:any) {
@@ -41,10 +59,9 @@ export class CartDataComponent implements OnInit {
   }
   
   updateCartBackEnd() {
-    console.log(this.userDataToSend)
     this.http.doRequest(
-      "POST","http://localhost:8080/updateCart",{
-        "userData" : this.userDataToSend,
+      "GET","updateCart",{
+        "userData" : JSON.stringify(this.userDataToSend),
       }
     )
     .then(result =>{
