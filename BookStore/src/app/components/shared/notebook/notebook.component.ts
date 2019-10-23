@@ -54,13 +54,16 @@ export class NotebookComponent implements OnInit {
 
     // console.log(this.notebook);
     this.productService.updateNotebook(this.notebook)
-      .subscribe(
-        data => {
+      .subscribe({
+        next: data => {
           alert('Succesfully Added notebook' );
         },
-        error => {
+        error: error => {
           alert('failed while adding notebook');
+        },
+        complete: () => {
+          console.log('Am terminat!');
         }
-      );
+      });
   }
 }
