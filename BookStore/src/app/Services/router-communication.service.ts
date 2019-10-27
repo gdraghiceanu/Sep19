@@ -17,6 +17,7 @@ export class RouterCommunicationService {
   private cartDataBehaviorSubject: BehaviorSubject<Object> = new BehaviorSubject({});
 
   private _cartDataDummy = {};
+
   constructor
     (
       private http: HttpService
@@ -34,18 +35,18 @@ export class RouterCommunicationService {
     this.userDataBehaviorSubject.next(data);
   }
 
-  getItemsCollection() : any {
+  getItemsCollection(): any {
     return this.itemsCollection$;
   }
 
-  setItemsColection(data : Object) {
-    console.log("DATA",data)
+  setItemsColection(data: Object) {
+    console.log("DATA", data)
     this.itemsCollesctionBehaviorSubject.next(data);
   }
 
-  updateCart(qty:number, itemId:string) {
+  updateCart(qty: number, itemId: string) {
     if (this._cartDataDummy[itemId]) {
-        this._cartDataDummy[itemId] = this._cartDataDummy[itemId] + qty;
+      this._cartDataDummy[itemId] = this._cartDataDummy[itemId] + qty;
       this.cartDataBehaviorSubject.next(this._cartDataDummy);
     } else if (qty === 1) {
       this._cartDataDummy[itemId] = 1;
@@ -55,7 +56,7 @@ export class RouterCommunicationService {
     }
   }
 
-  viewCartData() : any {
+  viewCartData(): any {
     return this.cartData$;
   }
 }

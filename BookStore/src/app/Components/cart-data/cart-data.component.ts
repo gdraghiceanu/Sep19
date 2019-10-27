@@ -10,7 +10,7 @@ import { HttpService } from 'src/app/Services/http.service';
 export class CartDataComponent implements OnInit {
 
   private userDataToSend = {};
-
+  private itemsCollection = [];
   constructor(
     private routeCommunication: RouterCommunicationService,
     private http: HttpService
@@ -19,9 +19,18 @@ export class CartDataComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.routeCommunication.getRoutesData().subscribe(userData => {
+    this.routeCommunication.viewCartData().subscribe(userData => {
       this.userDataToSend = userData;
     });
+    this.routeCommunication.getItemsCollection().subscribe(itemsCollection =>{
+      this.itemsCollection = itemsCollection;
+    })
+    console.log(this.userDataToSend);
+    console.log(this.itemsCollection);
+
+    for (let collectionType in this.itemsCollection) {
+      
+    }
     if (this.userDataToSend === []) {
       // this.http.dsoRequest(
       //   "GET","",{}
