@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "angularcourse-257209",
+  "private_key_id": "8852a5fc69e90a4ece9a94c73122fc546f4c3d00",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCd7Xvv2nWuZkRI\n5QLBjbF8KJpXeq0Q/rWonlRGqrFCvZWnXNIz+Ezm/kcjnGV5D96onDQIJ1goRU67\nAVjHOiiDnM7SeC+1m+ZGxZyN+5eO2Ke7dwSxtChLp949ZECDfgtABUJo/Up1ublV\nBjogTU/rxmX7gImeS9M7iq5BJXerCMmi/KWWSt9tg6b1RCCn1Cb3K9OCcNf03xIu\nNKOPsL8gmGO3u4BsGvf9dyUdpfvbVXguH+rB3gOzGss/AFJuT5NbMd2f+o4aZDV1\nNTS38ihTjelxsQWFbBa++twf6iJ7cgt6BhIxNMfcERTGL2Bstgotrk+KwWQ5qNTH\nOZhowOG9AgMBAAECggEABKP8kxL2h8oiAglWsCTPfRA9XsowSTJO2LZUUCJGZKlo\n+xq/Y38NlXEN2pZHJgxJFOfIIKA1VzOYKWcT+oCzPZDPRAB7mGjNFrHKVKK6tJwZ\nq6jG5sjeMUDsxx2JxsNepcIxzh95P2XWdBDjhtz2tv0ktIP1p0Tfn12HGst0zX4A\nC7TEZjG9FS4U8ptl0+hHGwGFQt+Bh0V8LQB+bNq97b9mZg+z7M1elotC38skfcVH\ndICuiHBFAoD4+bHm0TiQMkGPICm7MjPZwjKKo3Rfj1LqdV1a06PXaGC1YG+5dJ42\nj8Bt1gn8wv6pvt8iQyx14NOzc0qib4Z3vzh0BnD0iQKBgQDJVKawOCe+yWclV47i\nQCp2NZK7Dw9Yq5RAe0qEVbRo3Go5mPEF1WIidUhTSaeRswVlEdFggkdORu9LeUJY\nIc4jvZBPRG4lbKmTx4Qr3Qojz/E64s0r49cPNj/jFSh4XTGoJJkcvY0DVoFUvqZ/\n14ebKNVHnNZ2ntg/v0ZsulTHeQKBgQDIz7TkuQNrOoF0IZmrGvp66bpLNn6F/vJK\nkmws8GJCuerQOlyLEnIPiVU3LxXfhIAqzVM4pLZSJmodR0VFW5OPNj1wN9/YL9VK\nTOh1CBpMZ+X1RpCbc5Bv02ysYraDJ+Zu+F9JvKkGGCp0avx62K7PF8fP7nAqXj4N\nJW9VK9DnZQKBgQCGJt7PKwvox+Dv8/Dkd2cTz0zPUhCiv+mQMdcMaONGwCAT8wIf\nJfk3BrlDrh93KTeeCgpe6VBEK2YF/22ithvamtSOzQUr8MTqEJbUd3vrMwMFftzB\nsxa5LyfQ02ddFJQi+wf/K5rLr5eL9WGSa/YTAFllV29cKSnlCDoP9vTI2QKBgBd+\nDSiQ6HB7+LcQUzzsPA9zFoNEDcs5RzkoJhWfza8GtwzDNx5h+wwMQfbhwEpU4vWe\n7bR7uISlz9Y7B0SU8Q9ZBhkBwGM3PVmi47MFTqZPpVxrc/FrtKMQde844Sc43MFw\ntx0WQCPhYd4awgzRGqpJmuuddmvOeK3rCjpJlPftAoGBAKxgvlGVNmzr0Yf7nAjY\n2cVNVIVm9qcVfT1TFfxOBKrLeL/xRxkvsYlqMY/FmORwxfr5epTgLGfmBeye8jfN\nX5LBv25tKpBut7rypaYLrhJo4ghLRZIjv6xxxDjB1qdUGGI+W8oRIO6R2Cl4o80a\npE0iUTvjim/9rXMOjENwY6Or\n-----END PRIVATE KEY-----\n",
+  "client_email": "angular-db@angularcourse-257209.iam.gserviceaccount.com",
+  "client_id": "104046202653480755310",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/angular-db%40angularcourse-257209.iam.gserviceaccount.com"
+}

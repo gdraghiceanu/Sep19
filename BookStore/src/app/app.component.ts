@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServiceService } from 'src/app/Services/http-service.service';
-import { Router, NavigationStart } from '@angular/router';
+import { HttpService } from 'src/app/Services/http.service';
+import { Router } from '@angular/router';
 import { RouterCommunicationService } from 'src/app/Services/router-communication.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -14,35 +13,43 @@ import { Subscription } from 'rxjs';
 
 export class AppComponent implements OnInit {
   title = 'BookStore';
-  subscription: Subscription;
 
   constructor(
-    private http: HttpServiceService,
+    private http: HttpService,
     private route: Router,
     private routeCommunication: RouterCommunicationService
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
-    this.http.doRequest(
-      "GET", "", {}
-    )
-      .then(result => {
-        let r = JSON.parse(result);
-        if (r !== false) {
-          this.routeCommunication.setRoutesData(r);
-          this.routeCommunication.updateCart(r, "");
-          this.route.events.subscribe(event => {
-            if (event instanceof NavigationStart) {
-              console.log(event)
-              if (event.url === "/login") {
-                this.route.navigate(["/loggedin", "profile"]);
-              }
+    Promise.all([
+      new Promise(res => {
+        this.http.serverGetRequest("", {})
+          .then(r => {
+            if (r !== null) {
+              res(r);
+              // this.routeCommunication.updateCart(r, "");
+            } else {
+              res("Incorrect passssss")
             }
-          }).unsubscribe();
-        } else {
-          console.log("dasdas")
-        }
-      });
+          });
+      }),
+      new Promise(res => {
+        this.http.serverGetRequest("get-items-collection", {})
+          .then(result => {
+            res(result);
+          });
+      })
+    ])
+    .then((result) => {
+      console.log(result)
+      this.routeCommunication.setUserData(result[0]);
+      this.routeCommunication.setItemsColection(result[1]);
+      if (this.route.url === "/login") {
+        this.route.navigate(["/loggedin", "profile"]);
+      } else {
+        console.log("dasdas")
+      }
+    });
   }
+  
 }

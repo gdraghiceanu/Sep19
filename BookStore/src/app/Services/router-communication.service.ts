@@ -1,40 +1,61 @@
 import { Injectable } from '@angular/core';
-import {  BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { HttpService } from 'src/app/Services/http.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouterCommunicationService {
-  private data = new BehaviorSubject([]);
-  private _cartDataDummy = {};
-  private cartData = new BehaviorSubject({});
-  constructor(
-  ) { }
 
-  getRoutesData() : any {
-    if (this.data.value === []) {
-      
-    }
-    return this.data;
+  private userDataValue$: Observable<Object>;
+  private userDataBehaviorSubject: BehaviorSubject<Object> = new BehaviorSubject({});
+
+  private itemsCollection$: Observable<Object>;
+  private itemsCollesctionBehaviorSubject: BehaviorSubject<Object> = new BehaviorSubject({});
+
+  private cartData$: Observable<Object>;
+  private cartDataBehaviorSubject: BehaviorSubject<Object> = new BehaviorSubject({});
+
+  private _cartDataDummy = {};
+  constructor
+    (
+      private http: HttpService
+    ) {
+    this.userDataValue$ = this.userDataBehaviorSubject.asObservable();
+    this.itemsCollection$ = this.itemsCollesctionBehaviorSubject.asObservable();
+    this.cartData$ = this.cartDataBehaviorSubject.asObservable();
   }
 
-  setRoutesData(data:any) {
-    this.data.next(data);
+  getUserData(): any {
+    return this.userDataValue$;
+  }
+
+  setUserData(data: Object) {
+    this.userDataBehaviorSubject.next(data);
+  }
+
+  getItemsCollection() : any {
+    return this.itemsCollection$;
+  }
+
+  setItemsColection(data : Object) {
+    console.log("DATA",data)
+    this.itemsCollesctionBehaviorSubject.next(data);
   }
 
   updateCart(qty:number, itemId:string) {
     if (this._cartDataDummy[itemId]) {
         this._cartDataDummy[itemId] = this._cartDataDummy[itemId] + qty;
-      this.cartData.next(this._cartDataDummy);
+      this.cartDataBehaviorSubject.next(this._cartDataDummy);
     } else if (qty === 1) {
       this._cartDataDummy[itemId] = 1;
-      this.cartData.next(this._cartDataDummy);
+      this.cartDataBehaviorSubject.next(this._cartDataDummy);
     } else {
       console.log("cannot do dis")
     }
   }
 
   viewCartData() : any {
-    return this.cartData;
+    return this.cartData$;
   }
 }

@@ -1,17 +1,17 @@
 <div id="itemContainer" class="componentRoot">
     <ul>
         <li *ngFor="let category of displayItems">
-            <div *ngIf="userData.preferences[category.type]">
+            <div *ngIf="category.shouldDisplay">
                 <h1 class="categoryTitle">
                     {{category.type}}
                     <input type="text" (keyup)="filterProducts($event.target.value.toLocaleLowerCase(),category.type)"
                         class="filterBox" placeholder="Filter {{category.type}}" />
                 </h1>
-                <div *ngFor="let item of category.data" class="itemContainer">
-                    <div class="isLoading" (isHidden)="false">
+                <div *ngFor="let item of category[category.type]" class="itemContainer">
+                    <div class="" >
                         <div *ngFor="let detail of ObjectKeys(item)">
-                            <img *ngIf="detail === 'coverUrl'" [src]="item.coverUrl" (load)="onImageLoad($event)" class="hidden"/>
-                            <div *ngIf="detail !== 'coverUrl' && detail !== 'id'" class="details">
+                            <img *ngIf="detail === 'coverurl'" [src]="item.coverurl" (load)="onImageLoad($event)" class="hidden"/>
+                            <div *ngIf="detail !== 'coverurl' && detail !== 'id' && detail !=='_links' && detail !=='_xml' && detail !=='app:edited' && detail !=='type'" class="details">
                                 {{detail.substring(0,1).toUpperCase() + detail.substring(1,detail.length)}} :
                                 {{item[detail]}}
                             </div>

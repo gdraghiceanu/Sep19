@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterCommunicationService } from 'src/app/Services/router-communication.service';
 import { Router,ActivatedRoute } from '@angular/router';
-import { HttpServiceService } from 'src/app/Services/http-service.service';
+import { HttpService } from 'src/app/Services/http.service';
 
 @Component({
   selector: 'app-user-logged-in',
@@ -25,11 +25,11 @@ export class UserLoggedInComponent implements OnInit {
     private routeCommunication: RouterCommunicationService,
     private route: Router,
     private activatedRoute : ActivatedRoute,
-    private http: HttpServiceService
+    private http: HttpService
   ) {   }
 
   ngOnInit() {
-    this.routeCommunication.getRoutesData().subscribe(data => {
+    this.routeCommunication.getUserData().subscribe(data => {
       this.userData.data = data;
     });
     this.routeCommunication.viewCartData().subscribe(cartData =>{
@@ -37,17 +37,11 @@ export class UserLoggedInComponent implements OnInit {
       this.cartData.itemsNo = (()=>{
         let localQty = 0;
         for (let item in cartData) {
-          console.log(cartData[item])
           localQty = localQty + cartData[item];
         }
         return localQty;
       })();
     });
-  }
-
-  filterProducts(showPreference,show): void {
-    this.userData.data.preferences[showPreference] = show;
-    this.routeCommunication.setRoutesData(this.userData.data)
   }
 
   triggerMenuEvent(menuAction) {

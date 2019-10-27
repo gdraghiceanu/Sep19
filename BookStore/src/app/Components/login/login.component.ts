@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpServiceService } from 'src/app/Services/http-service.service';
+import { HttpService } from 'src/app/Services/http.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   loggedInUser: any;
 
   constructor(
-    private http: HttpServiceService,
+    private http: HttpService,
     private route: Router,
     private activeRoute : ActivatedRoute
     ) { }
@@ -23,12 +23,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   getUser() {
-    this.http.doRequest(
-      "GET","login",{
-        "username" : this.username,
-        "password" : this.password
-      }
-    )
+    this.http.serverGetRequest("login",{"username" : this.username,"password" : this.password})
     .then(result =>{
       this.loggedInUser = JSON.parse(result);
       if (this.loggedInUser !== false) {

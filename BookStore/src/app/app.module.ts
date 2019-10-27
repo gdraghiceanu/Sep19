@@ -10,8 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { UserLoggedInComponent } from './Components/user-logged-in/user-logged-in.component';
 import { ItemsContainerComponent } from './Components/items-container/items-container.component';
 import { CartDataComponent } from './Components/cart-data/cart-data.component';
-import { ProfileComponent } from './Components/profile/profile.component';
-
+import { ProfileComponent } from './Components/profile/profile.component'
 @NgModule({
   declarations: [
     AppComponent,
