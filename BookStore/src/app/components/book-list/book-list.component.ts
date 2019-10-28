@@ -33,7 +33,8 @@ export class BookListComponent implements OnInit {
   }
 
   addBookToCart(book: Book): void {
-    this.shoppingCartService.addProduct(book);
+    // this.shoppingCartService.addProduct(book);
+    this.shoppingCartService.sendProductToCart(book);
   }
 
   private produceFilterList(filterValue: string): void {

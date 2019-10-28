@@ -10,15 +10,12 @@ export class ShoppingCartService {
     private productSubject: BehaviorSubject<string>;
     productObs$: Observable<any>;
 
-    totalPrice: number = 0;
-    totalQuantity: number = 0;
-
     constructor() {
       this.productSubject = new BehaviorSubject<string>('');
       this.productObs$ = this.productSubject.asObservable();
     }
 
-    addProduct(product: Product): void {
+    private addProduct(product: Product): void {
         const existingProduct = this.products.find(element => element.title === product.title);
 
         if (!existingProduct) {
@@ -37,15 +34,20 @@ export class ShoppingCartService {
     sendProductToCart(prod: Product) {
       this.addProduct(prod);
 
-      this.totalQuantity = 0;
-      this.totalPrice = 0;
+      let totalQuantity = 0;
+      let totalPrice = 0;
 
-      for (const item of this.products) {
-        this.totalPrice += item.price * item.quantity;
-        this.totalQuantity += item.quantity;
-      }
+      // for (const item of this.products) {
+      //   totalPrice += item.price * item.quantity;
+      //   totalQuantity += item.quantity;
+      // }
 
-      const response = this.totalPrice == 0 ?'' : `All price: ${this.totalPrice}, Nb of items: ${this.totalQuantity}`;
+      this.products.forEach(function(item){
+        totalPrice += item.price * item.quantity;
+        totalQuantity += item.quantity;
+      });
+
+      const response = totalPrice === 0 ? '' : `All price: ${totalPrice}, Nb of items: ${totalQuantity}`;
 
       this.productSubject.next(response);
     }

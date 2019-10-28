@@ -26,14 +26,13 @@ export class BookComponent implements OnInit {
   showEdit = false;
   starMessage: string;
 
-  constructor(private productService: ProductsService, private shoppingCartservice: ShoppingCartService) { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit() {
   }
 
   addToCart() {
-    //this.addBookToCart.emit(this.book);
-    this.shoppingCartservice.sendProductToCart(this.book);
+    this.addBookToCart.emit(this.book);
   }
 
   onStarEvent(val: string) {
