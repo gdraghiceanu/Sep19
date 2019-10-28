@@ -1,11 +1,11 @@
 <div id="cartContainer"  class="componentRoot">
     <button type="button" class="btn btn-primary" (click)="updateCartBackEnd()">Update Cart</button>
     <ul class="list-group">
-        <li *ngFor="let item of userDataToSend.orderDetails.cartData" class="list-group-item">
-            <div *ngFor="let detail of ObjectKeys(item)" class="itemContainer">
-                <div class="detailsContainer" (isHidden)="false" [ngClass]="{'imgContainer' : detail === 'coverUrl'}">
-                        <img *ngIf="detail === 'coverUrl'" [src]="item.coverUrl" />
-                        <div *ngIf="detail !== 'coverUrl' && detail !== 'id'" class="details">
+        <li *ngFor="let item of cartData" class="list-group-item itemContainer">
+            <div *ngFor="let detail of ObjectKeys(item)">
+                <div class="detailsContainer" (isHidden)="false" [ngClass]="{'imgContainer' : detail === 'coverurl'}">
+                        <img *ngIf="detail === 'coverurl'" [src]="item.coverurl" />
+                        <div *ngIf="detail !== 'coverurl' && detail !== 'id'" class="details">
                             {{detail.substring(0,1).toUpperCase() + detail.substring(1,detail.length)}} :
                             {{item[detail]}}
                         </div>

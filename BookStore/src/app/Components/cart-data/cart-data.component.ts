@@ -11,6 +11,7 @@ export class CartDataComponent implements OnInit {
 
   private userDataToSend = {};
   private itemsCollection = [];
+  private cartData = [];
   constructor(
     private routeCommunication: RouterCommunicationService,
     private http: HttpService
@@ -24,12 +25,24 @@ export class CartDataComponent implements OnInit {
     });
     this.routeCommunication.getItemsCollection().subscribe(itemsCollection =>{
       this.itemsCollection = itemsCollection;
-    })
-    console.log(this.userDataToSend);
-    console.log(this.itemsCollection);
+    });
 
     for (let collectionType in this.itemsCollection) {
-      
+      console.log(this.itemsCollection[collectionType])
+      for (let item of this.itemsCollection[collectionType]) {
+        for (let product in this.userDataToSend) {
+          if (item.id === product) {
+            console.log(this.userDataToSend[product])
+            item.qty = this.userDataToSend[product];
+            delete item._xml;
+            delete item["app:edited"];
+            delete item.type;
+            delete item._links;
+            this.cartData.push(item)
+          }
+        }
+      }
+      console.log(this.cartData)
     }
     if (this.userDataToSend === []) {
       // this.http.dsoRequest(
