@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { ProductsService } from 'src/app/services/products.service';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-book',
@@ -25,13 +26,14 @@ export class BookComponent implements OnInit {
   showEdit = false;
   starMessage: string;
 
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService, private shoppingCartservice: ShoppingCartService) { }
 
   ngOnInit() {
   }
 
   addToCart() {
-    this.addBookToCart.emit(this.book);
+    //this.addBookToCart.emit(this.book);
+    this.shoppingCartservice.sendProductToCart(this.book);
   }
 
   onStarEvent(val: string) {

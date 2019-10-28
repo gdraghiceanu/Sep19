@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
+import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,10 +11,14 @@ import { filter } from 'rxjs/operators';
 })
 export class NavbarComponent implements OnInit {
 
+  label: string;
+
+
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
-    private router: Router
+    private router: Router,
+    private shoppingCartService: ShoppingCartService
   ) {
 
     this.router.events
@@ -38,5 +43,9 @@ export class NavbarComponent implements OnInit {
     // console.log("Snapshot" , this.route.snapshot.data);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.shoppingCartService.productObs$.subscribe(value => {
+      this.label = value;
+    });
+  }
 }
