@@ -45,7 +45,7 @@ export class ShoppingCartService {
         this.totalQuantity += item.quantity;
       }
 
-      const response = `All price: ${this.totalPrice}, Nb of items: ${this.totalQuantity}`;
+      const response = this.totalPrice == 0 ?'' : `All price: ${this.totalPrice}, Nb of items: ${this.totalQuantity}`;
 
       this.productSubject.next(response);
     }
