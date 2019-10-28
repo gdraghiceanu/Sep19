@@ -1,10 +1,9 @@
 <div class="books-container">
   <h2 class="bg-info text-white p-3">Books</h2>
-  <app-product-filter (filterUpdate)='onChangeFilter($event)'></app-product-filter>
-
+  
   <div class="books">
     <div *ngFor="let book of filteredBooks ; let i = index">
-      <app-book [book]="book" (addBookToCart)="addBookToCart($event)"></app-book>
+      <app-book [book]="book" (addBookToCart)="addBookToCart($event)" (bookUpdated)="getBooks()"></app-book>
     </div>
   </div>
 </div>
