@@ -11,6 +11,8 @@ import { UserLoggedInComponent } from './Components/user-logged-in/user-logged-i
 import { ItemsContainerComponent } from './Components/items-container/items-container.component';
 import { CartDataComponent } from './Components/cart-data/cart-data.component';
 import { ProfileComponent } from './Components/profile/profile.component'
+import { PreFetchService } from "src/app/Services/pre-fetch-service";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { ProfileComponent } from './Components/profile/profile.component'
       },
       {
         path : "login",
-        component : LoginComponent
+        component : LoginComponent,
+        resolve : PreFetchService
       },
       {
         path: "forgot-pass",
@@ -43,6 +46,7 @@ import { ProfileComponent } from './Components/profile/profile.component'
       {
         path: "loggedin",
         component: UserLoggedInComponent,
+        resolve : PreFetchService,
         children : [
           {
             path : "profile",

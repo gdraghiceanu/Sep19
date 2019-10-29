@@ -20,20 +20,23 @@ export class ItemsContainerComponent implements OnInit {
   isHidden = false;
   ngOnInit() {
       this.routeCommunication.getUserData().subscribe(data => {
-        this.routeCommunication.getItemsCollection().subscribe(itemsCollection => {
-          this.itemsCollection = itemsCollection;
-          this.userData = data;
-          for (let preference in JSON.parse(data.preferences)) {
-            this.displayItems.push({
-              type: preference,
-              shouldDisplay: JSON.parse(data.preferences)[preference]
-            });
-          }
-          this.displayItems[0]["BOOKS"] = this.itemsCollection["Books"];
-          console.log(this.displayItems)
-          this.displayItems[1]["NOTEBOOKS"] = this.itemsCollection["Notebooks"];
-        });
+        this.userData = data;
       });
+      this.routeCommunication.getItemsCollection().subscribe(itemsCollection => {
+        this.itemsCollection = itemsCollection;
+        updateData();
+      });
+      function updateData() {
+        for (let preference in JSON.parse( this.userData.preferences)) {
+          this.displayItems.push({
+            type: preference,
+            shouldDisplay: JSON.parse( this.userData.preferences)[preference]
+          });
+        }
+        this.displayItems[0]["BOOKS"] = this.itemsCollection["Books"];
+        console.log(this.displayItems)
+        this.displayItems[1]["NOTEBOOKS"] = this.itemsCollection["Notebooks"];
+      }
   }
 
   ObjectKeys(item: any) {
