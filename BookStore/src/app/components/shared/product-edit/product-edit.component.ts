@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, Input, Output } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { Product } from 'src/app/interfaces/product';
+import { ProductTypeEnum } from 'src/app/constants/product-type.enum';
 
 @Component({
   selector: 'app-product-edit',
@@ -7,24 +8,30 @@ import { Product } from 'src/app/interfaces/product';
   styleUrls: ['./product-edit.component.scss']
 })
 export class ProductEditComponent implements OnInit {
-  @Input() modifyProduct: Product;
-  @Input() showEdit: boolean;
-
-  @Output()newPriceInput: number;
-  @Output()newRatingInput: number;
+  @Input() product: Product;
+  @Input() type: ProductTypeEnum;
 
   @ViewChild('rating', { static: false }) ratingInput: ElementRef<HTMLInputElement>;
   @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
 
-  constructor() {}
+  @Output() productSave: EventEmitter<Product> = new EventEmitter();
 
-  ngOnInit() {}
+  updatedProduct: Product;
 
-  setNewInput() {
-    // lert(this.newPriceInput);
-    this.newPriceInput = +this.priceInput.nativeElement.value;
-    this.newRatingInput = +this.ratingInput.nativeElement.value;
+  constructor() { }
+
+  ngOnInit() {
+    this.updatedProduct = { ...this.product };
+    alert(222);
+  }
+  ngAfterOnInit() {
+    alert(333);
   }
 
-
+  saveProduct() {
+    this.updatedProduct.price = +this.priceInput.nativeElement.value;
+    this.updatedProduct.review = +this.ratingInput.nativeElement.value;
+    
+    this.productSave.emit(this.updatedProduct);
+  }
 }

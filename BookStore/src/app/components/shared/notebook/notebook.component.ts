@@ -47,10 +47,7 @@ export class NotebookComponent implements OnInit {
 
     this.showEdit = false;
 
-    this.productEdit.setNewInput();
-
-    this.notebook.price = this.productEdit.newPriceInput;
-    this.notebook.review = this.productEdit.newRatingInput;
+    
 
     // console.log(this.notebook);
     this.productService.updateNotebook(this.notebook)

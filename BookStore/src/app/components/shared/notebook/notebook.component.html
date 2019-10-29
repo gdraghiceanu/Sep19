@@ -9,13 +9,7 @@
     <div class="product-details">
       <div class="product-author">Size: {{ notebook.size }}</div>
       <div class="product-language">Pages: {{ notebook.pages }}</div>
-      <div class="product-buy">
-        <button class="btn btn-info" (click)="addToCart()">Add to cart</button>
-        <button class="btn btn-danger float-right" *ngIf="!showEdit" (click)="showEdit = true">Edit</button>
-        <button class="btn btn-success float-right" *ngIf="showEdit" (click)="updateNotebook()">Save</button>
-      </div>
       
-      <app-product-edit [modifyProduct] ='notebook' [showEdit]='showEdit' #productEdit></app-product-edit>
     </div>
   </div>
 </div>
