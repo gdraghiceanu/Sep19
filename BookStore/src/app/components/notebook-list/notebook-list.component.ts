@@ -2,28 +2,30 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Component, OnInit } from '@angular/core';
 import { NoteBook } from 'src/app/interfaces/notebook';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { FilterService } from 'src/app/services/filter.service';
 @Component({
   selector: 'app-notebook-list',
   templateUrl: './notebook-list.component.html',
   styleUrls: ['./notebook-list.component.scss']
 })
 export class NotebookListComponent implements OnInit {
-  // metoda 1 nerecomandata
-  // public noteBooks: NoteBook[];
-  // productService = new ProductsService();
-  // constructor() {
-  //   this.noteBooks = this.productService.getNotebooks();
-  // }
+  filteredNoteBook: NoteBook[];
 
-  public noteBooks: NoteBook[];
+
+  public noteBooks: NoteBook[] = [];
   constructor(
     private productService: ProductsService,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private filterService: FilterService
   ) {
-    // this.noteBooks = this.productService.getNotebooks();
-    this.productService.getNotebooks().subscribe(notebooks => {
-      this.noteBooks = notebooks;
-    });
+    this.getNotebooks();
+    this.filterService.filterValue$.subscribe (
+      value => {
+        console.log('notebook filter change', value);
+
+        this.produceFilterList(value);
+      });
+
   }
 
 
@@ -32,5 +34,18 @@ export class NotebookListComponent implements OnInit {
   addNotebookToCart(notebook: NoteBook) {
     this.shoppingCartService.addProduct(notebook);
   }
+  private produceFilterList(filterValue: string): void {
+    filterValue = filterValue.toLocaleLowerCase();
+    this.filteredNoteBook = this.noteBooks.filter(
+      filteredNoteBook => filteredNoteBook.title.toLocaleLowerCase().indexOf(filterValue) !== -1
+    );
+  }
+  getNotebooks() {
+    this.productService.getNotebooks().subscribe(notebooks => {
+      this.noteBooks = notebooks;
+      this.filteredNoteBook = this.noteBooks;
+    });
+  }
+
 
 }

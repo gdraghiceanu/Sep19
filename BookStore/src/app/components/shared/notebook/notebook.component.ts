@@ -1,14 +1,6 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  Output,
-  EventEmitter,
-  ViewChild } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild, ElementRef } from '@angular/core';
 import { NoteBook } from 'src/app/interfaces/notebook';
-import { ProductEditComponent } from './../product-edit/product-edit.component';
 import { ProductsService } from 'src/app/services/products.service';
-
 
 @Component({
   selector: 'app-notebook',
@@ -16,51 +8,36 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./notebook.component.scss']
 })
 export class NotebookComponent implements OnInit {
-
   @Input() notebook: NoteBook;
   @Input() index: number;
-  @ViewChild('productEdit', { static: false }) productEdit: ProductEditComponent;
+
+  @ViewChild('rating', { static: false }) ratingInput: ElementRef<HTMLInputElement>;
+  @ViewChild('price', { static: false }) priceInput: ElementRef<HTMLInputElement>;
 
   @Output() addNotebookToCart: EventEmitter<NoteBook> = new EventEmitter();
-  public noteBooks: NoteBook[];
+  @Output() notebookUpdated: EventEmitter<void> = new EventEmitter();
+
   starMessage: string;
-  showEdit: boolean;
+  showEdit = false;
 
-  constructor(
-    private productService: ProductsService
-    ) {
+  constructor(private productService: ProductsService) { }
 
-    }
-
-  ngOnInit() {}
-
+  ngOnInit() { }
 
   addToCart() {
     this.addNotebookToCart.emit(this.notebook);
   }
+
   onStarEvent(val: string) {
     this.starMessage = val;
   }
-  updateNotebook() {
-    // this.notebook.price = +this.priceInput.nativeElement.value;  // cast la int
-    // this.notebook.review = +this.ratingInput.nativeElement.value;
 
-    this.showEdit = false;
-
-    
-
-    // console.log(this.notebook);
-    this.productService.updateNotebook(this.notebook)
-      .subscribe({
-        next: data => {
-          alert('Succesfully Added notebook' );
-        },
-        error: error => {
-          alert('failed while adding notebook');
-        },
-        complete: () => {
-          console.log('Am terminat!');
-        }
-      });
+  saveNotebook(notebook: NoteBook) {
+    this.productService.updateNotebook(notebook).subscribe(
+      () => {
+        this.showEdit = false;
+        this.notebookUpdated.emit();
+      }
+    );
   }
 }

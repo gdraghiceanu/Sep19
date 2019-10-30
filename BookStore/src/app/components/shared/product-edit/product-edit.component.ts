@@ -22,16 +22,14 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit() {
     this.updatedProduct = { ...this.product };
-    alert(222);
+
   }
-  ngAfterOnInit() {
-    alert(333);
-  }
+
 
   saveProduct() {
     this.updatedProduct.price = +this.priceInput.nativeElement.value;
     this.updatedProduct.review = +this.ratingInput.nativeElement.value;
-    
+
     this.productSave.emit(this.updatedProduct);
   }
 }

@@ -9,6 +9,26 @@
     <div class="product-details">
       <div class="product-author">Size: {{ notebook.size }}</div>
       <div class="product-language">Pages: {{ notebook.pages }}</div>
+
+
+
+      <div class="product-rating-price-buttons" *ngIf="!showEdit">
+        <div class="product-buttons">
+          <button class="btn btn-info" (click)="addToCart()">Add to cart</button>
+          <button class="btn btn-danger float-right" *ngIf="!showEdit" (click)="showEdit = true">Edit</button>
+        </div>
+        <div class="product-rating-price">
+          <div class="rating">
+            <app-star [rating]='notebook.review' (ratingOut)="onStarEvent($event)" #childStar></app-star>
+            <div *ngIf="starMessage">{{starMessage}}</div>
+          </div>
+          <div class="price">
+            {{ notebook.price}} {{ notebook.currency}}
+          </div>
+        </div>
+      </div>
+
+      <app-product-edit *ngIf="showEdit" [product]="notebook" (productSave)="saveNotebook($event)"></app-product-edit>
       
     </div>
   </div>

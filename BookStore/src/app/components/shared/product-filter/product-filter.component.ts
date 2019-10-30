@@ -1,13 +1,14 @@
 import {
   Component,
   OnInit,
-  Output,
-  EventEmitter,
   ViewChild,
   ElementRef,
   AfterViewInit,
   OnDestroy
 } from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
+import { FilterService } from 'src/app/services/filter.service';
 
 @Component({
   selector: 'app-product-filter',
@@ -16,27 +17,29 @@ import {
 })
 export class ProductFilterComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  @Output() filterUpdate = new EventEmitter<string>();
   @ViewChild('x', { static: false }) inputFilter: ElementRef<HTMLInputElement>;
 
   filter: string;
 
-  constructor() {}
+  private filterChangeSubscription: Subscription;
 
-  ngOnInit() {}
+  constructor(private filterService: FilterService) { }
+
+  ngOnInit() { }
 
   ngAfterViewInit(): void {
-    this.inputFilter.nativeElement.addEventListener('keyup', this.filterChange);
+    this.filterChangeSubscription = fromEvent(this.inputFilter.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(500),
+        map(event => (event.target as HTMLInputElement).value)
+      )
+      .subscribe(filterValue => {
+        console.log('product filter change');
+        this.filterService.changeFilter(filterValue);
+      });
   }
 
   ngOnDestroy(): void {
-    this.inputFilter.nativeElement.removeEventListener(
-      'keyup',
-      this.filterChange
-    );
+    this.filterChangeSubscription.unsubscribe();
   }
-
-  filterChange = () => {
-    this.filterUpdate.emit(this.filter);
-  };
 }

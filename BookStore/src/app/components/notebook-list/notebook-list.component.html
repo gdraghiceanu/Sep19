@@ -2,8 +2,8 @@
   <h2 class="bg-info text-white p-3">Notebooks</h2>
 
   <div class="notebooks">
-    <div *ngFor="let notebook of noteBooks ; let i = index">
-      <app-notebook [notebook]="notebook" [index]='i' (addNotebookToCart)="addNotebookToCart($event)"></app-notebook>
+    <div *ngFor="let notebook of filteredNoteBook ; let i = index">
+      <app-notebook [notebook]="notebook" [index]='i' (addNotebookToCart)="addNotebookToCart($event)" (notebookUpdated)="getNotebooks()"></app-notebook>
     </div>
   </div>
 </div>
