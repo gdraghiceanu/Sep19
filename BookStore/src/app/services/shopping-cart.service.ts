@@ -1,6 +1,7 @@
 import { Product } from './../interfaces/product';
 import { Injectable } from '@angular/core';
 import { CartProduct } from '../interfaces/cart-product';
+import { BehaviorSubject } from 'rxjs/';
 
 
 @Injectable()
@@ -9,8 +10,13 @@ export class ShoppingCartService {
   private emptyCart: CartProduct[] = [];
   public getCartNumber = 0;
   public sumCart = 0;
+  private infoCart = [];
 
-  constructor() { }
+  productsRef = new BehaviorSubject<any>([]);
+
+  constructor() {
+    this.productsRef.next(this.infoCart);
+  }
 
   addProduct(product: Product): void {
     const existingProduct = this.products.find(element => element.title === product.title);
@@ -24,7 +30,9 @@ export class ShoppingCartService {
     }
     this.sumCart = this.sumCart + product.price;
     this.sumCart = Math.round(this.sumCart * 100) / 100;
-
+    this.infoCart['suma'.toString()] = this.sumCart;
+    this.infoCart['nr'.toString()] = this.getCartNumber;
+    this.productsRef.next(this.infoCart);
     console.log(this.products);
   }
 
@@ -44,6 +52,9 @@ export class ShoppingCartService {
     if (index !== -1) {
       this.products.splice(index, 1);
     }
+    this.infoCart['suma'.toString()] = this.sumCart;
+    this.infoCart['nr'.toString()] = this.getCartNumber;
+    this.productsRef.next(this.infoCart);
     // console.log(this.getCartNumber);
   }
 }

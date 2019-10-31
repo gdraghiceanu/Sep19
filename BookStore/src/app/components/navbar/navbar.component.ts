@@ -8,11 +8,16 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 })
 export class NavbarComponent implements OnInit {
   countCart = 0;
+  cartItems: any = 0;
   constructor( private productsCart: ShoppingCartService) {
     this.countCart = productsCart.getCartNumber;
+
    }
 
   ngOnInit() {
+    this.productsCart.productsRef.subscribe((items) => {
+      this.cartItems = items;
+    });
   }
 
 }
