@@ -1,0 +1,1 @@
+<div *ngIf="starMessage">{{starMessage}} ({{book.review | starConvertor}}) </div>

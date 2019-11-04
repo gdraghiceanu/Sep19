@@ -1,0 +1,28 @@
+import { Injectable } from '@angular/core';
+import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { Observable, of } from 'rxjs';
+import { ProductsService } from './products.service';
+import { catchError } from 'rxjs/operators';
+import { Product } from '../interfaces/product';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+export class BookResolverService implements Resolve<Product[]> {
+
+  constructor(private productsService: ProductsService) { }
+
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Product[]> {
+    if (route.routeConfig.path === 'books') {
+      return this.productsService.getBooks()
+      .pipe(
+        catchError(err => of(err))
+      );
+    } else {
+      return this.productsService.getNotebooks();
+    }
+
+  }
+
+}
