@@ -1,7 +1,0 @@
-  <div clas="col-md-7">Sort by:
-    <div class="btn-group btn-group-sm" style="margin-right: 20px;">
-      <button class="btn btn-default" (click)="clickSort('name')">By Name</button>
-      <button class="btn btn-default" (click)="clickSort('rating')">By Rating</button>
-      <button class="btn btn-default" (click)="clickSort('author')">By Author</button>
-    </div>
-  </div>
