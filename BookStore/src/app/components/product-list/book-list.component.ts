@@ -3,6 +3,8 @@ import { Book } from '../../interfaces/book';
 import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { FilterService } from 'src/app/services/filter.service';
+import { combineLatest } from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-list',
@@ -13,20 +15,37 @@ export class BookListComponent implements OnInit {
   filteredBooks: Book[];
 
   private books: Book[] = [];
-
+  private lastFilterValue: string;
   constructor(
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService,
     private filterService: FilterService
   ) {
-    this.getBooks();
-    this.filterService.filterValue$.subscribe(
-      value => {
-        console.log('book filter change', value);
+    // this.getBooks();
+    // this.filterService.filterValue$.subscribe(
+    //   value => {
+    //     console.log('book filter change', value);
+
+    //     this.produceFilterList(value);
+    //   }
+    // );
+
+    // Metoda II
+    combineLatest(
+      this.filterService.filterValue$,
+      this.productService.getBooks()
+      .pipe(tap(books => {
+        this.books = books;
+        this.filteredBooks = this.books;
+      }))
+    )
+    .subscribe(
+      ([value, books]) => {
+        console.log('notebook filter change', value);
+        this.lastFilterValue = value;
 
         this.produceFilterList(value);
-      }
-    );
+      });
   }
 
   ngOnInit() {

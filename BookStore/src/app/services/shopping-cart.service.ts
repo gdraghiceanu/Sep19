@@ -30,7 +30,7 @@ export class ShoppingCartService {
     this.sumCart = this.sumCart + product.price;
     this.sumCart = Math.round(this.sumCart * 100) / 100;
 
-    this.productsRef.next({ nr: this.sumCart, suma: this.sumCart });
+    this.productsRef.next({ nr: this.getCartNumber, suma: this.sumCart });
     console.log(this.products);
   }
 
@@ -51,7 +51,7 @@ export class ShoppingCartService {
       this.products.splice(index, 1);
     }
 
-    this.productsRef.next({ nr: this.sumCart, suma: this.sumCart });
+    this.productsRef.next({ nr: this.getCartNumber, suma: this.sumCart });
     // console.log(this.getCartNumber);
   }
 }
