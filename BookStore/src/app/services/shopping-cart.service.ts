@@ -10,12 +10,11 @@ export class ShoppingCartService {
   private emptyCart: CartProduct[] = [];
   public getCartNumber = 0;
   public sumCart = 0;
-  private infoCart = [];
 
   productsRef = new BehaviorSubject<any>([]);
 
   constructor() {
-    this.productsRef.next(this.infoCart);
+    this.productsRef.next({ nr: this.sumCart, suma: this.sumCart });
   }
 
   addProduct(product: Product): void {
@@ -25,14 +24,13 @@ export class ShoppingCartService {
       this.products.push(newProduct);
       this.getCartNumber++;
     } else {
-        existingProduct.quantity++;
+      existingProduct.quantity++;
 
     }
     this.sumCart = this.sumCart + product.price;
     this.sumCart = Math.round(this.sumCart * 100) / 100;
-    this.infoCart['suma'.toString()] = this.sumCart;
-    this.infoCart['nr'.toString()] = this.getCartNumber;
-    this.productsRef.next(this.infoCart);
+
+    this.productsRef.next({ nr: this.sumCart, suma: this.sumCart });
     console.log(this.products);
   }
 
@@ -52,9 +50,8 @@ export class ShoppingCartService {
     if (index !== -1) {
       this.products.splice(index, 1);
     }
-    this.infoCart['suma'.toString()] = this.sumCart;
-    this.infoCart['nr'.toString()] = this.getCartNumber;
-    this.productsRef.next(this.infoCart);
+
+    this.productsRef.next({ nr: this.sumCart, suma: this.sumCart });
     // console.log(this.getCartNumber);
   }
 }
