@@ -1,0 +1,11 @@
+  getBooks() {
+    // this.productService.getBooks()
+    //   .subscribe(books => {
+    //     this.books = books;
+    //     this.filteredBooks = this.books;
+    //   });
+
+    const dataResolved: Book[] = this.route.snapshot.data.booksResolved;
+    this.books = dataResolved;
+    this.filteredBooks = dataResolved;
+  }
