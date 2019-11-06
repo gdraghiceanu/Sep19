@@ -47,7 +47,7 @@ export class ShoppingCartService {
         totalQuantity += item.quantity;
       });
 
-      const response = totalPrice === 0 ? '' : `All price: ${totalPrice}, Nb of items: ${totalQuantity}`;
+      const response = totalPrice === 0 ? '' : `(Total price: ${totalPrice}, Total products: ${totalQuantity})`;
 
       this.productSubject.next(response);
     }

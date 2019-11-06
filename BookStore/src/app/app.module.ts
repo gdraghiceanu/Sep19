@@ -17,6 +17,12 @@ import { ProductsService } from './services/products.service';
 import { ShoppingCartService } from './services/shopping-cart.service';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { ProductEditComponent } from './components/shared/product-edit/product-edit.component';
+import { StarConvertPipe } from './pipes/starConvertor.pipe';
+import { MyCurrencyPipe } from './pipes/my-currency.pipe';
+import { CurrencyPipe } from '@angular/common';
+import { HighLightDirective } from './directives/highLight.directive';
+import { CountsDirective } from './directives/counts.directive';
+import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +35,12 @@ import { ProductEditComponent } from './components/shared/product-edit/product-e
     NotebookComponent,
     NavbarComponent,
     ShoppingCartComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    StarConvertPipe,
+    MyCurrencyPipe,
+    HighLightDirective,
+    CountsDirective,
+    BookDetailedComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +48,7 @@ import { ProductEditComponent } from './components/shared/product-edit/product-e
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [ProductsService, ShoppingCartService],
+  providers: [ProductsService, ShoppingCartService, CurrencyPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

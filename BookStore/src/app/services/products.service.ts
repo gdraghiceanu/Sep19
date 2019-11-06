@@ -3,13 +3,16 @@ import { Book } from '../interfaces/book';
 import { NoteBook } from '../interfaces/notebook';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable()
 export class ProductsService {
     constructor(private http: HttpClient) { }
 
     getBooks(): Observable<Book[]> {
-        return this.http.get<Book[]>('/api/books');
+        return this.http.get<Book[]>('/api/books').pipe(
+            delay(2000)
+        );
     }
 
     getNotebooks(): Observable<NoteBook[]> {

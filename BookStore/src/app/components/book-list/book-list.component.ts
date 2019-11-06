@@ -4,6 +4,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { FilterService } from 'src/app/services/filter.service';
 import { Product } from 'src/app/interfaces/product';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -18,7 +19,8 @@ export class BookListComponent implements OnInit {
   constructor(
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService,
-    private filterService: FilterService
+    private filterService: FilterService,
+    private route: ActivatedRoute
   ) {
     this.getBooks();
     this.filterService.filterValue$.subscribe(
@@ -28,6 +30,8 @@ export class BookListComponent implements OnInit {
         this.produceFilterList(value);
       }
     )
+
+
   }
 
   ngOnInit() {
@@ -46,11 +50,15 @@ export class BookListComponent implements OnInit {
   }
 
   getBooks() {
-    this.productService.getBooks()
-      .subscribe(books => {
-        this.books = books;
-        this.filteredBooks = this.books;
-      });
+    // this.productService.getBooks()
+    //   .subscribe(books => {
+    //     this.books = books;
+    //     this.filteredBooks = this.books;
+    //   });
+
+    let data: Book[] = this.route.snapshot.data['bookedResolved'];
+    this.books = data;
+    this.filteredBooks = data;
   }
 
   clickSort(value) {
