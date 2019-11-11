@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 4300;
 
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
     'Access-Control-Allow-Headers',
@@ -24,11 +24,35 @@ app.get('/api/books', (req, res) => {
   res.status(200).send(data.books);
 });
 
+app.get('/api/book/:id', (req, res) => {
+  const dataString = fs.readFileSync('./database.json', 'utf8');
+  const data = JSON.parse(dataString);
+
+  const book = data.books.find(b => b.id == req.params.id);
+  if (book) {
+    res.status(200).send(book);
+  } else {
+    res.status(404).send();
+  }
+});
+
 app.get('/api/notebooks', (req, res) => {
   const dataString = fs.readFileSync('./database.json', 'utf8');
   const data = JSON.parse(dataString);
 
   res.status(200).send(data.notebooks);
+});
+
+app.get('/api/notebook/:id', (req, res) => {
+  const dataString = fs.readFileSync('./database.json', 'utf8');
+  const data = JSON.parse(dataString);
+  const notebook = data.notebooks.find(n => n.id == req.params.id);
+
+  if (notebook) {
+    res.status(200).send(notebook);
+  } else {
+    res.status(404).send();
+  }
 });
 
 app.post('/api/book', (req, res) => {
