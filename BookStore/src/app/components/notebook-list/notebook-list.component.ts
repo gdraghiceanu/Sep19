@@ -21,7 +21,8 @@ export class NotebookListComponent implements OnInit {
   }
 
   addNotebookToCart(notebook: NoteBook) {
-    this.shoppingCartService.addProduct(notebook);
+    //this.shoppingCartService.addProduct(notebook);
+    this.shoppingCartService.sendProductToCart(notebook);
   }
 
   getNotebooks() {

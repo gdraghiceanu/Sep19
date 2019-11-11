@@ -1,0 +1,4 @@
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+{ provide: HTTP_INTERCEPTORS, useClass: AddHeaderInterceptor, multi: true},
+{ provide: HTTP_INTERCEPTORS, useClass: LogResponseInterceptor, multi: true}

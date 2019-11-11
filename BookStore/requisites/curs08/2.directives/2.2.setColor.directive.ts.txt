@@ -1,0 +1,17 @@
+import { Directive, ElementRef, Renderer, Renderer2 } from '@angular/core';
+
+@Directive({
+  selector: '[appSetColor]'
+})
+export class SetColorDirective {
+
+  constructor(private el: ElementRef<HTMLInputElement>, private render: Renderer2) {
+    this.ChangeColor('red');
+  }
+
+  ChangeColor(color: string){
+    //this.render.setElementStyle(this.el.nativeElement, 'color', color);
+    this.render.setStyle(this.el.nativeElement, 'color', color);
+  }
+
+}
