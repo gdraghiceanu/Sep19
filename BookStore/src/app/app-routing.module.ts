@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 import { ProductsResolver } from './resolvers/products.resolver';
+import { LoginComponent } from './components/shared/login/login.component';
 
 export const appRoutes: Routes = [
   { path: 'home', component: BookListComponent, data: { title: 'home' } },
@@ -11,5 +12,6 @@ export const appRoutes: Routes = [
   { path: 'book-detailed/:id', component: BookDetailedComponent },
   { path: 'notebooks', component: NotebookListComponent, data: { title: 'notebooks' } },
   { path: 'cart', component: ShoppingCartComponent, data: { title: 'cart' } },
+  { path: 'login', component: LoginComponent, data: { title: 'cart' } },
   { path: '**', component: BookListComponent }
 ];
