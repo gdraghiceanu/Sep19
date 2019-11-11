@@ -17,7 +17,7 @@ export class MyCurrencyPipe implements PipeTransform {
       this.newCode = 'EUR';
     }
 
-    return this.cp.transform(value, this.newCode, 'symbol', '2.0-4');
+    return this.cp.transform(value, this.newCode, 'symbol', '2.0-2');
   }
 
 }
