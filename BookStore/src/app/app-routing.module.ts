@@ -4,12 +4,33 @@ import { Routes } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 import { ProductsResolver } from './resolvers/products.resolver';
+import { ProductTypeEnum } from './constants/product-type.enum';
 
 export const appRoutes: Routes = [
-  { path: 'home', component: BookListComponent, data: { title: 'home' } },
-  { path: 'books', component: BookListComponent, data: { title: 'books' }, resolve: { bookedResolved: ProductsResolver} },
+  {
+    path: 'home', component: BookListComponent,
+    data: { title: 'home', productType: ProductTypeEnum.book },
+    resolve: { books: ProductsResolver }
+  },
+  {
+    path: 'books', component: BookListComponent,
+    data: { title: 'books', productType: ProductTypeEnum.book },
+    resolve: { books: ProductsResolver }
+  },
+  {
+    path: 'notebooks', component: NotebookListComponent,
+    data: { title: 'notebooks', productType: ProductTypeEnum.notebook },
+    resolve: { notebooks: ProductsResolver }
+
+  },
   { path: 'book-detailed/:id', component: BookDetailedComponent },
-  { path: 'notebooks', component: NotebookListComponent, data: { title: 'notebooks' } },
-  { path: 'cart', component: ShoppingCartComponent, data: { title: 'cart' } },
-  { path: '**', component: BookListComponent }
+  {
+    path: 'cart', component: ShoppingCartComponent,
+    data: { title: 'cart' }
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  }
 ];

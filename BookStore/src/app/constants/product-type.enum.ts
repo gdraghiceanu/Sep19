@@ -1,4 +1,4 @@
 export enum ProductTypeEnum {
-  book,
-  notebook
+  book = 'book',
+  notebook = 'notebook'
 }

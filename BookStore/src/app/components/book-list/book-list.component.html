@@ -9,7 +9,6 @@
     </div>
   </div>
 
-  
   <div class="books">
     <div *ngFor="let book of filteredBooks ; let i = index">
       <app-book [book]="book" (addBookToCart)="addBookToCart($event)" (bookUpdated)="getBooks()"></app-book>
