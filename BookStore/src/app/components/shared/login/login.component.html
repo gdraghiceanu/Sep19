@@ -4,7 +4,10 @@
   </div>
 
   <div class="card-body">
-    <form novalidate>
+    <form novalidate
+      (ngSubmit)="login(loginForm)"
+      #loginForm="ngForm"
+    >
       <fieldset>
       <div class="form-group row">
         <label class="col-md-2 col-form-label" for="userNameId">User Name</label>
@@ -12,7 +15,17 @@
           <input
             type="text"
             placeholder="User Name (required)"
+            required
+            ngModel
+            name="userName"
+            #userNameVar = "ngModel"
+            [ngClass]="{'is-invalid': (userNameVar.touched || userNameVar.dirty) && !userNameVar.valid }"
             class="form-control">
+            <span class="invalid-feedback">
+              <span *ngIf="userNameVar.errors?.required">
+                User name is required
+              </span>
+            </span>
         </div>
       </div>
 
@@ -20,9 +33,19 @@
         <label class="col-md-2 col-form-label" for="userNameId">Password</label>
         <div class="col-md-8">
           <input
-            type="text"
+            type="password"
             placeholder="Password (required)"
+            required
+            ngModel
+            name="password"
+            #passRefVar='ngModel'
+            [ngClass]="{'is-invalid': (passRefVar.touched || passRefVar.dirty) && passRefVar.invalid }"
             class="form-control">
+            <span class="invalid-feedback">
+              <span *ngIf="passRefVar.errors?.required">
+                Password required
+              </span>
+            </span>
         </div>
       </div>
 
@@ -30,12 +53,14 @@
         <div class="col-md-4 offset-md-2">
           <button class="btn btn-primary mr-3"
             type="submit"
+            [disabled]="loginForm.invalid"
             style="width:80px">
             Log In
           </button>
 
           <button class="btn btn-primary mr-3"
             type="submit"
+            [routerLink]="['/home']"
             style="width:80px">
             Cancel
           </button>
@@ -43,5 +68,42 @@
       </div>
     </fieldset>
     </form>
+  </div>
+
+  <div class="alert alert-danger"
+  *ngIf="errorMessage">{{errorMessage}}
+</div>
+</div>
+
+<div class="row" style="padding-left: 25px">
+  Form Model: {{loginForm.value | json}}
+  <br><br>
+</div>
+
+<div class="row">
+  <div class="col-md-3" style="padding-left: 25px">
+      loginForm.valid: <b>{{loginForm.valid}}</b> <br>
+      loginForm.dirty: <b>{{loginForm.dirty}}</b> <br>
+      loginForm.pristine: <b>{{loginForm.pristine}}</b><br>
+      loginForm.touched: <b>{{loginForm.touched}}</b> <br>
+      loginForm.untouched: <b>{{loginForm.untouched}}</b> <br>
+      <br>
+
+      userNameVar.valid: <b>{{userNameVar.valid}}</b> <br>
+      userNameVar.dirty: <b>{{userNameVar.dirty}}</b> <br>
+      userNameVar.pristine: <b>{{userNameVar.pristine}}</b> <br>
+      userNameVar.touched: <b>{{userNameVar.touched}}</b> <br>
+      userNameVar.untouched: <b>{{userNameVar.untouched}}</b> <br>
+      <br>
+
+      loginForm.controls.password.valid: <b style="font-size: 20px">{{ loginForm.controls.password?.valid }}</b>  <br/>
+      loginForm.controls.password.invalid: <b style="font-size: 20px">{{ loginForm.controls.password?.invalid }}</b>  <br/>
+      loginForm.controls.password.dirty: <b style="font-size: 20px">{{ loginForm.controls.password?.dirty }}</b>  <br/>
+      loginForm.controls.password.pristine: <b style="font-size: 20px">{{ loginForm.controls.password?.pristine }}</b>  <br/>
+      loginForm.controls.password.touched: <b style="font-size: 20px">{{ loginForm.controls.password?.touched }}</b>  <br/>
+      loginForm.controls.password.untouched: <b style="font-size: 20px">{{ loginForm.controls.password?.untouched }}</b>  <br/>
+
+      pass.valid: <b>{{passRefVar.valid}}</b><br>
+      pass.dirty: <b>{{passRefVar.dirty}}</b><br>
   </div>
 </div>

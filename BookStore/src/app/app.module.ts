@@ -24,6 +24,8 @@ import { HighLightDirective } from './directives/highLight.directive';
 import { CountsDirective } from './directives/counts.directive';
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 import { LoginComponent } from './components/shared/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { BookEditComponent } from './components/shared/book/book-edit.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import { LoginComponent } from './components/shared/login/login.component';
     HighLightDirective,
     CountsDirective,
     BookDetailedComponent,
-    LoginComponent
+    LoginComponent,
+    HomeComponent,
+    BookEditComponent
   ],
   imports: [
     BrowserModule,

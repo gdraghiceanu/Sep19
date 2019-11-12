@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +11,28 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
 
   pageTitle = 'Log In';
-  constructor() { }
+  errorMessage: string;
+
+  password: string;
+
+  constructor(private authServ: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
+  }
+
+  login(loginForm: NgForm) {
+
+    if(loginForm && loginForm.valid) {
+
+      const uName = loginForm.form.value.userName;
+      const password = loginForm.form.value.password;
+      this.authServ.login(uName, password);
+      this.router.navigate(['/books']);
+
+    } else {
+      this.errorMessage = 'Please enter a user name and password!';
+    }
   }
 
 }

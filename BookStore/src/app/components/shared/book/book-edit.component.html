@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header">{{pageTitle}}</div>
+
+  <div class="card-body">
+    <form
+      novalidate
+      #bookForm='ngForm'
+      (ngSubmit)="saveBook()"
+      >
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label">Book Title</label>
+        <div class="col-md-8">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Book title"
+                 required
+                 [(ngModel)]="book.title"
+                 name="bookTitle"
+                 #booktRefVar="ngModel"
+                 [ngClass]="{'is-invalid': !booktRefVar.valid && booktRefVar.touched}"
+          >
+          <span class="invalid-feedback">
+            <span *ngIf="booktRefVar.errors?.required">
+              Book title required
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+          <div class="offset-md-2 col-md-4">
+            <button type="submit" class="btn btn-primary mr-3">Save</button>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+
+booktRefVar.touched: {{booktRefVar.touched}}

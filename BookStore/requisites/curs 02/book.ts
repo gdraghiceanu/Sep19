@@ -9,7 +9,7 @@ enum CurrencyEnum {
   usd = 'USD'
 }
 
-interface Book {
+export class Book {
   title: string;
   author: string;
   language: LanguageEnum;
