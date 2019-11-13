@@ -1,0 +1,112 @@
+<div class="card">
+  <div class="card-header">{{pageTitle}}</div>
+
+  <div class="card-body">
+    <form
+      novalidate
+      #bookForm='ngForm'
+      (ngSubmit)="saveBook(bookForm)"
+      >
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label">Book Title</label>
+        <div class="col-md-8">
+          <input type="text"
+                 class="form-control"
+                 placeholder="Book title"
+                 required
+                 [(ngModel)]="book.title"
+                 name="bookTitle"
+                 #booktRefVar="ngModel"
+                 [appNameNotAllowed] = "['xxx', 'zzz']"
+                 [ngClass]="{'is-invalid': !booktRefVar.valid && booktRefVar.touched}"
+          >
+          <span class="invalid-feedback">
+            <span *ngIf="booktRefVar.errors?.required">
+              Book title required
+            </span>
+            <span *ngIf="booktRefVar.errors?.appNameNotAllowed">
+              Name not allowed
+            </span>
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group row mb-2">
+          <label class="col-md-2 col-form-label">Author</label>
+          <div class="col-md-8">
+            <input type="text"
+                   class="form-control"
+                   placeholder="Author"
+                   required
+                   [(ngModel)]="book.author"
+                   name="author"
+                   #authorRefVar="ngModel"
+                   [ngClass]="{'is-invalid': !authorRefVar.valid && authorRefVar.touched}" >
+            <span class="invalid-feedback">
+              <span *ngIf="authorRefVar.errors?.required">
+                Author required
+              </span>
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group row mb-2">
+            <label class="col-md-2 col-form-label">Star Rating (1-5)</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     type="text"
+                     placeholder="Rating (1-55)"
+                     required
+                     max='5'
+                     (ngModel)="book.review"
+                     name="review"
+                     #reviewRefVar="ngModel"
+                     [ngClass]="{'is-invalid': !reviewRefVar.valid && reviewRefVar.touched}" />
+              <span class="invalid-feedback">
+                <span *ngIf="reviewRefVar.errors?.required">
+                    Review required
+                </span>
+                <span *ngIf="reviewRefVar.errors?.max">
+                    Value higher than 5!
+                </span>
+              </span>
+            </div>
+        </div>
+
+        <div class="form-group row mb-2" [class.has-error]="isLanguageError">
+            <label class="col-md-2 col-form-label">Language</label>
+            <div class="col-md-8">
+              <select class="form-control"
+                [(ngModel)]="book.language"
+                name="language"
+                #langVar = 'ngModel'
+                required
+                (blur)="validateLanguage(langVar.value)"
+                (change)="validateLanguage(langVar.value)"
+              >
+                <option value="default">Select a language</option>
+                <option value="{{ lang }}" *ngFor="let lang of languages">{{lang}}</option>
+              </select>
+            </div>
+        </div>
+
+
+      <div class="form-group row mb-2">
+          <div class="offset-md-2 col-md-4">
+            <button type="submit" class="btn btn-primary mr-3">Save</button>
+            <button type="submit" class="btn btn-primary mr-3">Cancel</button>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>
+
+booktRefVar.valid: {{booktRefVar.valid}} <br>
+booktRefVar.dirty: {{booktRefVar.dirty}} <br>
+booktRefVar.touched: {{booktRefVar.touched}} <br>
+
+<br>
+reviewRefVar.touched: {{reviewRefVar.dirty}} <br>
+
