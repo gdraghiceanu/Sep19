@@ -31,7 +31,7 @@ export class BookEditComponent implements OnInit {
   initializeBook(): Book {
     const b: Book = {
       id: 0,
-      author: 'vsdvsdvsdv',
+      author: '',
       coverUrl: '',
       currency: CurrencyEnum.ron,
       language: LanguageEnum.Romanian,

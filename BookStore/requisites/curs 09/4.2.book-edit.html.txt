@@ -94,7 +94,7 @@
 
       <div class="form-group row mb-2">
           <div class="offset-md-2 col-md-4">
-            <button type="submit" class="btn btn-primary mr-3" [disabled]="bookForm.invalid">Save</button>
+            <button type="submit" class="btn btn-primary mr-3">Save</button>
             <button type="submit" class="btn btn-primary mr-3">Cancel</button>
           </div>
       </div>
@@ -103,7 +103,6 @@
   </div>
 </div>
 
-bookForm.valid: {{bookForm.valid}} <br><br>
 booktRefVar.valid: {{booktRefVar.valid}} <br>
 booktRefVar.dirty: {{booktRefVar.dirty}} <br>
 booktRefVar.touched: {{booktRefVar.touched}} <br>

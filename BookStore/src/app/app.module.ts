@@ -26,6 +26,7 @@ import { BookDetailedComponent } from './components/shared/book/book-detailed.co
 import { LoginComponent } from './components/shared/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 import { BookEditComponent } from './components/shared/book/book-edit.component';
+import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { BookEditComponent } from './components/shared/book/book-edit.component'
     BookDetailedComponent,
     LoginComponent,
     HomeComponent,
-    BookEditComponent
+    BookEditComponent,
+    NameNotAllowedDirective
   ],
   imports: [
     BrowserModule,
