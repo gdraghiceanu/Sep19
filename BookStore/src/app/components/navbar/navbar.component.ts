@@ -3,6 +3,7 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,12 +14,23 @@ export class NavbarComponent implements OnInit {
 
   label: string;
 
+  get isLoggedIn(): boolean {
+    return this.authService.isLoggedIn;
+  }
+
+  get userName(): string {
+    if (this.authService.currentUser) {
+      return this.authService.currentUser.userName;
+    }
+    return '';
+  }
 
   constructor(
     private route: ActivatedRoute,
     private titleService: Title,
     private router: Router,
-    private shoppingCartService: ShoppingCartService
+    private shoppingCartService: ShoppingCartService,
+    private authService: AuthService
   ) {
 
     this.router.events
@@ -47,5 +59,10 @@ export class NavbarComponent implements OnInit {
     this.shoppingCartService.productObs$.subscribe(value => {
       this.label = value;
     });
+  }
+
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigateByUrl('/home');
   }
 }

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { NoteBook } from 'src/app/interfaces/notebook';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { ActivatedRoute } from '@angular/router';
 import { FilterService } from 'src/app/services/filter.service';
-import { combineLatest } from 'rxjs';
+import { combineLatest, Subscription } from 'rxjs';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -12,8 +12,10 @@ import { first } from 'rxjs/operators';
   templateUrl: './notebook-list.component.html',
   styleUrls: ['./notebook-list.component.scss']
 })
-export class NotebookListComponent implements OnInit {
+export class NotebookListComponent implements OnInit, OnDestroy {
+ 
   filteredNotebooks: NoteBook[];
+  private subcribtion: Subscription;
 
   private notebooks: NoteBook[];
 
@@ -26,14 +28,19 @@ export class NotebookListComponent implements OnInit {
     this.notebooks = this.route.snapshot.data.notebooks;
     this.filteredNotebooks = this.route.snapshot.data.notebooks;
 
-    this.filterService.filterValue$.subscribe(
+    this.subcribtion = this.filterService.filterValue$.subscribe(
       value => {
         this.produceFilterList(value);
+        console.log('filter changed');
       }
     );
   }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy(): void {
+    this.subcribtion.unsubscribe();
   }
 
   addNotebookToCart(notebook: NoteBook) {
