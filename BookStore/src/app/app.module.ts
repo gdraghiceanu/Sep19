@@ -24,6 +24,10 @@ import { HighLightDirective } from './directives/highLight.directive';
 import { CountsDirective } from './directives/counts.directive';
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 import { BookAddComponent } from './components/shared/book-add/book-add.component';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
+
 
 @NgModule({
   declarations: [
@@ -42,7 +46,13 @@ import { BookAddComponent } from './components/shared/book-add/book-add.componen
     HighLightDirective,
     CountsDirective,
     BookDetailedComponent,
+<<<<<<< HEAD
     BookAddComponent
+=======
+    HomeComponent,
+    LoginComponent,
+    NameNotAllowedDirective
+>>>>>>> 18134b9d9db46d9e44d2520c3d8f587490cb37d5
   ],
   imports: [
     BrowserModule,

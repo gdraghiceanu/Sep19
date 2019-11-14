@@ -5,12 +5,12 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
 import { ProductsResolver } from './resolvers/products.resolver';
 import { ProductTypeEnum } from './constants/product-type.enum';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'home', component: BookListComponent,
-    data: { title: 'home', productType: ProductTypeEnum.book },
-    resolve: { books: ProductsResolver }
+    path: 'home', component: HomeComponent    
   },
   {
     path: 'books', component: BookListComponent,
@@ -28,6 +28,7 @@ export const appRoutes: Routes = [
     path: 'cart', component: ShoppingCartComponent,
     data: { title: 'cart' }
   },
+  { path: 'login', component: LoginComponent},
   {
     path: '**',
     redirectTo: '/home',
