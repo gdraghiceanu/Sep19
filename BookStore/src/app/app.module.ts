@@ -46,13 +46,10 @@ import { NameNotAllowedDirective } from './directives/name-not-allowed.directive
     HighLightDirective,
     CountsDirective,
     BookDetailedComponent,
-<<<<<<< HEAD
-    BookAddComponent
-=======
+    BookAddComponent,
     HomeComponent,
     LoginComponent,
     NameNotAllowedDirective
->>>>>>> 18134b9d9db46d9e44d2520c3d8f587490cb37d5
   ],
   imports: [
     BrowserModule,
