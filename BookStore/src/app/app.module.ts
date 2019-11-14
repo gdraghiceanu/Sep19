@@ -23,6 +23,7 @@ import { CurrencyPipe } from '@angular/common';
 import { HighLightDirective } from './directives/highLight.directive';
 import { CountsDirective } from './directives/counts.directive';
 import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
+import { BookAddComponent } from './components/shared/book-add/book-add.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BookDetailedComponent } from './components/shared/book/book-detailed.co
     MyCurrencyPipe,
     HighLightDirective,
     CountsDirective,
-    BookDetailedComponent
+    BookDetailedComponent,
+    BookAddComponent
   ],
   imports: [
     BrowserModule,
