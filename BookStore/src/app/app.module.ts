@@ -27,6 +27,7 @@ import { BookAddComponent } from './components/shared/book-add/book-add.componen
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
+import { NameAllowedDirective } from './directives/name-allowed.directive';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { NameNotAllowedDirective } from './directives/name-not-allowed.directive
     BookAddComponent,
     HomeComponent,
     LoginComponent,
-    NameNotAllowedDirective
+    NameNotAllowedDirective,
+    NameAllowedDirective
   ],
   imports: [
     BrowserModule,

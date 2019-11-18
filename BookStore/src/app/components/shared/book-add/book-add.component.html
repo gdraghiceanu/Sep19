@@ -1,50 +1,175 @@
-<form role="form">
-    <div class="form-group">
-        <label for="email">Title:</label>
-        <input type="text" class="form-control" id="title">
-    </div>
-    <div class="form-group">
-        <label for="email">Author:</label>
-        <input type="text" class="form-control" id="author">
-    </div>
-    <div class="form-group">
-        <label for="email">Image Url:</label>
-        <input type="text" class="form-control" id="coverUrl">
-    </div>
-    <div class="form-group">
-        <label for="email">Price:</label>
-        <input type="text" class="form-control" id="price">
-    </div>
-    <div class="form-group">
-        <label for="email">Currency:</label>
-        <input type="text" class="form-control" id="currency">
-    </div>
-    <div class="form-group">
-        <label for="email">Review:</label>
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h2 class="bg-info text-white p-3">Books</h2>
+        <form role="form" (ngSubmit)=addBookForm(addB) #addB='ngForm'>
+            <div class="form-group">
+                <label for="email">Title:</label>
+                <input [ngClass]="{'is-invalid': (titleBook.touched || titleBook.dirty) && !titleBook.valid }"
+                    type="text" class="form-control" id="title" required minlength="3" ngModel name="title"
+                    #titleBook='ngModel'>
+                <span class="invalid-feedback" *ngIf="titleBook.errors">
+                    <span *ngIf="titleBook.errors['required']">
+                        Book tilte is required!
+                    </span>
+                    <span *ngIf="titleBook.errors['minlength']">
+                        At least 3
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="email">Author:</label>
+                <input type="text" class="form-control" id="author" required minlength="3" ngModel name="author"
+                    #authorBook='ngModel'
+                    [ngClass]="{'is-invalid': (authorBook.touched || authorBook.dirty) && ! authorBook.valid }">
+                <span class="invalid-feedback" *ngIf="authorBook.errors">
+                    <span *ngIf="authorBook.errors['required']">
+                        Author is required!
+                    </span>
+                    <span *ngIf="authorBook.errors['minlength']">
+                        Add the correct name!
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="coverUrl">Image Url:</label>
+                <input type="url" class="form-control" id="coverUrl" required pattern="https?://.+" ngModel
+                    name="coverUrl" #url='ngModel'
+                    [ngClass]="{'is-invalid': (url.touched || url.dirty) && ! url.valid }">
+                <span class="invalid-feedback" *ngIf="url.errors">
+                    <span *ngIf="url.errors['required']">
+                        Image Url is required!
+                    </span>
+                    <span *ngIf="url.errors['pattern']">
+                        Add the correct URL: https://exemple.com/image.png!
+                    </span>
+                </span>
+            </div>
 
-        <select class="form-control" id="review">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="email">Language:</label>
-        <select class="form-control" id="language">
-            <option value="romanian">Romanian</option>
-            <option value="english">English</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="email">Publisher:</label>
-        <input type="text" class="form-control" id="publisher">
-    </div>
-    <div class="form-group">
-        <label for="email">Publication Date:</label>
-        <input type="date" class="form-control" id="publicationDate">
-    </div>
 
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" step=0.01 class="form-control" id="price" required pattern="\d*(\.\d{0,2})?$"
+                    ngModel name="price" #priceBook='ngModel'
+                    [ngClass]="{'is-invalid': (priceBook.touched || priceBook.dirty) && ! priceBook.valid }">
+                <span class="invalid-feedback" *ngIf="priceBook.errors">
+                    <span *ngIf="priceBook.errors['required']">
+                        The price is required!
+                    </span>
+                    <span *ngIf="priceBook.errors['pattern']">
+                        Add the correct price : dd.dd
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="currency">Currency:</label>
+                <select class="form-control" id="currency" name="currency"
+                required ngModel
+                #currencyBook = 'ngModel'
+                [appNameAllowed] ="['ron','euro','usd']"
+                [ngClass]="{'is-invalid': (currencyBook.touched || currencyBook.dirty) && ! currencyBook.valid }"
+                >
+                    <option value="ron">RON</option>
+                    <option value="euro">EURO</option>
+                    <option value="usd">USD</option>
+                </select>
+                <span class="invalid-feedback" *ngIf="currencyBook.errors">
+                    <span *ngIf="currencyBook.errors['required']">
+                        The currency is required!
+                    </span>
+                    <span *ngIf="! currencyBook.errors['nameAllowed']">
+                        
+                        Allow only :ron,euro,usd !
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="review">Review:</label>
+                <select class="form-control" id="review" name='review'
+                required ngModel
+                #reviewBook = 'ngModel'
+                [appNameAllowed] ="['1','2','3','4','5']"
+                [ngClass]="{'is-invalid': (reviewBook.touched || reviewBook.dirty) && ! reviewBook.valid }"
+                
+                >
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <span class="invalid-feedback" *ngIf="reviewBook.errors">
+                    <span *ngIf="reviewBook.errors['required']">
+                        The currency is required!
+                    </span>
+                    <span *ngIf="! reviewBook.errors['nameAllowed']">
+                        Allow only :1,2,3,4,5 !
+                    </span>
+                </span>
+            </div>
+            <div class="form-group">
+                <label for="language">Language:</label>
+                <select class="form-control" id="language" name='language'
+                required ngModel
+                #languageBook = 'ngModel'
+                [appNameAllowed] ="['romanian','english']"
+                [ngClass]="{'is-invalid': (languageBook.touched || languageBook.dirty) && ! languageBook.valid }"
+                
+                >
+                    <option value="romanian">Romanian</option>
+                    <option value="english">English</option>
+                </select>
+                <span class="invalid-feedback" *ngIf="languageBook.errors">
+                        <span *ngIf="languageBook.errors['required']">
+                            The currency is required!
+                        </span>
+                        <span *ngIf="! languageBook.errors['nameAllowed']">
+                            Allow only :romanian, english !
+                        </span>
+                    </span>
+            </div>
+            <div class="form-group">
+                <label for="publisher">Publisher:</label>
+                <input type="text" class="form-control" id="publisher" name="publisher"
+                required minlength="3" ngModel
+                #publisherBook = 'ngModel'
+                [ngClass]="{'is-invalid': (publisherBook.touched || publisherBook.dirty) && ! publisherBook.valid }"
+                >
+                <span class="invalid-feedback" *ngIf="publisherBook.errors">
+                        <span *ngIf="publisherBook.errors['required']">
+                            Author is required!
+                        </span>
+                        <span *ngIf="publisherBook.errors['minlength']">
+                            Add the correct name!
+                        </span>
+                    </span>
+            </div>
+            <div class="form-group">
+                <label for="publicationDate">Publication Date:</label>
+                <input type="date" class="form-control" id="publicationDate" name='publicationDate'
+                required  ngModel
+                #publicationBook = 'ngModel'
+                [ngClass]="{'is-invalid': (publicationBook.touched || publicationBook.dirty) && ! publicationBook.valid }"
+                >
+                <span class="invalid-feedback" *ngIf="publicationBook.errors">
+                        <span *ngIf="publicationBook.errors['required']">
+                            Author is required!
+                        </span>
+                        
+                    </span>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-6 offset-md-2">
+                    <button class="btn btn-primary mr-3" type="submit" [disabled]='addB.invalid' style="width:200px">
+                        Add Book
+                    </button>
+
+                    <button class="btn btn-primary mr-3" type="submit" style="width:80px">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

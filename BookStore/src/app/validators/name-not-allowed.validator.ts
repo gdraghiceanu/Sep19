@@ -1,7 +1,7 @@
 import { ValidatorFn, FormControl } from '@angular/forms';
 
 export function NameNotAllowedValidator(forbiddenNames: string[]): ValidatorFn {
-    
+
   return (control: FormControl): { [key: string]: any } | null => {
 
     const nameToTest = control.value

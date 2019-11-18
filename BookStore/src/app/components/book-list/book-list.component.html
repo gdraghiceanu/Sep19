@@ -1,14 +1,24 @@
 <div class="books-container">
   <h2 class="bg-info text-white p-3">Books</h2>
-
-  <div clas="col-md-7">Sort by:
-    <div class="btn-group btn-group-sm" style="margin-right: 20px;">
-      <button class="btn btn-default" (click)="clickSort('name')">By Name</button>
-      <button class="btn btn-default" (click)="clickSort('rating')">By Rating</button>
-      <button class="btn btn-default" (click)="clickSort('author')">By Author</button>
-    </div>
+<div class="row">
+  <div clas="col-md-3">
+      <div class="btn-group btn-group-sm" style="margin-right: 20px;">
+         
+          <a class="nav-link" [routerLink]="['/add-book']" routerLinkActive="router-link-active">Add Book</a>
+      </div>
   </div>
 
+  <div clas="col-md-9">Sort by:
+      <div class="btn-group btn-group-sm" style="margin-right: 20px;">
+        <button class="btn btn-default" (click)="clickSort('name')">By Name</button>
+        <button class="btn btn-default" (click)="clickSort('rating')">By Rating</button>
+        <button class="btn btn-default" (click)="clickSort('author')">By Author</button>
+      </div>
+    </div>
+  
+  
+</div>
+  
   <div class="books">
     <div *ngFor="let book of filteredBooks ; let i = index">
       <app-book [book]="book" (addBookToCart)="addBookToCart($event)" (bookUpdated)="getBooks()"></app-book>

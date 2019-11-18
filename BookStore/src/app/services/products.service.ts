@@ -55,4 +55,5 @@ export class ProductsService {
   updateNotebook(notebook: NoteBook): Observable<NoteBook> {
     return this.http.post<NoteBook>('/api/notebook', notebook);
   }
+
 }

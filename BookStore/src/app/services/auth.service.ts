@@ -17,11 +17,12 @@ export class AuthService {
   login(userName: string, password: string): void {
     if (!userName || !password) {
       return;
-    }   
+    }
 
     this.currentUser = {
       id: 1,
-      userName: userName,
+      userName,
+      password,
       isAdmin: false
     };
   }

@@ -7,10 +7,11 @@ import { ProductsResolver } from './resolvers/products.resolver';
 import { ProductTypeEnum } from './constants/product-type.enum';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { BookAddComponent } from './components/shared/book-add/book-add.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'home', component: HomeComponent    
+    path: 'home', component: HomeComponent
   },
   {
     path: 'books', component: BookListComponent,
@@ -28,10 +29,18 @@ export const appRoutes: Routes = [
     path: 'cart', component: ShoppingCartComponent,
     data: { title: 'cart' }
   },
-  { path: 'login', component: LoginComponent},
+  {
+    path: 'login', component: LoginComponent
+  },
+  {
+    path: 'add-book', component: BookAddComponent,
+    data: { title: 'Add Book' }
+  },
   {
     path: '**',
     redirectTo: '/home',
     pathMatch: 'full'
-  }
+  },
+
+
 ];
