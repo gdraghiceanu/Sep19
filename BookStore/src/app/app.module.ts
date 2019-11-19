@@ -28,6 +28,7 @@ import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
 import { NameAllowedDirective } from './directives/name-allowed.directive';
+import { NameAlphanumericDirective } from './directives/name-alphanumeric.directive';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { NameAllowedDirective } from './directives/name-allowed.directive';
     HomeComponent,
     LoginComponent,
     NameNotAllowedDirective,
-    NameAllowedDirective
+    NameAllowedDirective,
+    NameAlphanumericDirective
   ],
   imports: [
     BrowserModule,

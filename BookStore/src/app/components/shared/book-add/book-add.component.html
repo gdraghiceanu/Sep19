@@ -5,7 +5,7 @@
             <div class="form-group">
                 <label for="email">Title:</label>
                 <input [ngClass]="{'is-invalid': (titleBook.touched || titleBook.dirty) && !titleBook.valid }"
-                    type="text" class="form-control" id="title" required minlength="3" ngModel name="title"
+                    type="text" class="form-control" id="title" required appNameAlphanumeric minlength="3" ngModel name="title"
                     #titleBook='ngModel'>
                 <span class="invalid-feedback" *ngIf="titleBook.errors">
                     <span *ngIf="titleBook.errors['required']">
@@ -13,6 +13,9 @@
                     </span>
                     <span *ngIf="titleBook.errors['minlength']">
                         At least 3
+                    </span>
+                    <span *ngIf="titleBook.errors['nameAlphanumeric']">
+                        Alow only a-z 0-9!
                     </span>
                 </span>
             </div>
