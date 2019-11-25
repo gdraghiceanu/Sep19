@@ -4,8 +4,11 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
+          <li class="nav-item" *ngIf="isLoggedIn">
+              <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Wellcome {{userName}}</a>
+          </li>
           <li class="nav-item">
-            <a class="nav-link" [routerLink]="['/books']" routerLinkActive="router-link-active">Home</a>
+            <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/books']" routerLinkActive="router-link-active">Book List</a>
@@ -15,6 +18,12 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" [routerLink]="['/cart']" routerLinkActive="router-link-active">Cart <span>{{label}}</span> </a>
+          </li>
+          <li class="nav-item" *ngIf="!isLoggedIn">
+            <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active">Login </a>
+          </li>
+          <li class="nav-item" *ngIf="isLoggedIn">
+            <a class="nav-link" routerLinkActive="router-link-active" (click)="onLogout()">Logout </a>
           </li>
         </ul>
       </div>

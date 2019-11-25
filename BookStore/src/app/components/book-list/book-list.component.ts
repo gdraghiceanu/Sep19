@@ -5,6 +5,8 @@ import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { FilterService } from 'src/app/services/filter.service';
 import { Product } from 'src/app/interfaces/product';
 import { ActivatedRoute } from '@angular/router';
+import { combineLatest } from 'rxjs';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-list',
@@ -22,24 +24,50 @@ export class BookListComponent implements OnInit {
     private filterService: FilterService,
     private route: ActivatedRoute
   ) {
-    this.getBooks();
+    this.books = this.route.snapshot.data.books;
+    this.filteredBooks = this.route.snapshot.data.books;
+
     this.filterService.filterValue$.subscribe(
       value => {
-        console.log('book filter change', value);
-
         this.produceFilterList(value);
       }
-    )
-
-
+    );
   }
 
   ngOnInit() {
   }
 
+  getBooks() {
+    combineLatest(
+      this.filterService.filterValue$,
+      this.productService.getBooks(true)
+    ).pipe(
+      first()
+    ).subscribe(([filterValue, books]) => {
+      this.books = books;
+      this.filteredBooks = this.books;
+      this.produceFilterList(filterValue);
+    });
+  }
+
   addBookToCart(book: Book): void {
-    // this.shoppingCartService.addProduct(book);
     this.shoppingCartService.sendProductToCart(book);
+  }
+
+  clickSort(value) {
+    switch (value) {
+      case ('name'):
+        this.filteredBooks.sort(this.sortByNameAsc);
+        break;
+      case ('rating'):
+        this.filteredBooks.sort(this.sortByRatingDesc);
+        break;
+      case ('author'):
+        this.filteredBooks.sort(this.sortByAuthor);
+        break;
+      default:
+        this.filteredBooks.sort(this.sortByNameAsc);
+    }
   }
 
   private produceFilterList(filterValue: string): void {
@@ -49,55 +77,15 @@ export class BookListComponent implements OnInit {
     );
   }
 
-  getBooks() {
-    // this.productService.getBooks()
-    //   .subscribe(books => {
-    //     this.books = books;
-    //     this.filteredBooks = this.books;
-    //   });
-
-    let data: Book[] = this.route.snapshot.data['bookedResolved'];
-    this.books = data;
-    this.filteredBooks = data;
+  private sortByNameAsc(b1: Book, b2: Book) {
+    return b1.title.localeCompare(b2.title);
   }
 
-  clickSort(value) {
-    if (this.filteredBooks) {
-
-      switch (value) {
-        case ('name'):
-          this.filteredBooks.sort(sortByNameAsc);
-          break;
-        case ('rating'):
-          this.filteredBooks.sort(sortByRatingDesc);
-          break;
-        case ('author'):
-          this.filteredBooks.sort(sortByAuthor);
-          break;
-        default:
-          this.filteredBooks.sort(sortByNameAsc);
-      }
-    }
+  private sortByRatingDesc(p1: Product, p2: Product) {
+    return p2.review - p1.review;
   }
-}
 
-
-function sortByNameAsc(b1: Book, b2: Book) {
-  if (b1.title > b2.title) { return 1; }
-  else if (b1.title === b2.title) { return 0; }
-  else { return -1; }
-}
-
-function sortByRatingDesc(p1: Product, p2: Product) {
-  return p2.review - p1.review;
-}
-
-function sortByAuthor(p1: Book, p2: Book) {
-  if (p1.author > p2.author) {
-    return 1;
-  } else if (p1.author === p2.author) {
-    return 0;
-  } else {
-    return -1;
+  private sortByAuthor(p1: Book, p2: Book) {
+    return p1.author.localeCompare(p2.author);
   }
 }
