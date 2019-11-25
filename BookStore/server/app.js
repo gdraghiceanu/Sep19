@@ -6,6 +6,11 @@ const bodyParser = require('body-parser');
 const app = express();
 const PORT = 4300;
 
+const TOKEN = {
+  USER: "1d939a7f-25b6-4b5b-82e5-940c763e275e",
+  ADMIN: "1f65d25c-a346-4f08-a90f-be8cb61fb674"
+};
+
 app.use(function (req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header(
@@ -16,6 +21,40 @@ app.use(function (req, res, next) {
 });
 
 app.use(bodyParser.json());
+
+
+app.get('/api/login', (req, res) => {
+  const username = req.query.username;
+  const password = req.query.password;
+
+  if (username === "adminUser" && password === "1234") {
+    res.status(200).send(
+      {
+        token: TOKEN.ADMIN,
+        user: {
+          id: 1,
+          username: "adminUser",
+          isAdmin: true,
+        }
+      }
+    );
+  }
+
+  if (username === "normalUser" && password === "1234") {
+    res.status(200).send(
+      {
+        token: TOKEN.ADMIN,
+        user: {
+          id: 2,
+          username: "normalUser",
+          isAdmin: false,
+        }
+      }
+    );
+  }
+
+  res.status(401).send("Not OK");
+});
 
 app.get('/api/books', (req, res) => {
   const dataString = fs.readFileSync('./database.json', 'utf8');
@@ -56,6 +95,10 @@ app.get('/api/notebook/:id', (req, res) => {
 });
 
 app.post('/api/book', (req, res) => {
+  if (req.headers.authorization !== TOKEN.ADMIN) {
+    res.status(401).send();
+  }
+
   const dataString = fs.readFileSync('./database.json', 'utf8');
   const data = JSON.parse(dataString);
   const books = data.books;
@@ -79,6 +122,10 @@ app.post('/api/book', (req, res) => {
 });
 
 app.post('/api/notebook', (req, res) => {
+  if (req.headers.authorization !== TOKEN.ADMIN) {
+    res.status(401).send();
+  }
+
   const dataString = fs.readFileSync('./database.json', 'utf8');
   const data = JSON.parse(dataString);
   const notebooks = data.notebooks;

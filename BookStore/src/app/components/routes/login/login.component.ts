@@ -18,18 +18,15 @@ export class LoginComponent implements OnInit {
   }
 
   login(loginForm: NgForm) {
+    const username = loginForm.form.value.username;
+    const password = loginForm.form.value.password;
 
-    if (loginForm && loginForm.valid) {
-
-      const username = loginForm.form.value.username;
-      const password = loginForm.form.value.password;
-
-      this.authServ.login(username, password);
-      this.router.navigate(['/books']);
-
-    } else {
-      this.errorMessage = 'Please enter a user name and password!';
-    }
+    this.authServ.login(username, password).subscribe(isAuthenticated => {
+      if (isAuthenticated) {
+        this.router.navigate(['/books']);
+      } else {
+        alert('User/Password invalid');
+      }
+    });
   }
-
 }
