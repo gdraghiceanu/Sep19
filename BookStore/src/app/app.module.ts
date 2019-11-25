@@ -26,6 +26,7 @@ import { BookDetailedComponent } from './components/routes/book-details/book-det
 import { HomeComponent } from './components/routes/home/home.component';
 import { LoginComponent } from './components/routes/login/login.component';
 import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
+import { BookFormComponent } from './components/routes/book-form/book-form.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { NameNotAllowedDirective } from './directives/name-not-allowed.directive
     BookDetailedComponent,
     HomeComponent,
     LoginComponent,
-    NameNotAllowedDirective
+    NameNotAllowedDirective,
+    BookFormComponent
   ],
   imports: [
     BrowserModule,
