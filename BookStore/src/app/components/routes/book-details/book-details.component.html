@@ -1,0 +1,21 @@
+<div class="container">
+
+  <img [src]="book?.coverUrl" [alt]="book?.title" class="book-image">
+
+  <div class="row">
+    <div class="col-md-11">
+      <h2>{{book?.title}} {{book?.author}}</h2>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <div><strong>Price:</strong> {{book?.price | currency : 'USD' : 'symbol' : '2.1-2'}}</div>
+      <div><strong>Publisher:</strong> {{book?.publisher}}</div>
+
+    </div>
+    <div class="col-md-6">
+
+    </div>
+  </div>
+</div>

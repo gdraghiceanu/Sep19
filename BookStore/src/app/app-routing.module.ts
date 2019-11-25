@@ -1,16 +1,16 @@
-import { BookListComponent } from './components/book-list/book-list.component';
-import { NotebookListComponent } from './components/notebook-list/notebook-list.component';
+import { BookListComponent } from './components/routes/book-list/book-list.component';
+import { NotebookListComponent } from './components/routes/notebook-list/notebook-list.component';
 import { Routes } from '@angular/router';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { BookDetailedComponent } from './components/shared/book/book-detailed.component';
+import { BookDetailedComponent } from './components/routes/book-details/book-details.component';
 import { ProductsResolver } from './resolvers/products.resolver';
 import { ProductTypeEnum } from './constants/product-type.enum';
-import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/routes/home/home.component';
+import { LoginComponent } from './components/routes/login/login.component';
 
 export const appRoutes: Routes = [
   {
-    path: 'home', component: HomeComponent    
+    path: 'home', component: HomeComponent
   },
   {
     path: 'books', component: BookListComponent,
@@ -28,7 +28,7 @@ export const appRoutes: Routes = [
     path: 'cart', component: ShoppingCartComponent,
     data: { title: 'cart' }
   },
-  { path: 'login', component: LoginComponent},
+  { path: 'login', component: LoginComponent },
   {
     path: '**',
     redirectTo: '/home',

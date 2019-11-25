@@ -7,7 +7,6 @@ import {
 } from '@angular/core';
 import { Book } from 'src/app/interfaces/book';
 import { ProductsService } from 'src/app/services/products.service';
-import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 
 @Component({
   selector: 'app-book',

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../model/user';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -17,11 +17,11 @@ export class AuthService {
   login(userName: string, password: string): void {
     if (!userName || !password) {
       return;
-    }   
+    }
 
     this.currentUser = {
       id: 1,
-      userName: userName,
+      username: userName,
       isAdmin: false
     };
   }
