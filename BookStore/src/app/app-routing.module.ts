@@ -9,6 +9,8 @@ import { HomeComponent } from './components/routes/home/home.component';
 import { LoginComponent } from './components/routes/login/login.component';
 import { BookFormComponent } from './components/routes/book-form/book-form.component';
 import { BookFormReactiveComponent } from './components/routes/book-form-reactive/book-form-reactive.component';
+import { LeaveBookFormGuard } from './guards/leave-book-form.guard';
+import { AuthGuard } from './guards/authorization.guard';
 
 export const appRoutes: Routes = [
   {
@@ -19,7 +21,12 @@ export const appRoutes: Routes = [
     data: { title: 'books', productType: ProductTypeEnum.book },
     resolve: { books: ProductsResolver }
   },
-  { path: 'book-form/:id', component: BookFormComponent },
+  {
+    path: 'book-form/:id',
+    component: BookFormComponent,
+    canDeactivate: [LeaveBookFormGuard],
+    canActivate: [AuthGuard]
+  },
   { path: 'book-form-reactive/:id', component: BookFormReactiveComponent },
   {
     path: 'notebooks', component: NotebookListComponent,

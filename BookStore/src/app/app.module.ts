@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { appRoutes } from './app-routing.module';
@@ -28,6 +28,7 @@ import { LoginComponent } from './components/routes/login/login.component';
 import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
 import { BookFormComponent } from './components/routes/book-form/book-form.component';
 import { BookFormReactiveComponent } from './components/routes/book-form-reactive/book-form-reactive.component';
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,13 @@ import { BookFormReactiveComponent } from './components/routes/book-form-reactiv
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],
-  providers: [ProductsService, ShoppingCartService, CurrencyPipe],
+  providers: [
+    ProductsService,
+    ShoppingCartService,
+    CurrencyPipe,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }
+  ]
+  ,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

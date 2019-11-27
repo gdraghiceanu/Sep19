@@ -5,7 +5,9 @@ import { CurrencyEnum } from '../../../constants/currency.enum';
 import { LanguageEnum } from '../../../constants/language.enum';
 import { Book } from '../../../interfaces/book';
 import { mergeMap } from 'rxjs/operators';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+
+const coverUrlPropName = 'coverUrl';
 
 @Component({
   selector: 'app-book-form-reactive',
@@ -13,8 +15,79 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./book-form-reactive.component.scss']
 })
 export class BookFormReactiveComponent implements OnInit {
-    ngOnInit(): void {
-        throw new Error("Method not implemented.");
+  isLoading = true;
+  bookForm: FormGroup = this.formBuilder.group({
+    id: 0,
+    author: [''],
+    [coverUrlPropName]: [''],
+    currency: [CurrencyEnum.ron],
+    language: [LanguageEnum.Romanian],
+    price: [0],
+    publicationDate: [new Date()],
+    publisher: [''],
+    review: [1],
+    title: ['']
+  });
+
+  get author(): string {
+    return this.bookForm.get('author').value;
+  }
+
+  get authorFC(): FormControl {
+    return this.bookForm.get('author') as FormControl;
+  }
+
+  get coverUrl(): string {
+    return this.bookForm.get(coverUrlPropName).value;
+  }
+
+  currencies = [{
+    value: CurrencyEnum.ron,
+    label: CurrencyEnum.ron
+  },
+  {
+    value: CurrencyEnum.usd,
+    label: CurrencyEnum.usd
+  },
+  {
+    value: CurrencyEnum.euro,
+    label: CurrencyEnum.euro
+  }];
+
+  languages = [{
+    value: LanguageEnum.English,
+    label: LanguageEnum.English
+  },
+  {
+    value: LanguageEnum.Romanian,
+    label: LanguageEnum.Romanian
+  }];
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private prodServ: ProductsService,
+    private formBuilder: FormBuilder
+  ) { }
+
+  ngOnInit() {
+    const bookId = +this.route.snapshot.params.id;
+
+    if (bookId) {
+      this.prodServ.getBook(bookId).subscribe(book => {
+        this.bookForm.setValue(book);
+        this.isLoading = false;
+      });
+    } else {
+      this.isLoading = false;
     }
- 
+  }
+
+  saveBook() {
+    this.prodServ.updateBook(this.bookForm.value as Book)
+      .pipe(mergeMap(resp => this.prodServ.getBooks(true)))
+      .subscribe(resp => {
+        this.router.navigate(['/books']);
+      });
+  }
 }

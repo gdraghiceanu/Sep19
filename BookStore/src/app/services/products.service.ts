@@ -49,8 +49,9 @@ export class ProductsService {
   }
 
   updateBook(book: Book): Observable<Book> {
-    const headers = new HttpHeaders().append('Authorization', '1f65d25c-a346-4f08-a90f-be8cb61fb674');
-    return this.http.post<Book>('/api/book', book, { headers });
+    // const headers = new HttpHeaders().append('Authorization', '1f65d25c-a346-4f08-a90f-be8cb61fb674');
+    // return this.http.post<Book>('/api/book', book, { headers });
+    return this.http.post<Book>('/api/book', book);
   }
 
   updateNotebook(notebook: NoteBook): Observable<NoteBook> {
