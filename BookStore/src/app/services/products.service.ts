@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../interfaces/book';
 import { NoteBook } from '../interfaces/notebook';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay, tap } from 'rxjs/operators';
 
@@ -49,7 +49,8 @@ export class ProductsService {
   }
 
   updateBook(book: Book): Observable<Book> {
-    return this.http.post<Book>('/api/book', book);
+    const headers = new HttpHeaders().append('Authorization', '1f65d25c-a346-4f08-a90f-be8cb61fb674');
+    return this.http.post<Book>('/api/book', book, { headers });
   }
 
   updateNotebook(notebook: NoteBook): Observable<NoteBook> {

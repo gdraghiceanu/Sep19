@@ -7,6 +7,7 @@ import { Product } from 'src/app/interfaces/product';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest } from 'rxjs';
 import { first } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-book-list',
@@ -15,6 +16,7 @@ import { first } from 'rxjs/operators';
 })
 export class BookListComponent implements OnInit {
   filteredBooks: Book[];
+  isAdmin = false;
 
   private books: Book[] = [];
 
@@ -22,7 +24,8 @@ export class BookListComponent implements OnInit {
     private productService: ProductsService,
     private shoppingCartService: ShoppingCartService,
     private filterService: FilterService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.books = this.route.snapshot.data.books;
     this.filteredBooks = this.route.snapshot.data.books;
@@ -35,6 +38,7 @@ export class BookListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAdmin = this.authService.currentUser && this.authService.currentUser.isAdmin;
   }
 
   getBooks() {

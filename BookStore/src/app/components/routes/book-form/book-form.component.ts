@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { CurrencyEnum } from '../../../constants/currency.enum';
 import { LanguageEnum } from '../../../constants/language.enum';
 import { Book } from '../../../interfaces/book';
+import { mergeMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book-form',
@@ -11,8 +12,9 @@ import { Book } from '../../../interfaces/book';
   styleUrls: ['./book-form.component.scss']
 })
 export class BookFormComponent implements OnInit {
-
+  isLoading = true;
   book: Book;
+
   currencies = [{
     value: CurrencyEnum.ron,
     label: CurrencyEnum.ron
@@ -35,15 +37,19 @@ export class BookFormComponent implements OnInit {
     label: LanguageEnum.Romanian
   }
   ];
-  constructor(private router: ActivatedRoute, private prodServ: ProductsService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private prodServ: ProductsService
+  ) { }
 
   ngOnInit() {
-    const bookId = +this.router.snapshot.params.id;
+    const bookId = +this.route.snapshot.params.id;
 
     if (bookId) {
-      this.prodServ.getBooks().subscribe(books => {
-        const result = books.filter(book => book.id === bookId)[0];
-        this.book = result;
+      this.prodServ.getBook(bookId).subscribe(book => {
+        this.book = book;
+        this.isLoading = false;
       });
     } else {
       this.book = {
@@ -58,9 +64,15 @@ export class BookFormComponent implements OnInit {
         review: 1,
         title: ''
       };
+      this.isLoading = false;
     }
-
-
   }
 
+  saveBook() {
+    this.prodServ.updateBook(this.book)
+      .pipe(mergeMap(resp => this.prodServ.getBooks(true)))
+      .subscribe(resp => {
+        this.router.navigate(['/books']);
+      });
+  }
 }
