@@ -1,0 +1,77 @@
+<div class="container" *ngIf="!isLoading">
+  <h1>Book Form</h1>
+  <form (ngSubmit)="saveBook()">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" name="title">
+      <div [hidden]="true" class="alert alert-danger">
+        Title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author" name="author">
+      <div [hidden]="true" class="alert alert-danger">
+        Author is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="language">Language</label>
+      <select class="form-control" id="language" name="language">
+        <option *ngFor="let lng of languages" [value]="lng.value">{{lng.label}}</option>
+      </select>
+      <div [hidden]="true" class="alert alert-danger">
+        Language is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Publisher</label>
+      <input type="text" class="form-control" id="publisher" name="publisher">
+    </div>
+
+    <div class="form-group">
+      <label for="publicationDate">Publication Date</label>
+      <input type="date" class="form-control" id="publicationDate" name="publicationDate">
+    </div>
+
+    <div class="form-group">
+      <label for="coverUrl">Cover URL</label>
+      <input type="url" class="form-control" id="coverUrl" name="coverUrl">
+      <div [hidden]="true" class="alert alert-danger">
+        Cover URL is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" name="price">
+      <div [hidden]="true" class="alert alert-danger">
+        Price is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      <select class="form-control" id="currency" name="currency">
+        <option *ngFor="let crn of currencies" [value]="crn.value">{{crn.label}}</option>
+      </select>
+      <div [hidden]="true" class="alert alert-danger">
+        Currency is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="review">Review</label>
+      <input type="number" min="1" max="5" class="form-control" id="review" name="review">
+      <div [hidden]="true" class="alert alert-danger">
+        Review is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="false">Submit</button>
+    <button type="reset" class="btn btn-default">Reset</button>
+  </form>
+</div>

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -27,6 +27,7 @@ import { HomeComponent } from './components/routes/home/home.component';
 import { LoginComponent } from './components/routes/login/login.component';
 import { NameNotAllowedDirective } from './directives/name-not-allowed.directive';
 import { BookFormComponent } from './components/routes/book-form/book-form.component';
+import { BookFormReactiveComponent } from './components/routes/book-form-reactive/book-form-reactive.component';
 
 @NgModule({
   declarations: [
@@ -48,11 +49,13 @@ import { BookFormComponent } from './components/routes/book-form/book-form.compo
     HomeComponent,
     LoginComponent,
     NameNotAllowedDirective,
-    BookFormComponent
+    BookFormComponent,
+    BookFormReactiveComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     HttpClientModule
   ],

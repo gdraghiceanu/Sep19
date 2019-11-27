@@ -18,5 +18,6 @@
 
     </div>
     <button class="nav-link" [routerLink]="['/book-form', book?.id]" *ngIf="isAdmin">Update Book</button>
+    <button class="nav-link" [routerLink]="['/book-form-reactive', book?.id]" *ngIf="isAdmin">Update Book(Reactive)</button>
   </div>
 </div>

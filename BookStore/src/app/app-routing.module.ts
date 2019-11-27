@@ -8,6 +8,7 @@ import { ProductTypeEnum } from './constants/product-type.enum';
 import { HomeComponent } from './components/routes/home/home.component';
 import { LoginComponent } from './components/routes/login/login.component';
 import { BookFormComponent } from './components/routes/book-form/book-form.component';
+import { BookFormReactiveComponent } from './components/routes/book-form-reactive/book-form-reactive.component';
 
 export const appRoutes: Routes = [
   {
@@ -19,6 +20,7 @@ export const appRoutes: Routes = [
     resolve: { books: ProductsResolver }
   },
   { path: 'book-form/:id', component: BookFormComponent },
+  { path: 'book-form-reactive/:id', component: BookFormReactiveComponent },
   {
     path: 'notebooks', component: NotebookListComponent,
     data: { title: 'notebooks', productType: ProductTypeEnum.notebook },

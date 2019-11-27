@@ -4,7 +4,6 @@ import { ProductsService } from 'src/app/services/products.service';
 import { Book } from 'src/app/interfaces/book';
 import { AuthService } from 'src/app/services/auth.service';
 
-
 @Component({
   selector: 'app-book-detailed',
   templateUrl: './book-details.component.html',
