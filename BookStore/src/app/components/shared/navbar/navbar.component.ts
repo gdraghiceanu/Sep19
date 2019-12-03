@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
@@ -20,13 +20,12 @@ export class NavbarComponent implements OnInit {
 
   get userName(): string {
     if (this.authService.currentUser) {
-      return this.authService.currentUser.userName;
+      return this.authService.currentUser.username;
     }
     return '';
   }
 
   constructor(
-    private route: ActivatedRoute,
     private titleService: Title,
     private router: Router,
     private shoppingCartService: ShoppingCartService,
@@ -35,7 +34,7 @@ export class NavbarComponent implements OnInit {
 
     this.router.events
       .pipe(
-        filter(ev => ev instanceof NavigationEnd)
+        filter(event => event instanceof NavigationEnd)
       )
       .subscribe((event: NavigationEnd) => {
         if (event.url.indexOf('notebooks') > -1) {
@@ -45,14 +44,7 @@ export class NavbarComponent implements OnInit {
         } else {
           this.titleService.setTitle('Book Store');
         }
-        // //console.log(event);
       });
-
-    // this.route.data.subscribe(d => {
-    //   this.titleService.setTitle(d.title)
-    //   console.log('Activated route: ', d);
-    // });
-    // console.log("Snapshot" , this.route.snapshot.data);
   }
 
   ngOnInit() {

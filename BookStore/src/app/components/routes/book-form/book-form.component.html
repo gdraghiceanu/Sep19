@@ -1,0 +1,86 @@
+<div class="container" *ngIf="!isLoading">
+  <h1>Book Form</h1>
+  <form (ngSubmit)="saveBook()" #bookForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" required [(ngModel)]="book.title" name="title"
+        #title="ngModel">
+      <div [hidden]="title.valid || title.pristine" class="alert alert-danger">
+        Title is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="author">Author</label>
+      <input type="text" class="form-control" id="author" required [(ngModel)]="book.author" name="author"
+        #author="ngModel">
+      <div [hidden]="author.valid || author.pristine" class="alert alert-danger">
+        Author is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="language">Language</label>
+      <select class="form-control" id="language" required [(ngModel)]="book.language" name="language"
+        #language="ngModel">
+        <option *ngFor="let lng of languages" [value]="lng.value">{{lng.label}}</option>
+      </select>
+      <div [hidden]="language.valid || language.pristine" class="alert alert-danger">
+        Language is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="publisher">Publisher</label>
+      <input type="text" class="form-control" id="publisher" [(ngModel)]="book.publisher" name="publisher"
+        #publisher="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="publicationDate">Publication Date</label>
+      <input type="date" class="form-control" id="publicationDate" [(ngModel)]="book.publicationDate"
+        name="publicationDate" #publicationDate="ngModel">
+    </div>
+
+    <div class="form-group">
+      <label for="coverUrl">Cover URL</label>
+      <input type="url" class="form-control" id="coverUrl" required [(ngModel)]="book.coverUrl" name="coverUrl"
+        #coverUrl="ngModel">
+      <div [hidden]="coverUrl.valid || coverUrl.pristine" class="alert alert-danger">
+        Cover URL is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="price">Price</label>
+      <input type="number" class="form-control" id="price" required [(ngModel)]="book.price" name="price"
+        #price="ngModel">
+      <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+        Price is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="currency">Currency</label>
+      <select class="form-control" id="currency" required [(ngModel)]="book.currency" name="currency"
+        #currency="ngModel">
+        <option *ngFor="let crn of currencies" [value]="crn.value">{{crn.label}}</option>
+      </select>
+      <div [hidden]="currency.valid || currency.pristine" class="alert alert-danger">
+        Currency is required
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="review">Review</label>
+      <input type="number" min="1" max="5" class="form-control" id="review" [(ngModel)]="book.review" name="review"
+        #review="ngModel">
+      <div [hidden]="review.valid || review.pristine" class="alert alert-danger">
+        Review is required
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success" [disabled]="!bookForm.form.valid">Submit</button>
+    <button type="reset" class="btn btn-default">Reset</button>
+  </form>
+</div>

@@ -1,6 +1,7 @@
 <div class="books-container">
   <h2 class="bg-info text-white p-3">Books</h2>
-
+  <button style="float: right;" class="nav-link" [routerLink]="['/book-form', '']" *ngIf="isAdmin">Add Book</button>
+  <button style="float: right;" class="nav-link" [routerLink]="['/book-form-reactive', '']" *ngIf="isAdmin">Add Book(Reactive)</button>
   <div clas="col-md-7">Sort by:
     <div class="btn-group btn-group-sm" style="margin-right: 20px;">
       <button class="btn btn-default" (click)="clickSort('name')">By Name</button>

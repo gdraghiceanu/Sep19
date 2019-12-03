@@ -17,7 +17,7 @@ import { FilterService } from 'src/app/services/filter.service';
 })
 export class ProductFilterComponent
   implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('x', { static: false }) inputFilter: ElementRef<HTMLInputElement>;
+  @ViewChild('filterInput', { static: false }) inputFilter: ElementRef<HTMLInputElement>;
 
   filter: string;
 
