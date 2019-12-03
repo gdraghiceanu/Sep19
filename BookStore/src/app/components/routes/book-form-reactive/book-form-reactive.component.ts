@@ -7,8 +7,6 @@ import { Book } from '../../../interfaces/book';
 import { mergeMap } from 'rxjs/operators';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 
-const coverUrlPropName = 'coverUrl';
-
 @Component({
   selector: 'app-book-form-reactive',
   templateUrl: './book-form-reactive.component.html',
@@ -18,27 +16,51 @@ export class BookFormReactiveComponent implements OnInit {
   isLoading = true;
   bookForm: FormGroup = this.formBuilder.group({
     id: 0,
-    author: [''],
-    [coverUrlPropName]: [''],
-    currency: [CurrencyEnum.ron],
-    language: [LanguageEnum.Romanian],
-    price: [0],
-    publicationDate: [new Date()],
+    author: ['', Validators.required],
+    coverUrl: ['', Validators.required],
+    currency: [CurrencyEnum.ron, Validators.required],
+    language: [LanguageEnum.Romanian, Validators.required],
+    price: [0, Validators.required],
+    publicationDate: [''],
     publisher: [''],
-    review: [1],
-    title: ['']
+    review: [1, Validators.required],
+    title: ['', Validators.required]
   });
 
-  get author(): string {
-    return this.bookForm.get('author').value;
-  }
-
-  get authorFC(): FormControl {
+  get author(): FormControl {
     return this.bookForm.get('author') as FormControl;
   }
 
-  get coverUrl(): string {
-    return this.bookForm.get(coverUrlPropName).value;
+  get coverUrl(): FormControl {
+    return this.bookForm.get('coverUrl') as FormControl;
+  }
+
+  get currency(): FormControl {
+    return this.bookForm.get('currency') as FormControl;
+  }
+
+  get language(): FormControl {
+    return this.bookForm.get('language') as FormControl;
+  }
+
+  get price(): FormControl {
+    return this.bookForm.get('price') as FormControl;
+  }
+
+  get publicationDate(): FormControl {
+    return this.bookForm.get('publicationDate') as FormControl;
+  }
+
+  get publisher(): FormControl {
+    return this.bookForm.get('publisher') as FormControl;
+  }
+
+  get review(): FormControl {
+    return this.bookForm.get('review') as FormControl;
+  }
+
+  get title(): FormControl {
+    return this.bookForm.get('title') as FormControl;
   }
 
   currencies = [{
