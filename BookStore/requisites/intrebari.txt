@@ -1,0 +1,26 @@
+Intrebari:
+
+1. Pentru o aplicatie mare (site shop online ) cu utilizatori cu mai multe niveluri de acces cu urmatoarele module 
+prezentare produse
+admin
+clienti logati ( vanzatori)
+utilizatori logati (cumparatori)
+
+Care este arhitectura din punct de vedere angular ? Vom avea 4 aplicatii angular?
+
+2. Pentru mai multe produse se doreste o paginatie :
+Ce metoda recomandati: 
+a) paginare facuta in angular pe parte de client? 
+b) paginatie facuta pe parte de server
+La scroll? Sau paginatie normala cu schimbarea URL-ului in  browser?
+
+3. Puteti sa ne dati un exemplu concret de folosire si cu o baza de date?
+
+4. Care sunt etapele pe pasi cap coada pentru un proiect Angular, de la dezvoltare local pana in productie pe live?
+
+5. Se poate sa ne spuneti o lista cu bune practici in Angular si o lista cu ce nu trebuie sa facem 
+ca incepatori in Angular. Pe mine m-ar ajuta sa ramana undeva scris. 
+Poate si un checklist de care tineti cont cand faceti code review.
+
+6. Angular se poate conecta direct la o baza de date? Partea de server folosita de noi, va putea fi accesata pe partea de client, browser?
+sau doar ce este in folderul app "ajunge" pe client?
