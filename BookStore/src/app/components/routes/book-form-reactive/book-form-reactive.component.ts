@@ -4,8 +4,11 @@ import { ProductsService } from 'src/app/services/products.service';
 import { CurrencyEnum } from '../../../constants/currency.enum';
 import { LanguageEnum } from '../../../constants/language.enum';
 import { Book } from '../../../interfaces/book';
-import { mergeMap } from 'rxjs/operators';
-import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
+import { mergeMap, map, catchError } from 'rxjs/operators';
+import { FormBuilder, Validators, FormGroup, FormControl, ValidationErrors } from '@angular/forms';
+import { NameNotAllowedValidator } from 'src/app/validators/name-not-allowed.validator';
+import { BookNameAvailable } from 'src/app/validators/book-name-available.validators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-book-form-reactive',
@@ -14,18 +17,7 @@ import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms'
 })
 export class BookFormReactiveComponent implements OnInit {
   isLoading = true;
-  bookForm: FormGroup = this.formBuilder.group({
-    id: 0,
-    author: ['', Validators.required],
-    coverUrl: ['', Validators.required],
-    currency: [CurrencyEnum.ron, Validators.required],
-    language: [LanguageEnum.Romanian, Validators.required],
-    price: [0, Validators.required],
-    publicationDate: [''],
-    publisher: [''],
-    review: [1, Validators.required],
-    title: ['', Validators.required]
-  });
+  bookForm: FormGroup;
 
   get author(): FormControl {
     return this.bookForm.get('author') as FormControl;
@@ -89,8 +81,22 @@ export class BookFormReactiveComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private prodServ: ProductsService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private bookNameAvailable: BookNameAvailable,
+  ) {
+    this.bookForm = this.formBuilder.group({
+      id: 0,
+      author: ['', [Validators.required, NameNotAllowedValidator(['ceva'])]],
+      coverUrl: ['', Validators.required],
+      currency: [CurrencyEnum.ron, Validators.required],
+      language: [LanguageEnum.Romanian, Validators.required],
+      price: [0, Validators.required],
+      publicationDate: [''],
+      publisher: [''],
+      review: [1, Validators.required],
+      title: ['', Validators.required, this.validate.bind(this)]
+    });
+  }
 
   ngOnInit() {
     const bookId = +this.route.snapshot.params.id;
@@ -103,6 +109,13 @@ export class BookFormReactiveComponent implements OnInit {
     } else {
       this.isLoading = false;
     }
+  }
+
+  public validate(control: FormControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
+    return this.prodServ.isBookNameAvailable(control.value).pipe(
+      map(isNotTaken => (isNotTaken ? null : { bookNameAvailable: true })),
+      catchError(() => null)
+    );
   }
 
   saveBook() {

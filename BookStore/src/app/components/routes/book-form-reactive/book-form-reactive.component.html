@@ -5,15 +5,28 @@
       <label for="title">Title</label>
       <input type="text" class="form-control" id="title" formControlName="title">
       <div [hidden]="title.valid || title.untouched" class="alert alert-danger">
-        Title is required
+        <span *ngIf="title.errors && title.errors['required']">
+          Author is required
+        </span>
+        <span *ngIf="title.errors && title.errors['bookNameAvailable']">
+          This title is already up for sale
+        </span>
       </div>
     </div>
+    {{title.errors | json}}
+    Pending: {{bookForm.pending | json}}
+    Form Valid: {{bookForm.valid | json}}
 
     <div class="form-group">
       <label for="author">Author</label>
       <input type="text" class="form-control" id="author" formControlName="author">
       <div [hidden]="author.valid || author.untouched" class="alert alert-danger">
-        Author is required
+        <span *ngIf="author.errors && author.errors['required']">
+          Author is required
+        </span>
+        <span *ngIf="author.errors && author.errors['nameNotAllowed']">
+          We do not sell books from that author
+        </span>
       </div>
     </div>
 

@@ -44,6 +44,10 @@ export class ProductsService {
     return this.http.get<Book>(`/api/book/${bookId}`);
   }
 
+  isBookNameAvailable(bookName: string): Observable<NoteBook> {
+    return this.http.get<NoteBook>(`api/bookNameAvailable?name=${bookName}`);
+  }
+
   getNoteBook(notebookId: number): Observable<NoteBook> {
     return this.http.get<NoteBook>(`/api/notebook/${notebookId}`);
   }
