@@ -75,6 +75,18 @@ app.get('/api/book/:id', (req, res) => {
   }
 });
 
+app.get('/api/bookNameAvailable', (req, res) => {
+  const dataString = fs.readFileSync('./database.json', 'utf8');
+  const data = JSON.parse(dataString);
+
+  if (req.query.name) {
+    const isNameAvailable = data.books.find(b => b.title.toLowerCase() === req.query.name.toLowerCase());
+    res.status(200).send(!isNameAvailable);
+  } else {
+    res.status(200).send(false);
+  }
+})
+
 app.get('/api/notebooks', (req, res) => {
   const dataString = fs.readFileSync('./database.json', 'utf8');
   const data = JSON.parse(dataString);
